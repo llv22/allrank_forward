@@ -1,0 +1,40 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "allrank_train",
+            "type": "python",
+            "request": "launch",
+            "program": "allrank/main.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "args": [
+                "--config-file-name",
+                "allrank/neuralndcg_atmax.json",
+                "--run-id",
+                "ranallrank_NeuralNDCG",
+                "--job-dir",
+                "experiments/ranallrank_NeuralNDCG",
+            ],
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}${pathSeparator}${env:PYTHONPATH}"
+            },
+            "justMyCode": true
+        },
+        {
+            "name": "web30k_feature_extraction",
+            "type": "python",
+            "request": "launch",
+            "program": "reproducibility/normalize_features.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--ds_path",
+                "dataset/MSLR-WEB30K/Fold1",
+            ],
+            "justMyCode": true
+        }
+    ]
+}

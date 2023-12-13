@@ -114,6 +114,30 @@ Additionally, if you use the NeuralNDCG loss function, please cite the correspon
 }
 ```
 
+## Reproduce on Set1 on dataset/MSLR-WEB30K/Fold1
+
+### Prepare feature for MSLR-WEB30K
+
+```bash
+conda activate metaGUI
+python reproducibility/normalize_features.py --ds_path dataset/MSLR-WEB30K/Fold1
+python reproducibility/normalize_features.py --ds_path dataset/MSLR-WEB30K/Fold2
+python reproducibility/normalize_features.py --ds_path dataset/MSLR-WEB30K/Fold3
+python reproducibility/normalize_features.py --ds_path dataset/MSLR-WEB30K/Fold4
+python reproducibility/normalize_features.py --ds_path dataset/MSLR-WEB30K/Fold5
+```
+
+### Run ranallrank_NeuralNDCG
+
+```bash
+conda activate metaGUI
+PYTHONPATH=.:${PYTHONPATH} python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Fold1_normalized.json --run-id ranallrank_NeuralNDCG_Fold1_normalized --job-dir experiments/ranallrank_NeuralNDCG_Fold1_normalized # DONE
+PYTHONPATH=.:${PYTHONPATH} python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Fold2_normalized.json --run-id ranallrank_NeuralNDCG_Fold2_normalized --job-dir experiments/ranallrank_NeuralNDCG_Fold2_normalized
+PYTHONPATH=.:${PYTHONPATH} python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Fold3_normalized.json --run-id ranallrank_NeuralNDCG_Fold3_normalized --job-dir experiments/ranallrank_NeuralNDCG_Fold3_normalized
+PYTHONPATH=.:${PYTHONPATH} python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Fold4_normalized.json --run-id ranallrank_NeuralNDCG_Fold4_normalized --job-dir experiments/ranallrank_NeuralNDCG_Fold4_normalized
+PYTHONPATH=.:${PYTHONPATH} python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Fold5_normalized.json --run-id ranallrank_NeuralNDCG_Fold5_normalized --job-dir experiments/ranallrank_NeuralNDCG_Fold5_normalized
+```
+
 ## License
 
 Apache 2 License

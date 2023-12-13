@@ -35,6 +35,20 @@
                 "dataset/MSLR-WEB30K/Fold1",
             ],
             "justMyCode": true
+        },
+        {
+            "name": "web30k_feature_for_tfrecord",
+            "type": "python",
+            "request": "launch",
+            "program": "reproducibility/tfrecord_features.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--ds_path",
+                "dataset/MSLR-WEB30K/Fold1",
+                "--out_tf_path",
+                "dataset/MSLR-WEB30K/Fold1_tfrecord",
+            ],
+            "justMyCode": true
         }
     ]
 }

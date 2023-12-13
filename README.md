@@ -138,6 +138,26 @@ PYTHONPATH=.:${PYTHONPATH} python allrank/main.py  --config-file-name allrank/ne
 PYTHONPATH=.:${PYTHONPATH} python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Fold5_normalized.json --run-id ranallrank_NeuralNDCG_Fold5_normalized --job-dir experiments/ranallrank_NeuralNDCG_Fold5_normalized
 ```
 
+NeuralNDCG on MSLR-WEB30K Fold1 to Fold5
+
+| Dataset | Train Loss          | Train NDCG@1       | Train NDCG@5       | Train NDCG@10      | Train NDCG@30      | Train NDCG@60      | Val Loss            | Val NDCG@1         | Val NDCG@5         | Val NDCG@10        | Val NDCG@30        | Val NDCG@60        |
+|---------|---------------------|--------------------|--------------------|--------------------|--------------------|--------------------|---------------------|--------------------|--------------------|--------------------|--------------------|--------------------|
+| Fold1   | -0.7669206603150948 | 0.6319156289100647 | 0.5951358675956726 | 0.595418393611908  | 0.6312896013259888 | 0.6902117133140564 | -0.7294725948502213 | 0.517143189907074  | 0.5089449882507324 | 0.5275285840034485 | 0.5840967297554016 | 0.6481217741966248 |
+| Fold2   | -0.7665537890652948 | 0.6281455755233765 | 0.5941371917724609 | 0.5944378972053528 | 0.6313827037811279 | 0.6902371048927307 | -0.7269774124779981 | 0.5167470574378967 | 0.5107281804084778 | 0.527868390083313  | 0.5821496248245239 | 0.6455816030502319 |
+| Fold3   | -0.7668627891849042 | 0.6241025328636169 | 0.5938913822174072 | 0.5951226353645325 | 0.6322952508926392 | 0.6909143924713135 | -0.732415835629786  | 0.532313883304596  | 0.5211151838302612 | 0.5354329347610474 | 0.5869977474212646 | 0.6501902341842651 |
+| Fold4   | -0.7662994338049748 | 0.6262935996055603 | 0.5946605801582336 | 0.5965979099273682 | 0.6328622698783875 | 0.6911565065383911 | -0.7308251556804208 | 0.5148641467094421 | 0.5154050588607788 | 0.5328453779220581 | 0.5857040286064148 | 0.6489840745925903 |
+| Fold5   | -0.7675414259737834 | 0.6310990452766418 | 0.5953048467636108 | 0.5956495404243469 | 0.632238507270813  | 0.6907401084899902 | -0.727307596510643  | 0.5146557092666626 | 0.5060291290283203 | 0.5266775488853455 | 0.5825557708740234 | 0.646621823310852  |
+
+### Prepare features
+
+```bash
+python reproducibility/tfrecord_features.py --ds_path dataset/MSLR-WEB30K/Fold1 --out_tf_path dataset/MSLR-WEB30K/Fold1_tfrecord
+python reproducibility/tfrecord_features.py --ds_path dataset/MSLR-WEB30K/Fold2 --out_tf_path dataset/MSLR-WEB30K/Fold2_tfrecord
+python reproducibility/tfrecord_features.py --ds_path dataset/MSLR-WEB30K/Fold3 --out_tf_path dataset/MSLR-WEB30K/Fold3_tfrecord
+python reproducibility/tfrecord_features.py --ds_path dataset/MSLR-WEB30K/Fold4 --out_tf_path dataset/MSLR-WEB30K/Fold4_tfrecord
+python reproducibility/tfrecord_features.py --ds_path dataset/MSLR-WEB30K/Fold5 --out_tf_path dataset/MSLR-WEB30K/Fold5_tfrecord
+```
+
 ## License
 
 Apache 2 License

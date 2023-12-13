@@ -36,7 +36,7 @@ for target in targets:
     output_tfrecord_file = os.path.join(args.out_tf_path, f"{target}_numerical.tfrecord")
     with tf.io.TFRecordWriter(output_tfrecord_file) as writer:
         for i in range(x.shape[0]):
-            features = [f for f in x[i].toarray()[0]]
+            features = x[i,:].toarray()[0].tolist()
             features.append(y[i])
             serialized_example = serialize_example(features)
             writer.write(serialized_example)

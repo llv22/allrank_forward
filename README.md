@@ -150,6 +150,8 @@ NeuralNDCG on MSLR-WEB30K Fold1 to Fold5
 
 ### Prepare features
 
+refer to [Scalable, neural learning to rank (LTR) models](https://www.tensorflow.org/ranking) and [Neural Learning to Rank using TensorFlow ICTIR 2019](https://bendersky.github.io/res/TF-Ranking-ICTIR-2019.pdf)
+
 ```bash
 python reproducibility/tfrecord_features.py --ds_path dataset/MSLR-WEB30K/Fold1 --out_tf_path dataset/MSLR-WEB30K/Fold1_tfrecord
 python reproducibility/tfrecord_features.py --ds_path dataset/MSLR-WEB30K/Fold2 --out_tf_path dataset/MSLR-WEB30K/Fold2_tfrecord

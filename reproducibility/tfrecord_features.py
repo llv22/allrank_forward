@@ -17,9 +17,9 @@ def parse_args() -> Namespace:
 
 def serialize_example(features):
     feature = {}
-    for index, f in features:
+    for index, f in enumerate(features):
         if index < len(features) - 1:
-            feature[f"custom_features_{index}"] = tf.train.Feature(float_list=tf.train.FloatList(value=[f]))
+            feature[f"custom_features_{index+1}"] = tf.train.Feature(float_list=tf.train.FloatList(value=[f]))
         else:
             feature["utility"] = tf.train.Feature(int64_list=tf.train.Int64List(value=[f]))
     example_proto = tf.train.Example(features=tf.train.Features(feature=feature))
@@ -37,7 +37,7 @@ for target in targets:
     with tf.io.TFRecordWriter(output_tfrecord_file) as writer:
         for i in range(x.shape[0]):
             features = x[i,:].toarray()[0].tolist()
-            features.append(y[i])
+            features.append((int)(y[i]))
             serialized_example = serialize_example(features)
             writer.write(serialized_example)
 

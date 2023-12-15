@@ -3,6 +3,7 @@
 ## About
 
 allRank is a PyTorch-based framework for training neural Learning-to-Rank (LTR) models, featuring implementations of:
+
 * common pointwise, pairwise and listwise loss functions
 * fully connected and Transformer-like scoring functions
 * commonly used evaluation metrics like Normalized Discounted Cumulative Gain (NDCG) and Mean Reciprocal Rank (MRR)
@@ -17,6 +18,7 @@ We hope that allRank will facilitate both research in neural LTR and its industr
 ## Features
 
 ### Implemented loss functions:
+
  1. ListNet (for binary and graded relevance)
  2. ListMLE
  3. RankNet
@@ -67,7 +69,7 @@ To experiment with your own custom loss, you need to implement a function that t
  and put it in the `losses` package, making sure it is exposed on a package level.
 To use it in training, simply pass the name (and args, if your loss method has some hyperparameters) of your function in the correct place in the config file:
 
-```
+```json
 "loss": {
     "name": "yourLoss",
     "args": {
@@ -103,6 +105,7 @@ This framework was developed to support the research project [Context-Aware Lear
   volume={abs/2005.10084}
 }
 ```
+
 Additionally, if you use the NeuralNDCG loss function, please cite the corresponding work, [NeuralNDCG: Direct Optimisation of a Ranking Metric via Differentiable Relaxation of Sorting](https://arxiv.org/abs/2102.07831):
 ```
 @article{Pobrotyn2021NeuralNDCG,
@@ -114,7 +117,7 @@ Additionally, if you use the NeuralNDCG loss function, please cite the correspon
 }
 ```
 
-## Reproduce on Set1 on dataset/MSLR-WEB30K/Fold1
+## Reproduce on Set1-5 on dataset/MSLR-WEB30K based on allRank
 
 ### Prepare feature for MSLR-WEB30K
 
@@ -147,6 +150,40 @@ NeuralNDCG on MSLR-WEB30K Fold1 to Fold5
 | Fold3   | -0.7668627891849042 | 0.6241025328636169 | 0.5938913822174072 | 0.5951226353645325 | 0.6322952508926392 | 0.6909143924713135 | -0.732415835629786  | 0.532313883304596  | 0.5211151838302612 | 0.5354329347610474 | 0.5869977474212646 | 0.6501902341842651 |
 | Fold4   | -0.7662994338049748 | 0.6262935996055603 | 0.5946605801582336 | 0.5965979099273682 | 0.6328622698783875 | 0.6911565065383911 | -0.7308251556804208 | 0.5148641467094421 | 0.5154050588607788 | 0.5328453779220581 | 0.5857040286064148 | 0.6489840745925903 |
 | Fold5   | -0.7675414259737834 | 0.6310990452766418 | 0.5953048467636108 | 0.5956495404243469 | 0.632238507270813  | 0.6907401084899902 | -0.727307596510643  | 0.5146557092666626 | 0.5060291290283203 | 0.5266775488853455 | 0.5825557708740234 | 0.646621823310852  |
+
+### Feature extraction for execution models
+
+* Text features
+
+| Text Feature | Id | Definition | Formula |
+|--------------|----|------------|---------|
+|              |    |            |         |
+|              |    |            |         |
+|              |    |            |         |
+|              |    |            |         |
+|              |    |            |         |
+
+* Visual features
+
+| Visual Feature | Id | Definition | Formula |
+|----------------|----|------------|---------|
+| GPT4-V instructions completion degree |    |            |         |
+| GPT4-V goal completion degree  |    |            |         |
+|                |    |            |         |
+|                |    |            |         |
+|                |    |            |         |
+
+* Text & Visual alignment features
+
+| Tex & Visual Feature Alignment | Id | Definition | Formula |
+|--------------------------------|----|------------|---------|
+|                                |    |            |         |
+|                                |    |            |         |
+|                                |    |            |         |
+|                                |    |            |         |
+|                                |    |            |         |
+
+## Reproduce on Set1-5 on dataset/MSLR-WEB30K based on DALLC
 
 ### Prepare features
 

@@ -153,35 +153,43 @@ NeuralNDCG on MSLR-WEB30K Fold1 to Fold5
 
 ### Feature extraction for execution models
 
-* Text features
+* Text features of web page, search query, instruction from the web page
 
-| Text Feature | Id | Definition | Formula |
-|--------------|----|------------|---------|
-|              |    |            |         |
-|              |    |            |         |
-|              |    |            |         |
-|              |    |            |         |
-|              |    |            |         |
+| Text Feature                                          | Id | Definition | Formula |
+|-------------------------------------------------------|----|------------|---------|
+| covered query term number (title)                     | 1  |            |         |
+| covered query term number (body)                      | 2  |            |         |
+| covered query term ratio (title)                      | 3  |            |         |
+| covered query term ratio (body)                       | 4  |            |         |
+| term frequency (min)                                  | 5  |            |         |
+| term frequency (max)                                  | 6  |            |         |
+| term frequency (sum)                                  | 7  |            |         |
+| term frequency (variance)                             | 8  |            |         |
+| similarity between action description and instruction | 9  |            |         |
+| attributing instruction coverage ratio                | 10 |            |         |
 
 * Visual features
 
-| Visual Feature | Id | Definition | Formula |
-|----------------|----|------------|---------|
-| GPT4-V instructions completion degree |    |            |         |
-| GPT4-V goal completion degree  |    |            |         |
-|                |    |            |         |
-|                |    |            |         |
-|                |    |            |         |
-
-* Text & Visual alignment features
-
-| Tex & Visual Feature Alignment | Id | Definition | Formula |
-|--------------------------------|----|------------|---------|
-|                                |    |            |         |
-|                                |    |            |         |
-|                                |    |            |         |
-|                                |    |            |         |
-|                                |    |            |         |
+| Visual Feature                             | Id | Definition                                                                                | Formula |
+|--------------------------------------------|----|-------------------------------------------------------------------------------------------|---------|
+| GPT4-V instructions completion degree      | 11 |                                                                                           |         |
+| GPT4-V goal completion degree              | 12 |                                                                                           |         |
+| Step repetition degree                     | 13 | how many time the same UI appears                                                         |         |
+| Step disorder degree                       | 14 | assign UI with order Id, how many disorder exist                                          |         |
+| Query term ratio on UI (avg)               | 15 | percentage of query term appearing on current UI                                          |         |
+| Query term ratio on UI (min)               | 16 |                                                                                           |         |
+| Query term ratio on UI (max)               | 17 |                                                                                           |         |
+| Query term ratio on UI (sum)               | 18 |                                                                                           |         |
+| Query term ratio on UI (var)               | 19 |                                                                                           |         |
+| Instruction term ratio on UI (avg)         | 20 | percentage of instruction term appearing on current UI                                    |         |
+| Instruction term ratio on UI (min)         | 21 |                                                                                           |         |
+| Instruction term ratio on UI (max)         | 22 |                                                                                           |         |
+| Instruction term ratio on UI (sum)         | 23 |                                                                                           |         |
+| Instruction term ratio on UI (var)         | 24 |                                                                                           |         |
+| Progressing step degree                    | 25 | how many UI steps are actually moving forward                                             |         |
+| Stepping MAE of instruction term           | 26 | whether each step moving from previous instruction to the next                            |         |
+| The position of the last instruction term  | 27 | relative position of the lastly matched instruction term                                  |         |
+| The moving distancing of instruction terms | 18 | distance from the nearest matched instruction term to the farest matched instruction term |         |
 
 ## Reproduce on Set1-5 on dataset/MSLR-WEB30K based on DALLC
 

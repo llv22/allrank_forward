@@ -12,12 +12,131 @@ allRank is a PyTorch-based framework for training neural Learning-to-Rank (LTR) 
 ### Motivation
 
 allRank provides an easy and flexible way to experiment with various LTR neural network models and loss functions.
-It is easy to add a custom loss, and to configure the model and the training procedure. 
+It is easy to add a custom loss, and to configure the model and the training procedure.  
 We hope that allRank will facilitate both research in neural LTR and its industrial applications.
 
 ## Features
 
-### Implemented loss functions:
+### Implemented loss functions:  
+
+ 1. ListNet (for binary and graded relevance)
+ 2. ListMLE
+ 3. RankNet
+ 4. Ordinal loss
+ 5. LambdaRank
+ 6. LambdaLoss
+ 7. ApproxNDCG
+ 8. RMSE
+ 9. NeuralNDCG (introduced in https://arxiv.org/pdf/2102.07831)
+
+### Getting started guide
+
+To help you get started, we provide a ```run_example.sh``` script which generates dummy ranking data in libsvm format and trains
+ a Transformer model on the data using provided example ```config.json``` config file. Once you run the script, the dummy data can be found in `dummy_data` directory
+ and the results of the experiment in `test_run` directory. To run the example, Docker is required.
+
+### Getting the right architecture version (GPU vs CPU-only)
+
+Since torch binaries are different for GPU and CPU and GPU version doesn't work on CPU - one must select & build appropriate docker image version.
+
+To do so pass `gpu` or `cpu` as `arch_version` build-arg in 
+
+```docker build --build-arg arch_version=${ARCH_VERSION}```
+
+When calling `run_example.sh` you can select the proper version by a first cmd line argument e.g. 
+
+```run_example.sh gpu ...```
+
+with `cpu` being the default if not specified.
+
+### Configuring your model & training
+
+To train your own model, configure your experiment in ```config.json``` file and run  
+
+```python allrank/main.py --config_file_name allrank/config.json --run_id <the_name_of_your_experiment> --job_dir <the_place_to_save_results>```
+
+All the hyperparameters of the training procedure: i.e. model defintion, data location, loss and metrics used, training hyperparametrs etc. are controlled
+by the ```config.json``` file. We provide a template file ```config_template.json``` where supported attributes, their meaning and possible values are explained.
+ Note that following MSLR-WEB30K convention, your libsvm file with training data should be named `train.txt`. You can specify the name of the validation dataset 
+ (eg. valid or test) in the config. Results will be saved under the path ```<job_dir>/results/<run_id>```
+ 
+Google Cloud Storage is supported in allRank as a place for data and job results.
+
+
+### Implementing custom loss functions
+
+To experiment with your own custom loss, you need to implement a function that takes two tensors (model prediction and ground truth) as input
+ and put it in the `losses` package, making sure it is exposed on a package level.
+To use it in training, simply pass the name (and args, if your loss method has some hyperparameters) of your function in the correct place in the config file:
+
+```json
+"loss": {
+    "name": "yourLoss",
+    "args": {
+        "arg1": val1,
+        "arg2: val2
+    }
+  }
+```
+
+### Applying click-model
+
+To apply a click model you need to first have an allRank model trained.
+Next, run:
+
+```python allrank/rank_and_click.py --input-model-path <path_to_the_model_weights_file> --roles <comma_separated_list_of_ds_roles_to_process e.g. train,valid> --config_file_name allrank/config.json --run_id <the_name_of_your_experiment> --job_dir <the_place_to_save_results>``` 
+
+The model will be used to rank all slates from the dataset specified in config. Next - a click model configured in config will be applied and the resulting click-through dataset will be written under ```<job_dir>/results/<run_id>``` in a libSVM format.
+The path to the results directory may then be used as an input for another allRank model training.
+
+## Continuous integration
+
+You should run `scripts/ci.sh` to verify that code passes style guidelines and unit tests.
+
+## Research
+
+This framework was developed to support the research project [Context-Aware Learning to Rank with Self-Attention](https://arxiv.org/abs/2005.10084). If you use allRank in your research, please cite:
+```
+@article{Pobrotyn2020ContextAwareLT,
+  title={Context-Aware Learning to Rank with Self-Attention},
+  author={Przemyslaw Pobrotyn and Tomasz Bartczak and Mikolaj Synowiec and Radoslaw Bialobrzeski and Jaroslaw Bojar},
+  journal={ArXiv},
+  year={2020},
+  volume={abs/2005.10084}
+}
+```
+
+Additionally, if you use the NeuralNDCG loss function, please cite the corresponding work, [NeuralNDCG: Direct Optimisation of a Ranking Metric via Differentiable Relaxation of Sorting](https://arxiv.org/abs/2102.07831):
+```
+@article{Pobrotyn2021NeuralNDCG,
+  title={NeuralNDCG: Direct Optimisation of a Ranking Metric via Differentiable Relaxation of Sorting},
+  author={Przemyslaw Pobrotyn and Radoslaw Bialobrzeski},
+  journal={ArXiv},
+  year={2021},
+  volume={abs/2102.07831}
+}
+```
+
+* Visual features# allRank : Learning to Rank in PyTorch
+
+## About
+
+allRank is a PyTorch-based framework for training neural Learning-to-Rank (LTR) models, featuring implementations of:
+
+* common pointwise, pairwise and listwise loss functions
+* fully connected and Transformer-like scoring functions
+* commonly used evaluation metrics like Normalized Discounted Cumulative Gain (NDCG) and Mean Reciprocal Rank (MRR)
+* click-models for experiments on simulated click-through data
+
+### Motivation
+
+allRank provides an easy and flexible way to experiment with various LTR neural network models and loss functions.
+It is easy to add a custom loss, and to configure the model and the training procedure.  
+We hope that allRank will facilitate both research in neural LTR and its industrial applications.
+
+## Features
+
+### Implemented loss functions:  
 
  1. ListNet (for binary and graded relevance)
  2. ListMLE
@@ -119,6 +238,8 @@ Additionally, if you use the NeuralNDCG loss function, please cite the correspon
 
 ## Reproduce on Set1-5 on dataset/MSLR-WEB30K based on allRank
 
+Refer to [NDCG](https://towardsdatascience.com/demystifying-ndcg-bee3be58cfe0)
+
 ### Prepare feature for MSLR-WEB30K
 
 ```bash
@@ -135,10 +256,10 @@ python reproducibility/normalize_features.py --ds_path dataset/MSLR-WEB30K/Fold5
 ```bash
 conda activate metaGUI
 PYTHONPATH=.:${PYTHONPATH} python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Fold1_normalized.json --run-id ranallrank_NeuralNDCG_Fold1_normalized --job-dir experiments/ranallrank_NeuralNDCG_Fold1_normalized # DONE
-PYTHONPATH=.:${PYTHONPATH} python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Fold2_normalized.json --run-id ranallrank_NeuralNDCG_Fold2_normalized --job-dir experiments/ranallrank_NeuralNDCG_Fold2_normalized
-PYTHONPATH=.:${PYTHONPATH} python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Fold3_normalized.json --run-id ranallrank_NeuralNDCG_Fold3_normalized --job-dir experiments/ranallrank_NeuralNDCG_Fold3_normalized
-PYTHONPATH=.:${PYTHONPATH} python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Fold4_normalized.json --run-id ranallrank_NeuralNDCG_Fold4_normalized --job-dir experiments/ranallrank_NeuralNDCG_Fold4_normalized
-PYTHONPATH=.:${PYTHONPATH} python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Fold5_normalized.json --run-id ranallrank_NeuralNDCG_Fold5_normalized --job-dir experiments/ranallrank_NeuralNDCG_Fold5_normalized
+PYTHONPATH=.:${PYTHONPATH} python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Fold2_normalized.json --run-id ranallrank_NeuralNDCG_Fold2_normalized --job-dir experiments/ranallrank_NeuralNDCG_Fold2_normalized # DONE
+PYTHONPATH=.:${PYTHONPATH} python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Fold3_normalized.json --run-id ranallrank_NeuralNDCG_Fold3_normalized --job-dir experiments/ranallrank_NeuralNDCG_Fold3_normalized # DONE
+PYTHONPATH=.:${PYTHONPATH} python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Fold4_normalized.json --run-id ranallrank_NeuralNDCG_Fold4_normalized --job-dir experiments/ranallrank_NeuralNDCG_Fold4_normalized # DONE
+PYTHONPATH=.:${PYTHONPATH} python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Fold5_normalized.json --run-id ranallrank_NeuralNDCG_Fold5_normalized --job-dir experiments/ranallrank_NeuralNDCG_Fold5_normalized # DONE
 ```
 
 NeuralNDCG on MSLR-WEB30K Fold1 to Fold5
@@ -155,54 +276,65 @@ NeuralNDCG on MSLR-WEB30K Fold1 to Fold5
 
 * Text features of web page, search query, instruction from the web page
 
-| Text Feature                                          | Id | Definition | Formula |
-|-------------------------------------------------------|----|------------|---------|
-| covered query term number (title)                     | 1  |            |         |
-| covered query term number (body)                      | 2  |            |         |
-| covered query term ratio (title)                      | 3  |            |         |
-| covered query term ratio (body)                       | 4  |            |         |
-| term frequency (min)                                  | 5  |            |         |
-| term frequency (max)                                  | 6  |            |         |
-| term frequency (sum)                                  | 7  |            |         |
-| term frequency (variance)                             | 8  |            |         |
-| similarity between action description and instruction | 9  |            |         |
-| attributing instruction coverage ratio                | 10 |            |         |
+| Text Feature                              | Id | Definition | Supported by Data |
+|-------------------------------------------|----|------------|-------------------|
+| covered query term ratio in instructions  | 1  |            |                   |
+| title_search_query_similarity             | 2  |            |                   |
+| keyword_hitting_ratio                     | 3  |            |                   |
 
 * Visual features
 
-| Visual Feature                             | Id | Definition                                                                                | Formula |
-|--------------------------------------------|----|-------------------------------------------------------------------------------------------|---------|
-| GPT4-V instructions completion degree      | 11 |                                                                                           |         |
-| GPT4-V goal completion degree              | 12 |                                                                                           |         |
-| Step repetition degree                     | 13 | how many time the same UI appears                                                         |         |
-| Step disorder degree                       | 14 | assign UI with order Id, how many disorder exist                                          |         |
-| Query term ratio on UI (avg)               | 15 | percentage of query term appearing on current UI                                          |         |
-| Query term ratio on UI (min)               | 16 |                                                                                           |         |
-| Query term ratio on UI (max)               | 17 |                                                                                           |         |
-| Query term ratio on UI (sum)               | 18 |                                                                                           |         |
-| Query term ratio on UI (var)               | 19 |                                                                                           |         |
-| Instruction term ratio on UI (avg)         | 20 | percentage of instruction term appearing on current UI                                    |         |
-| Instruction term ratio on UI (min)         | 21 |                                                                                           |         |
-| Instruction term ratio on UI (max)         | 22 |                                                                                           |         |
-| Instruction term ratio on UI (sum)         | 23 |                                                                                           |         |
-| Instruction term ratio on UI (var)         | 24 |                                                                                           |         |
-| Progressing step degree                    | 25 | how many UI steps are actually moving forward                                             |         |
-| Stepping MAE of instruction term           | 26 | whether each step moving from previous instruction to the next                            |         |
-| The position of the last instruction term  | 27 | relative position of the lastly matched instruction term                                  |         |
-| The moving distancing of instruction terms | 18 | distance from the nearest matched instruction term to the farest matched instruction term |         |
+| Visual Feature                                     | Id | Definition                                                                                | Supported by Data |
+|----------------------------------------------------|----|-------------------------------------------------------------------------------------------|-------------------|
+| Instructions completion degree                     | 4  |                                                                                           | 1, unfinished     |
+| Action term ratio in instruction (avg)             | 5  | percentage of query term appearing in instructions                                        | 1                 |
+| Action term ratio in instruction (min)             | 6  |                                                                                           | 1                 |
+| Action term ratio in instruction (max)             | 7  |                                                                                           | 1                 |
+| Action term ratio in instruction (var)             | 8  |                                                                                           | 1                 |
+| UI text term matching in instruction (avg)         | 9  | Whether ui text appearing in instructions                                                 | 1                 |
+| UI text term matching in instruction (min)         | 10 |                                                                                           | 1                 |
+| UI text term matching in instruction (max)         | 11 |                                                                                           | 1                 |
+| UI text term matching in instruction (var)         | 12 |                                                                                           | 1                 |
+| Match UI text term frequency in control list (avg) | 13 | percentage of control with ui text in current instruction                                 | 1                 |
+| Match UI text term frequency in control list (min) | 14 |                                                                                           | 1                 |
+| Match UI text term frequency in control list (max) | 15 |                                                                                           | 1                 |
+| Match UI text term frequency in control list (var) | 16 |                                                                                           | 1                 |
+| The position of the last instruction term          | 17 | relative position of the lastly matched instruction term                                  | 1                 |
+| The moving distancing of instruction terms         | 18 | distance from the nearest matched instruction term to the farest matched instruction term | 1                 |
 
-## Reproduce on Set1-5 on dataset/MSLR-WEB30K based on DALLC
+* Temporal disabled features
 
-### Prepare features
+| Text Feature                                          | Id | Definition | Formula |
+|-------------------------------------------------------|----|------------|---------|
+| attributing instruction coverage ratio                |    |            |         |
+| covered query term number in instructions             |    |            |         |
+| covered query term number (title)                     |    |            |         |
+| covered query term number (body)                      |    |            |         |
+| covered query term ratio (title)                      |    |            |         |
+| covered query term ratio (body)                       |    |            |         |
+| term frequency (min)                                  |    |            |         |
+| term frequency (max)                                  |    |            |         |
+| term frequency (sum)                                  |    |            |         |
+| term frequency (variance)                             |    |            |         |
+| similarity between action description and instruction |    |            |         |
+| attributing instruction coverage ratio                |    |            |         |
 
-refer to [Scalable, neural learning to rank (LTR) models](https://www.tensorflow.org/ranking) and [Neural Learning to Rank using TensorFlow ICTIR 2019](https://bendersky.github.io/res/TF-Ranking-ICTIR-2019.pdf)
+| Visual Feature                         | Id | Definition                                                        | Supported by Data |
+|----------------------------------------|----|-------------------------------------------------------------------|-------------------|
+| Step repetition degree                 |    | how many time the same UI appears                                 |                   |
+| Step disorder degree                   |    | assign UI with order Id, how many disorder exist                  |                   |
+| Action term ratio in instruction (sum) |    |                                                                   |                   |
+| Stepping MAE of instruction term (avg) |    | whether each step is moving from previous instruction to the next | 1, disordered     |
+| Stepping MAE of instruction term (min) |    |                                                                   | 1, disordered     |
+| Stepping MAE of instruction term (max) |    |                                                                   | 1, disordered     |
+| Stepping MAE of instruction term (sum) |    |                                                                   | 1, disordered     |
+| Stepping MAE of instruction term (var) |    |                                                                   | 1, disordered     |
+
+### ranallrank_NeuralNDCG given statistics of execution models
 
 ```bash
-python reproducibility/tfrecord_features.py --ds_path dataset/MSLR-WEB30K/Fold1 --out_tf_path dataset/MSLR-WEB30K/Fold1_tfrecord
-python reproducibility/tfrecord_features.py --ds_path dataset/MSLR-WEB30K/Fold2 --out_tf_path dataset/MSLR-WEB30K/Fold2_tfrecord
-python reproducibility/tfrecord_features.py --ds_path dataset/MSLR-WEB30K/Fold3 --out_tf_path dataset/MSLR-WEB30K/Fold3_tfrecord
-python reproducibility/tfrecord_features.py --ds_path dataset/MSLR-WEB30K/Fold4 --out_tf_path dataset/MSLR-WEB30K/Fold4_tfrecord
-python reproducibility/tfrecord_features.py --ds_path dataset/MSLR-WEB30K/Fold5 --out_tf_path dataset/MSLR-WEB30K/Fold5_tfrecord
+conda activate metaGUI
+PYTHONPATH=.:${PYTHONPATH} python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Fold1_normalized.json --run-id ranallrank_NeuralNDCG_Fold1_normalized --job-dir experiments/ranallrank_NeuralNDCG_Fold1_normalized # DONE
 ```
 
 ## License

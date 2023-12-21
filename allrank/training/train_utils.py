@@ -16,15 +16,17 @@ logger = get_logger()
 
 
 def loss_batch(model, loss_func, xb, yb, indices, gradient_clipping_norm, opt=None):
-    mask = (yb == PADDED_Y_VALUE)
-    loss = loss_func(model(xb, mask, indices), yb)
+    with torch.enable_grad():
+        # see: force to add gradients to the graph
+        mask = (yb == PADDED_Y_VALUE)
+        loss = loss_func(model(xb, mask, indices), yb)
 
-    if opt is not None:
-        loss.backward()
-        if gradient_clipping_norm:
-            clip_grad_norm_(model.parameters(), gradient_clipping_norm)
-        opt.step()
-        opt.zero_grad()
+        if opt is not None:
+            loss.backward()
+            if gradient_clipping_norm:
+                clip_grad_norm_(model.parameters(), gradient_clipping_norm)
+            opt.step()
+            opt.zero_grad()
 
     return loss.item(), len(xb)
 
@@ -90,13 +92,13 @@ def fit(epochs, model, loss_func, optimizer, scheduler, train_dl, valid_dl, conf
         model.train()
         # xb dim: [batch_size, slate_length, embedding_dim]
         # yb dim: [batch_size, slate_length]
-
-        train_losses, train_nums = zip(
-            *[loss_batch(model, loss_func, xb.to(device=device), yb.to(device=device), indices.to(device=device),
-                         gradient_clipping_norm, optimizer) for
-              xb, yb, indices in train_dl])
-        train_loss = np.sum(np.multiply(train_losses, train_nums)) / np.sum(train_nums)
-        train_metrics = compute_metrics(config.metrics, model, train_dl, device)
+        with torch.enable_grad():
+            train_losses, train_nums = zip(
+                *[loss_batch(model, loss_func, xb.to(device=device), yb.to(device=device), indices.to(device=device),
+                            gradient_clipping_norm, optimizer) for
+                xb, yb, indices in train_dl])
+            train_loss = np.sum(np.multiply(train_losses, train_nums)) / np.sum(train_nums)
+            train_metrics = compute_metrics(config.metrics, model, train_dl, device)
 
         model.eval()
         with torch.no_grad():

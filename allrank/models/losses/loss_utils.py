@@ -51,7 +51,12 @@ def deterministic_neural_sort(s, tau, mask):
 
     B = torch.matmul(A_s, torch.matmul(one, torch.transpose(one, 0, 1)))
 
-    temp = [n - m + 1 - 2 * (torch.arange(n - m, device=dev) + 1) for m in mask.squeeze(-1).sum(dim=1)]
+    if n != 1:
+        # see: if mask's last dimension is not 1, then the sum is over the second dimension
+        temp = [n - m + 1 - 2 * (torch.arange(n - m, device=dev) + 1) for m in mask.squeeze(-1).sum(dim=1)]
+    else:
+        # see: if mask's last dimension is 1, doesn't need to sum over the second dimension
+        temp = [n - m + 1 - 2 * (torch.arange(n - m, device=dev) + 1) for m in mask.sum(dim=1)]
     temp = [t.type(torch.float32) for t in temp]
     temp = [torch.cat((t, torch.zeros(n - len(t), device=dev))) for t in temp]
     scaling = torch.stack(temp).type(torch.float32).to(dev)  # type: ignore

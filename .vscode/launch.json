@@ -5,6 +5,27 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "allrank_train_mm",
+            "type": "python",
+            "request": "launch",
+            "program": "allrank/main.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "args": [
+                "--config-file-name",
+                "allrank/neuralndcg_atmax_Multimodal_Feature18_label3.json",
+                "--run-id",
+                "ranallrank_NeuralNDCG_mm_Label3_Feature18",
+                "--job-dir",
+                "experiments/ranallrank_NeuralNDCG_mm_Label3_Feature18",
+            ],
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}${pathSeparator}${env:PYTHONPATH}",
+                "CUDA_VISIBLE_DEVICES": "0"
+            },
+            "justMyCode": true
+        },
+        {
             "name": "allrank_train",
             "type": "python",
             "request": "launch",
@@ -13,14 +34,15 @@
             "cwd": "${workspaceFolder}",
             "args": [
                 "--config-file-name",
-                "allrank/neuralndcg_atmax.json",
+                "allrank/neuralndcg_atmax_Fold1_normalized.json",
                 "--run-id",
-                "ranallrank_NeuralNDCG",
+                "neuralndcg_atmax_Fold1_normalized_debug",
                 "--job-dir",
-                "experiments/ranallrank_NeuralNDCG",
+                "experiments/neuralndcg_atmax_Fold1_normalized_debug",
             ],
             "env": {
-                "PYTHONPATH": "${workspaceFolder}${pathSeparator}${env:PYTHONPATH}"
+                "PYTHONPATH": "${workspaceFolder}${pathSeparator}${env:PYTHONPATH}",
+                "CUDA_VISIBLE_DEVICES": "0"
             },
             "justMyCode": true
         },

@@ -64,7 +64,7 @@ def neuralNDCG(y_pred, y_true, padded_value_indicator=PADDED_Y_VALUE, temperatur
 
     assert (ndcg < 0.).sum() >= 0, "every ndcg should be non-negative"
     if idcg_mask.all():
-        return torch.tensor(0.)
+        return torch.tensor(0., requires_grad=True)
 
     mean_ndcg = ndcg.sum() / ((~idcg_mask).sum() * ndcg.shape[0])  # type: ignore
     return -1. * mean_ndcg  # -1 cause we want to maximize NDCG
@@ -130,7 +130,7 @@ def neuralNDCG_transposed(y_pred, y_true, padded_value_indicator=PADDED_Y_VALUE,
 
     assert (ndcg < 0.).sum() >= 0, "every ndcg should be non-negative"
     if idcg_mask.all():
-        return torch.tensor(0.)
+        return torch.tensor(0., requires_grad=True)
 
     mean_ndcg = ndcg.sum() / ((~idcg_mask).sum() * ndcg.shape[0])  # type: ignore
     return -1. * mean_ndcg  # -1 cause we want to maximize NDCG

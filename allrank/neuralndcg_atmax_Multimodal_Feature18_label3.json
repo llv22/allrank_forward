@@ -19,8 +19,8 @@
     }
   },
   "data": {
-    "path": "mmdataset/Feature_18",
-    "validation_ds_role": "test",
+    "path": "mmdataset/Feature_18_label3",
+    "validation_ds_role": "val",
     "num_workers": 1,
     "batch_size": 64,
     "slate_length": 240

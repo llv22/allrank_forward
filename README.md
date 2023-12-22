@@ -334,9 +334,34 @@ NeuralNDCG on MSLR-WEB30K Fold1 to Fold5
 
 ```bash
 conda activate metaGUI
-PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Multimodal_Feature18_label3.json --run-id ranallrank_NeuralNDCG_mm_Label3_Feature18 --job-dir experiments/ranallrank_NeuralNDCG_mm_Label3_Feature18 #ongoing
-PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=1 python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Multimodal_Feature18_label2.json --run-id ranallrank_NeuralNDCG_mm_Label2_Feature18 --job-dir experiments/ranallrank_NeuralNDCG_mm_Label2_Feature18 #ongoing
+PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Multimodal_Feature18_label3.json --run-id ranallrank_NeuralNDCG_mm_Label3_Feature18 --job-dir experiments/ranallrank_NeuralNDCG_mm_Label3_Feature18 #DONE
+PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=1 python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Multimodal_Feature18_label2.json --run-id ranallrank_NeuralNDCG_mm_Label2_Feature18 --job-dir experiments/ranallrank_NeuralNDCG_mm_Label2_Feature18 #DONE
+PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Multimodal_Feature18_label2_on_ground_truth.json --run-id ranallrank_NeuralNDCG_mm_Label2_Feature18_on_ground_truth --job-dir experiments/ranallrank_NeuralNDCG_mm_Label2_Feature18_on_ground_truth #ongoing
 ```
+
+* NeuralNDCG on Train/Val dataset
+
+Case 1: From the same data distribution
+
+| Dataset | Train Loss          | Train NDCG@1       | Train NDCG@5       | Train NDCG@10      | Train NDCG@30      | Train NDCG@60      | Val Loss            | Val NDCG@1         | Val NDCG@5         | Val NDCG@10        | Val NDCG@30        | Val NDCG@60        |
+|---------|---------------------|--------------------|--------------------|--------------------|--------------------|--------------------|---------------------|--------------------|--------------------|--------------------|--------------------|--------------------|
+| Label3  | -0.9009703557665755 | 0.8841886520385742 | 0.9449736475944519 | 0.9513159990310669 | 0.9523312449455261 | 0.9524418115615845 | -0.5679279011940204 | 0.8934356570243835 | 0.9535852074623108 | 0.9572606086730957 | 0.9584044218063354 | 0.9585102796554565 |
+| Label2  | -0.8603002328585153 | 0.8997973799705505 | 0.9473082423210144 | 0.95187908411026   | 0.9527888298034668 | 0.9528865218162537 | -0.5338684973509416 | 0.9104347825050354 | 0.9524441957473755 | 0.957808792591095  | 0.9586837887763977 | 0.9587217569351196 |
+
+* Convergence Analysis
+
+1. Label 3 - From Epoch 0 to Epoch 0, then keep the best result
+2. Label 2 - From Epoch 0 to Epoch 2, then keep the best result
+
+Case 2: From the different data distribution (Train from metaGUI dataset, Val from WeCollect dataset)
+
+| Dataset | Train Loss          | Train NDCG@1       | Train NDCG@5       | Train NDCG@10      | Train NDCG@30      | Train NDCG@60      | Val Loss            | Val NDCG@1         | Val NDCG@5         | Val NDCG@10        | Val NDCG@30        | Val NDCG@60        |
+|---------|---------------------|--------------------|--------------------|--------------------|--------------------|--------------------|---------------------|--------------------|--------------------|--------------------|--------------------|--------------------|
+| Label2  | -0.8603002328585153 | 0.8997973799705505 | 0.9473082423210144 | 0.95187908411026   | 0.9527888298034668 | 0.9528865218162537 | -0.5338684973509416 | 0.9104347825050354 | 0.9524441957473755 | 0.957808792591095  | 0.9586837887763977 | 0.9587217569351196 |
+
+* Convergence Analysis
+
+1. Label 2 - From Epoch 0 to Epoch 2, then keep the best result
 
 ## License
 

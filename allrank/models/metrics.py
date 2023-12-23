@@ -111,3 +111,12 @@ def mrr(y_pred, y_true, ats=None, padding_indicator=PADDED_Y_VALUE):
     result = result * within_at_mask
 
     return result
+
+# def precision(y_pred, y_true, ats=None, padding_indicator=PADDED_Y_VALUE):
+#     return 1
+    
+# def recall(y_pred, y_true, ats=None, padding_indicator=PADDED_Y_VALUE):
+#     return 1
+    
+# def f1(y_pred, y_true, ats=None, padding_indicator=PADDED_Y_VALUE):
+#     return 1

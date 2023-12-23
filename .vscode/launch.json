@@ -13,11 +13,11 @@
             "cwd": "${workspaceFolder}",
             "args": [
                 "--config-file-name",
-                "allrank/neuralndcg_atmax_Multimodal_Feature18_label3.json",
+                "allrank/neuralndcg_atmax_Multimodal_Feature18_label2_on_ground_truth_extra.json",
                 "--run-id",
-                "ranallrank_NeuralNDCG_mm_Label3_Feature18",
+                "neuralndcg_atmax_Multimodal_Feature18_label2_on_ground_truth_extra",
                 "--job-dir",
-                "experiments/ranallrank_NeuralNDCG_mm_Label3_Feature18",
+                "experiments/neuralndcg_atmax_Multimodal_Feature18_label2_on_ground_truth_extra",
             ],
             "env": {
                 "PYTHONPATH": "${workspaceFolder}${pathSeparator}${env:PYTHONPATH}",

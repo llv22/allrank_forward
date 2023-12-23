@@ -238,7 +238,12 @@ Additionally, if you use the NeuralNDCG loss function, please cite the correspon
 
 ## Reproduce on Set1-5 on dataset/MSLR-WEB30K based on allRank
 
-Refer to [NDCG](https://towardsdatascience.com/demystifying-ndcg-bee3be58cfe0)
+Refer to
+
+1. [NDCG](https://towardsdatascience.com/demystifying-ndcg-bee3be58cfe0)
+2. [MAP](https://www.evidentlyai.com/ranking-metrics/mean-average-precision-map)
+3. [MRR](https://en.wikipedia.org/wiki/Mean_reciprocal_rank)
+4. [Markdown table generator](https://www.tablesgenerator.com/markdown_tables)
 
 ### Prepare feature for MSLR-WEB30K
 
@@ -304,6 +309,8 @@ NeuralNDCG on MSLR-WEB30K Fold1 to Fold5
 
 * Temporal disabled features
 
+#### Text Feature
+
 | Text Feature                                          | Id | Definition | Formula |
 |-------------------------------------------------------|----|------------|---------|
 | attributing instruction coverage ratio                |    |            |         |
@@ -318,6 +325,8 @@ NeuralNDCG on MSLR-WEB30K Fold1 to Fold5
 | term frequency (variance)                             |    |            |         |
 | similarity between action description and instruction |    |            |         |
 | attributing instruction coverage ratio                |    |            |         |
+
+#### Visual Feature
 
 | Visual Feature                         | Id | Definition                                                        | Supported by Data |
 |----------------------------------------|----|-------------------------------------------------------------------|-------------------|

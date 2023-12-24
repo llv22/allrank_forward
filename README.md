@@ -262,7 +262,7 @@ python reproducibility/normalize_features.py --ds_path dataset/MSLR-WEB30K/Fold5
 
 ```bash
 conda activate metaGUI
-PYTHONPATH=.:${PYTHONPATH} python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Fold1_normalized.json --run-id ranallrank_NeuralNDCG_Fold1_normalized --job-dir experiments/ranallrank_NeuralNDCG_Fold1_normalized # DONE
+PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=1 python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Fold1_normalized.json --run-id ranallrank_NeuralNDCG_Fold1_normalized --job-dir experiments/ranallrank_NeuralNDCG_Fold1_normalized # ongoing
 PYTHONPATH=.:${PYTHONPATH} python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Fold2_normalized.json --run-id ranallrank_NeuralNDCG_Fold2_normalized --job-dir experiments/ranallrank_NeuralNDCG_Fold2_normalized # DONE
 PYTHONPATH=.:${PYTHONPATH} python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Fold3_normalized.json --run-id ranallrank_NeuralNDCG_Fold3_normalized --job-dir experiments/ranallrank_NeuralNDCG_Fold3_normalized # DONE
 PYTHONPATH=.:${PYTHONPATH} python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Fold4_normalized.json --run-id ranallrank_NeuralNDCG_Fold4_normalized --job-dir experiments/ranallrank_NeuralNDCG_Fold4_normalized # DONE
@@ -347,7 +347,7 @@ NeuralNDCG on MSLR-WEB30K Fold1 to Fold5
 conda activate metaGUI
 PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Multimodal_Feature18_label3.json --run-id ranallrank_NeuralNDCG_mm_Label3_Feature18 --job-dir experiments/ranallrank_NeuralNDCG_mm_Label3_Feature18 #DONE
 PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=1 python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Multimodal_Feature18_label2.json --run-id ranallrank_NeuralNDCG_mm_Label2_Feature18 --job-dir experiments/ranallrank_NeuralNDCG_mm_Label2_Feature18 #DONE
-PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Multimodal_Feature18_label2_on_ground_truth.json --run-id ranallrank_NeuralNDCG_mm_Label2_Feature18_on_ground_truth --job-dir experiments/ranallrank_NeuralNDCG_mm_Label2_Feature18_on_ground_truth #DONE
+PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Multimodal_Feature18_label2_on_ground_truth.json --run-id ranallrank_NeuralNDCG_mm_Label2_Feature18_on_ground_truth --job-dir experiments/ranallrank_NeuralNDCG_mm_Label2_Feature18_on_ground_truth #ongoing
 ```
 
 * NeuralNDCG on Train/Val dataset
@@ -359,16 +359,24 @@ Case 1: From the same data distribution
 | Label3  | -0.8995515780741942 | 0.8795496821403503 | 0.9445069432258606 | 0.9503862261772156 | 0.9515350461006165 | 0.9515953063964844 | -0.568975856273471  | 0.8961373567581177 | 0.9549955725669861 | 0.9585631489753723 | 0.959588348865509  | 0.9597274661064148 |
 | Label2  | -0.8606304213653889 | 0.9028130173683167 | 0.9484454989433289 | 0.9527173638343811 | 0.9535864591598511 | 0.9536436200141907 | -0.5326286527408298 | 0.9087750315666199 | 0.9546259045600891 | 0.9579418897628784 | 0.9588051438331604 | 0.9588857889175415 |
 
+| Dataset | Train Loss          | Train NDCG@1       | Train NDCG@5       | Train NDCG@10      | Train MRR@1        | Train MRR@5        | Train MRR@10       | Train AP@1          | Train AP@5         | Train AP@10         | Val Loss            | Val NDCG@1 | Val NDCG@5         | Val NDCG@10        | Val MRR@1 | Val MRR@5  | Val MRR@10 | Val AP@1 | Val AP@5           | Val AP@10          |
+|---------|---------------------|--------------------|--------------------|--------------------|--------------------|--------------------|--------------------|---------------------|--------------------|---------------------|---------------------|------------|--------------------|--------------------|-----------|------------|------------|----------|--------------------|--------------------|
+| Label2  | -0.8599411880553101 | 0.9026862978935242 | 0.9483888745307922 | 0.9528512954711914 | 0.9026862978935242 | 0.9384377002716064 | 0.9391921162605286 | 0.23897619545459747 | 0.2722625732421875 | 0.27252301573753357 | -0.9334823489189148 | 0.90625    | 0.9549717307090759 | 0.9612407684326172 | 0.90625   | 0.94921875 | 0.94921875 | 0.796875 | 0.8413845300674438 | 0.8445929288864136 |
+
 * Convergence Analysis
 
 1. Label 3 - From Epoch 0 to Epoch 0, then keep the best result
 2. Label 2 - From Epoch 0 to Epoch 2, then keep the best result
 
-Case 2: From the different data distribution (Train from metaGUI dataset, Val from WeCollect dataset) 
+Case 2: From the different data distribution (Train from metaGUI dataset, Val from WeCollect dataset)
 
 | Dataset                           | Train Loss          | Train NDCG@1       | Train NDCG@5       | Train NDCG@10      | Train NDCG@30      | Train NDCG@60      | Val Loss            | Val NDCG@1 | Val NDCG@5         | Val NDCG@10        | Val NDCG@30        | Val NDCG@60        |
 |-----------------------------------|---------------------|--------------------|--------------------|--------------------|--------------------|--------------------|---------------------|------------|--------------------|--------------------|--------------------|--------------------|
 | Label2 (168 Ground-Truth as test) | -0.8606304213653889 | 0.9028130173683167 | 0.9484454989433289 | 0.9527173638343811 | 0.9535864591598511 | 0.9536436200141907 | -0.9334823489189148 | 0.890625   | 0.9465610980987549 | 0.9554288387298584 | 0.9565894603729248 | 0.9565894603729248 |
+
+| Dataset                           | Train Loss | Train NDCG@1 | Train NDCG@5 | Train NDCG@10 | Train MRR@1 | Train MRR@5 | Train MRR@10 | Train AP@1 | Train AP@5 | Train AP@10 | Val Loss  | Val NDCG@1 | Val NDCG@5 | Val NDCG@10 | Val MRR@1 | Val MRR@5 | Val MRR@10 | Val AP@1 | Val AP@5 | Val AP@10 |
+|-----------------------------------|------------|--------------|--------------|---------------|-------------|-------------|--------------|------------|------------|-------------|-----------|------------|------------|-------------|-----------|-----------|------------|----------|----------|-----------|
+| Label2 (168 Ground-Truth as test) | -0.859941  | 0.9027       | 0.9484       | 0.9529        | 0.9027      | 0.9384      | 0.9392       | 0.2390     | 0.2723     | 0.2725      | -0.933482 | 0.9062     | 0.9550     | 0.9612      | 0.9062    | 0.9492    | 0.9492     | 0.7969   | 0.8414   | 0.8446    |
 
 * Convergence Analysis
 
@@ -382,8 +390,12 @@ Case 3: From the different data distribution (Train from metaGUI dataset, Val fr
 |-----------------------------------|---------------------|--------------------|--------------------|--------------------|--------------------|--------------------|---------------------|------------|--------------------|--------------------|--------------------|--------------------|
 | Label2 (168 Ground-Truth as test) | -0.3349661490848327 | 0.9983528256416321 | 0.9992704391479492 | 0.9993062019348145 | 0.9993062019348145 | 0.9993062019348145 | -0.8442082405090332 | 0.859375   | 0.9320027828216553 | 0.9416354894638062 | 0.9427961111068726 | 0.9427961111068726 |
 
+| Dataset                           | Train Loss | Train NDCG@1 | Train NDCG@5 | Train NDCG@10 | Train MRR@1 | Train MRR@5 | Train MRR@10 | Train AP@1 | Train AP@5 | Train AP@10 | Val Loss  | Val NDCG@1 | Val NDCG@5 | Val NDCG@10 | Val MRR@1 | Val MRR@5 | Val MRR@10 | Val AP@1 | Val AP@5 | Val AP@10 |
+|-----------------------------------|------------|--------------|--------------|---------------|-------------|-------------|--------------|------------|------------|-------------|-----------|------------|------------|-------------|-----------|-----------|------------|----------|----------|-----------|
+| Label2 (168 Ground-Truth as test) | -0.334683  | 0.9978       | 0.9991       | 0.9991        | 0.9982      | 0.9991      | 0.9991       | 0.3344     | 0.3350     | 0.3350      | -0.841206 | 0.8750     | 0.9346     | 0.9445      | 0.8750    | 0.9375    | 0.9375     | 0.7812   | 0.8276   | 0.8252    |
+
 ```bash
-PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=2 python allrank/main.py  --config-file-name allrank/approxndc_Multimodal_Feature18_label2_on_ground_truth.json --run-id approxndc_Multimodal_Feature18_label2_on_ground_truth --job-dir experiments/approxndc_Multimodal_Feature18_label2_on_ground_truth #DONE
+PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=2 python allrank/main.py  --config-file-name allrank/approxndc_Multimodal_Feature18_label2_on_ground_truth.json --run-id approxndc_Multimodal_Feature18_label2_on_ground_truth --job-dir experiments/approxndc_Multimodal_Feature18_label2_on_ground_truth #ongoing
 ```
 
 * LambdaRank on Train/Val dataset
@@ -394,14 +406,12 @@ Case 4: From the different data distribution (Train from metaGUI dataset, Val fr
 |-----------------------------------|---------------------|--------------------|--------------------|--------------------|--------------------|--------------------|------------------|------------|--------------------|--------------------|--------------------|--------------------|
 | Label2 (168 Ground-Truth as test) | 0.08761785567086172 | 0.9996199011802673 | 0.9996199011802673 | 0.9997815489768982 | 0.9998027086257935 | 0.9998027086257935 | 35.1408576965332 | 0.828125   | 0.9203912019729614 | 0.9324816465377808 | 0.9336422681808472 | 0.9336422681808472 |
 
-```bash
-PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=3 python allrank/main.py  --config-file-name allrank/lambdarank_atmax_Multimodal_Feature18_label2_on_ground_truth.json --run-id lambdarank_atmax_Multimodal_Feature18_label2_on_ground_truth --job-dir experiments/lambdarank_atmax_Multimodal_Feature18_label2_on_ground_truth #DONE
-```
-
-* MRR and NDCG
+| Dataset                           | Train Loss | Train NDCG@1 | Train NDCG@5 | Train NDCG@10 | Train MRR@1 | Train MRR@5 | Train MRR@10 | Train AP@1 | Train AP@5 | Train AP@10 | Val Loss  | Val NDCG@1 | Val NDCG@5 | Val NDCG@10 | Val MRR@1 | Val MRR@5 | Val MRR@10 | Val AP@1 | Val AP@5 | Val AP@10 |
+|-----------------------------------|------------|--------------|--------------|---------------|-------------|-------------|--------------|------------|------------|-------------|-----------|------------|------------|-------------|-----------|-----------|------------|----------|----------|-----------|
+| Label2 (168 Ground-Truth as test) | 0.254771   | 0.9995       | 0.9998       | 0.9998        | 0.9997      | 0.9999      | 0.9999       | 0.3360     | 0.3361     | 0.3361      | 28.794161 | 0.8594     | 0.9341     | 0.9457      | 0.8594    | 0.9297    | 0.9297     | 0.7656   | 0.8331   | 0.8292    |
 
 ```bash
-PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Multimodal_Feature18_label2_mrr_on_ground_truth.json --run-id neuralndcg_atmax_Multimodal_Feature18_label2_mrr_on_ground_truth --job-dir experiments/neuralndcg_atmax_Multimodal_Feature18_label2_mrr_on_ground_truth #ongoing
+PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=3 python allrank/main.py  --config-file-name allrank/lambdarank_atmax_Multimodal_Feature18_label2_on_ground_truth.json --run-id lambdarank_atmax_Multimodal_Feature18_label2_on_ground_truth --job-dir experiments/lambdarank_atmax_Multimodal_Feature18_label2_on_ground_truth #ongoing
 ```
 
 ## License

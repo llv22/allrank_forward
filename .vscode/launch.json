@@ -5,6 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "generate_output",
+            "type": "python",
+            "request": "launch",
+            "program": "parse_output.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "args": [
+                "--input",
+                "Epoch : 99 Train loss: -0.8599411880553101 Val loss: -0.9334823489189148 Train ndcg_1 0.9026862978935242 Train ndcg_5 0.9483888745307922 Train ndcg_10 0.9528512954711914 Train mrr_1 0.9026862978935242 Train mrr_5 0.9384377002716064 Train mrr_10 0.9391921162605286 Train ap_1 0.23897619545459747 Train ap_5 0.2722625732421875 Train ap_10 0.27252301573753357 Val ndcg_1 0.90625 Val ndcg_5 0.9549717307090759 Val ndcg_10 0.9612407684326172 Val mrr_1 0.90625 Val mrr_5 0.94921875 Val mrr_10 0.94921875 Val ap_1 0.796875 Val ap_5 0.8413845300674438 Val ap_10 0.8445929288864136"],
+            "justMyCode": true
+        },
+        {
             "name": "allrank_train_mm",
             "type": "python",
             "request": "launch",

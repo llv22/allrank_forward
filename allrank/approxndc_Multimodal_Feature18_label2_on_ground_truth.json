@@ -48,8 +48,12 @@
     "ndcg_1",
     "ndcg_5",
     "ndcg_10",
-    "ndcg_30",
-    "ndcg_60"
+    "mrr_1",
+    "mrr_5",
+    "mrr_10",
+    "ap_1",
+    "ap_5",
+    "ap_10"
   ],
   "loss": {
     "name": "approxNDCGLoss",

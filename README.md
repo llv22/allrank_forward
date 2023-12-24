@@ -398,6 +398,10 @@ Case 3: From the different data distribution (Train from metaGUI dataset, Val fr
 PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=2 python allrank/main.py  --config-file-name allrank/approxndc_Multimodal_Feature18_label2_on_ground_truth.json --run-id approxndc_Multimodal_Feature18_label2_on_ground_truth --job-dir experiments/approxndc_Multimodal_Feature18_label2_on_ground_truth #ongoing
 ```
 
+* Convergence Analysis
+
+1. Label 2 - From Epoch 0 to Epoch 3, then keep the best result
+
 * LambdaRank on Train/Val dataset
 
 Case 4: From the different data distribution (Train from metaGUI dataset, Val from WeCollect dataset)
@@ -413,6 +417,10 @@ Case 4: From the different data distribution (Train from metaGUI dataset, Val fr
 ```bash
 PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=3 python allrank/main.py  --config-file-name allrank/lambdarank_atmax_Multimodal_Feature18_label2_on_ground_truth.json --run-id lambdarank_atmax_Multimodal_Feature18_label2_on_ground_truth --job-dir experiments/lambdarank_atmax_Multimodal_Feature18_label2_on_ground_truth #ongoing
 ```
+
+* Convergence Analysis
+
+1. Label 2 - From Epoch 0 to Epoch 26(0.9501168727874756) Epoch 78(0.9514542818069458), then keep the best result
 
 ## License
 

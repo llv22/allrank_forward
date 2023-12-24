@@ -38,6 +38,16 @@ def __apply_mask_and_get_true_sorted_by_preds(y_pred, y_true, padding_indicator=
     return torch.gather(y_true, dim=1, index=indices)
 
 
+def __apply_mask_and_get_indices_and_true_sorted_by_preds(y_pred, y_true, padding_indicator=PADDED_Y_VALUE):
+    mask = y_true == padding_indicator
+
+    y_pred[mask] = float('-inf')
+    y_true[mask] = 0.0
+
+    _, indices = y_pred.sort(descending=True, dim=-1)
+    return indices, torch.gather(y_true, dim=1, index=indices)
+
+
 def dcg(y_pred, y_true, ats=None, gain_function=lambda x: torch.pow(2, x) - 1, padding_indicator=PADDED_Y_VALUE):
     """
     Discounted Cumulative Gain at k.
@@ -105,12 +115,47 @@ def mrr(y_pred, y_true, ats=None, padding_indicator=PADDED_Y_VALUE):
 
     result = torch.tensor(1.0) / (indices + torch.tensor(1.0))
 
+    # see: because we use 1/(1+rank) as the reciprocal rank, result is always != 0. However, if all true labels are 0, we need to hardcode the reciprocal rank to 0
     zero_sum_mask = torch.sum(values) == 0.0
     result[zero_sum_mask] = 0.0
 
     result = result * within_at_mask
 
     return result
+
+def ap(y_pred, y_true, ats=None, padding_indicator=PADDED_Y_VALUE):
+    y_true = y_true.clone()
+    y_pred = y_pred.clone()
+    
+    if ats is None:
+        ats = [y_true.shape[1]]
+
+    # Apply mask and get true labels sorted by predicted scores
+    indices, true_sorted_by_preds = __apply_mask_and_get_indices_and_true_sorted_by_preds(y_pred, y_true, padding_indicator)
+
+    # Compute precision at each cutoff from 1 to k and average
+    avg_precisions = torch.zeros(len(y_true), len(ats), dtype=torch.float32, device=y_true.device)
+    for index, i in enumerate(ats):
+        top_k = true_sorted_by_preds[:, :i]  # Slice top k predictions
+        top_k_hits = (top_k > 0)  # Create indicator matrix for top k predictions
+        average = torch.sum(top_k_hits, dim=1, dtype=torch.float32)  # Compute hits
+        top_k_cumsum_hits = torch.cumsum(top_k_hits, dim=1)
+        top_k_cumsum_factors = torch.arange(1, i + 1, dtype=torch.float32, device=top_k_cumsum_hits.device).expand(len(y_true), i)
+        top_k_cumsum_hits = top_k_cumsum_hits / top_k_cumsum_factors  # Compute precision at each rank
+        precision_sum = torch.sum(top_k_cumsum_hits * top_k_hits, dim=1, dtype=torch.float32)
+        non_zero_mask = average != 0
+        precision_at_i = torch.zeros_like(precision_sum)
+        precision_at_i[non_zero_mask] = precision_sum[non_zero_mask] / average[non_zero_mask]  # Precision at this cutoff
+        if torch.isnan(precision_at_i).any():
+            print("precision_at_i is nan")
+        avg_precisions[:, index] = precision_at_i
+    
+    assert not torch.isnan(avg_precisions).any(), "avg_precisions should not be nan"
+    assert (avg_precisions < 0.0).sum() >= 0, "every avg_precisions should be non-negative"
+    assert (avg_precisions > 1.0).sum() >= 0, "every avg_precisions should be less-equal than 1"
+
+    return avg_precisions
+    
 
 # def precision(y_pred, y_true, ats=None, padding_indicator=PADDED_Y_VALUE):
 #     return 1

@@ -243,7 +243,9 @@ Refer to
 1. [NDCG](https://towardsdatascience.com/demystifying-ndcg-bee3be58cfe0)
 2. [MAP](https://www.evidentlyai.com/ranking-metrics/mean-average-precision-map)
 3. [MRR](https://en.wikipedia.org/wiki/Mean_reciprocal_rank)
-4. [Markdown table generator](https://www.tablesgenerator.com/markdown_tables)
+4. [MAP@K](https://towardsdatascience.com/mean-average-precision-at-k-map-k-clearly-explained-538d8e032d2)
+5. [torch.gather](https://cloud.tencent.com/developer/article/1761613) and [torch.gather official guide](https://pytorch.org/docs/stable/generated/torch.gather.html)
+6. [Markdown table generator](https://www.tablesgenerator.com/markdown_tables)
 
 ### Prepare feature for MSLR-WEB30K
 

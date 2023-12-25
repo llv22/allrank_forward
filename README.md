@@ -359,9 +359,9 @@ Case 1: From the same data distribution
 | Label3  | -0.8995515780741942 | 0.8795496821403503 | 0.9445069432258606 | 0.9503862261772156 | 0.9515350461006165 | 0.9515953063964844 | -0.568975856273471  | 0.8961373567581177 | 0.9549955725669861 | 0.9585631489753723 | 0.959588348865509  | 0.9597274661064148 |
 | Label2  | -0.8606304213653889 | 0.9028130173683167 | 0.9484454989433289 | 0.9527173638343811 | 0.9535864591598511 | 0.9536436200141907 | -0.5326286527408298 | 0.9087750315666199 | 0.9546259045600891 | 0.9579418897628784 | 0.9588051438331604 | 0.9588857889175415 |
 
-| Dataset | Train Loss          | Train NDCG@1       | Train NDCG@5       | Train NDCG@10      | Train MRR@1        | Train MRR@5        | Train MRR@10       | Train AP@1          | Train AP@5         | Train AP@10         | Val Loss            | Val NDCG@1 | Val NDCG@5         | Val NDCG@10        | Val MRR@1 | Val MRR@5  | Val MRR@10 | Val AP@1 | Val AP@5           | Val AP@10          |
-|---------|---------------------|--------------------|--------------------|--------------------|--------------------|--------------------|--------------------|---------------------|--------------------|---------------------|---------------------|------------|--------------------|--------------------|-----------|------------|------------|----------|--------------------|--------------------|
-| Label2  | -0.8599411880553101 | 0.9026862978935242 | 0.9483888745307922 | 0.9528512954711914 | 0.9026862978935242 | 0.9384377002716064 | 0.9391921162605286 | 0.23897619545459747 | 0.2722625732421875 | 0.27252301573753357 | -0.9334823489189148 | 0.90625    | 0.9549717307090759 | 0.9612407684326172 | 0.90625   | 0.94921875 | 0.94921875 | 0.796875 | 0.8413845300674438 | 0.8445929288864136 |
+| Dataset | Train Loss | Train NDCG@1 | Train NDCG@5 | Train NDCG@10 | Train MRR@1 | Train MRR@5 | Train MRR@10 | Train AP@1 | Train AP@5 | Train AP@10 | Val Loss  | Val NDCG@1 | Val NDCG@5 | Val NDCG@10 | Val MRR@1 | Val MRR@5 | Val MRR@10 | Val AP@1 | Val AP@5 | Val AP@10 |
+|---------|------------|--------------|--------------|---------------|-------------|-------------|--------------|------------|------------|-------------|-----------|------------|------------|-------------|-----------|-----------|------------|----------|----------|-----------|
+| Label2  | -0.765341  | 0.6223       | 0.5927       | 0.5944        | 0.4951      | 0.5902      | 0.6000       | 0.8431     | 0.8597     | 0.8217      | -0.733317 | 0.5179     | 0.5167     | 0.5343      | 0.3880    | 0.4892    | 0.5031     | 0.7766   | 0.8131   | 0.7819    |
 
 * Convergence Analysis
 
@@ -416,6 +416,22 @@ Case 4: From the different data distribution (Train from metaGUI dataset, Val fr
 
 ```bash
 PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=3 python allrank/main.py  --config-file-name allrank/lambdarank_atmax_Multimodal_Feature18_label2_on_ground_truth.json --run-id lambdarank_atmax_Multimodal_Feature18_label2_on_ground_truth --job-dir experiments/lambdarank_atmax_Multimodal_Feature18_label2_on_ground_truth #ongoing
+```
+
+* Convergence Analysis
+
+1. Label 2 - From Epoch 0 to Epoch 26(0.9501168727874756) Epoch 78(0.9514542818069458), then keep the best result
+
+* ListNet loss by NeuralNDCG on Train/Val dataset
+
+Case 5: From the different data distribution (Train from metaGUI dataset, Val from WeCollect dataset)
+
+| Dataset                           | Train Loss | Train NDCG@1 | Train NDCG@5 | Train NDCG@10 | Train MRR@1 | Train MRR@5 | Train MRR@10 | Train AP@1 | Train AP@5 | Train AP@10 | Val Loss | Val NDCG@1 | Val NDCG@5 | Val NDCG@10 | Val MRR@1 | Val MRR@5 | Val MRR@10 | Val AP@1 | Val AP@5 | Val AP@10 |
+|-----------------------------------|------------|--------------|--------------|---------------|-------------|-------------|--------------|------------|------------|-------------|----------|------------|------------|-------------|-----------|-----------|------------|----------|----------|-----------|
+| Label2 (168 Ground-Truth as test) | 0.000000   | 1.0000       | 1.0000       | 1.0000        | 1.0000      | 1.0000      | 1.0000       | 0.3363     | 0.7679     | 0.9850      | 0.512866 | 0.9444     | 0.9737     | 0.9752      | 0.5552    | 0.5799    | 0.5801     | 0.3284   | 0.3504   | 0.3494    |
+
+```bash
+PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=3 python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Multimodal_Feature18_label2_listNet_on_ground_truth.json --run-id neuralndcg_atmax_Multimodal_Feature18_label2_listNet_on_ground_truth --job-dir experiments/neuralndcg_atmax_Multimodal_Feature18_label2_listNet_on_ground_truth #ongoing
 ```
 
 * Convergence Analysis

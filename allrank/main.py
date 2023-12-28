@@ -51,18 +51,31 @@ def run():
     execute_command("cp {} {}".format(paths.config_path, output_config_path))
 
     # train_ds, val_ds
-    train_ds, val_ds = load_libsvm_dataset(
-        input_path=config.data.path,
-        slate_length=config.data.slate_length,
-        validation_ds_role=config.data.validation_ds_role,
-    )
+    if config.data.get_test_statistics:
+        train_ds, val_ds, test_ds = load_libsvm_dataset(
+            input_path=config.data.path,
+            slate_length=config.data.slate_length,
+            validation_ds_role=config.data.validation_ds_role,
+            get_test_statistics=config.data.get_test_statistics,
+        )
+    else:
+        train_ds, val_ds = load_libsvm_dataset(
+            input_path=config.data.path,
+            slate_length=config.data.slate_length,
+            validation_ds_role=config.data.validation_ds_role,
+        )
 
     n_features = train_ds.shape[-1]
     assert n_features == val_ds.shape[-1], "Last dimensions of train_ds and val_ds do not match!"
 
     # train_dl, val_dl
-    train_dl, val_dl = create_data_loaders(
-        train_ds, val_ds, num_workers=config.data.num_workers, batch_size=config.data.batch_size)
+    if config.data.get_test_statistics:
+        train_dl, val_dl, test_dl = create_data_loaders(
+            train_ds, val_ds, num_workers=config.data.num_workers, batch_size=config.data.batch_size, test_ds=test_ds)
+    else:
+        train_dl, val_dl = create_data_loaders(
+            train_ds, val_ds, num_workers=config.data.num_workers, batch_size=config.data.batch_size)
+    
 
     # gpu support
     dev = get_torch_device()
@@ -85,19 +98,35 @@ def run():
 
     with torch.autograd.detect_anomaly() if config.detect_anomaly else dummy_context_mgr():  # type: ignore
         # run training
-        result = fit(
-            model=model,
-            loss_func=loss_func,
-            optimizer=optimizer,
-            scheduler=scheduler,
-            train_dl=train_dl,
-            valid_dl=val_dl,
-            config=config,
-            device=dev,
-            output_dir=paths.output_dir,
-            tensorboard_output_path=paths.tensorboard_output_path,
-            **asdict(config.training)
-        )
+        if config.data.get_test_statistics:
+            result = fit(
+                model=model,
+                loss_func=loss_func,
+                optimizer=optimizer,
+                scheduler=scheduler,
+                train_dl=train_dl,
+                valid_dl=val_dl,
+                config=config,
+                device=dev,
+                output_dir=paths.output_dir,
+                tensorboard_output_path=paths.tensorboard_output_path,
+                test_dl=test_dl,
+                **asdict(config.training),
+            )
+        else:
+            result = fit(
+                    model=model,
+                    loss_func=loss_func,
+                    optimizer=optimizer,
+                    scheduler=scheduler,
+                    train_dl=train_dl,
+                    valid_dl=val_dl,
+                    config=config,
+                    device=dev,
+                    output_dir=paths.output_dir,
+                    tensorboard_output_path=paths.tensorboard_output_path,
+                    **asdict(config.training)
+                )
 
     dump_experiment_result(args, config, paths.output_dir, result)
 

@@ -20,7 +20,8 @@
   },
   "data": {
     "path": "dataset/MSLR-WEB30K/Fold1_normalized",
-    "validation_ds_role": "test",
+    "validation_ds_role": "val",
+    "get_test_statistics": true,
     "num_workers": 1,
     "batch_size": 64,
     "slate_length": 240

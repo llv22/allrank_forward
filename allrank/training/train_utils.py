@@ -78,7 +78,7 @@ def get_current_lr(optimizer):
 
 
 def fit(epochs, model, loss_func, optimizer, scheduler, train_dl, valid_dl, config,
-        gradient_clipping_norm, early_stopping_patience, device, output_dir, tensorboard_output_path):
+        gradient_clipping_norm, early_stopping_patience, device, output_dir, tensorboard_output_path, test_dl=None):
     tensorboard_summary_writer = TensorboardSummaryWriter(tensorboard_output_path)
 
     num_params = get_num_params(model)
@@ -138,12 +138,28 @@ def fit(epochs, model, loss_func, optimizer, scheduler, train_dl, valid_dl, conf
                 ))
             break
 
+    if test_dl is not None:
+        test_metrics = compute_metrics(config.metrics, model, test_dl, device)
+        logger.info("Test metrics: {}".format(test_metrics))
+        test_metrics_to_tb = {("test", name): value for name, value in test_metrics.items()}
+        tensorboard_metrics_dict.update(test_metrics_to_tb)
+        tensorboard_summary_writer.save_to_tensorboard(tensorboard_metrics_dict, epoch)
+
     torch.save(model.state_dict(), os.path.join(output_dir, "model.pkl"))
     tensorboard_summary_writer.close_all_writers()
 
-    return {
-        "epochs": epoch,
-        "train_metrics": train_metrics,
-        "val_metrics": val_metrics,
-        "num_params": num_params
-    }
+    if test_dl is not None:
+        return {
+            "epochs": epoch,
+            "train_metrics": train_metrics,
+            "val_metrics": val_metrics,
+            "test_metrics": test_metrics,
+            "num_params": num_params
+        }
+    else:
+        return {
+            "epochs": epoch,
+            "train_metrics": train_metrics,
+            "val_metrics": val_metrics,
+            "num_params": num_params
+        }

@@ -194,19 +194,24 @@ def fix_length_to_longest_slate(ds: LibSVMDataset) -> Compose:
     return transforms.Compose([FixLength(int(ds.longest_query_length)), ToTensor()])
 
 
-def load_libsvm_dataset(input_path: str, slate_length: int, validation_ds_role: str) \
+def load_libsvm_dataset(input_path: str, slate_length: int, validation_ds_role: str, get_test_statistics: bool=False) \
         -> Tuple[LibSVMDataset, LibSVMDataset]:
     """
     Helper function loading a train LibSVMDataset and a specified validation LibSVMDataset.
     :param input_path: directory containing the LibSVM files
     :param slate_length: target slate length of the training dataset
     :param validation_ds_role: dataset role used for valdation (file name without an extension)
+    :param get_test_statistics: if we need to get test statistics in the end
     :return: tuple of LibSVMDatasets containing train and validation datasets,
         where train slates are padded to slate_length and validation slates to val_ds.longest_query_length
     """
     train_ds = load_libsvm_dataset_role("train", input_path, slate_length)
 
     val_ds = load_libsvm_dataset_role(validation_ds_role, input_path, slate_length)
+    
+    if get_test_statistics:
+        test_ds = load_libsvm_dataset_role("test", input_path, slate_length)
+        return train_ds, val_ds, test_ds
 
     return train_ds, val_ds
 
@@ -227,7 +232,7 @@ def load_libsvm_dataset_role(role: str, input_path: str, slate_length: int) -> L
     return ds
 
 
-def create_data_loaders(train_ds: LibSVMDataset, val_ds: LibSVMDataset, num_workers: int, batch_size: int):
+def create_data_loaders(train_ds: LibSVMDataset, val_ds: LibSVMDataset, num_workers: int, batch_size: int, test_ds=None):
     """
     Helper function creating train and validation data loaders with specified number of workers and batch sizes.
     :param train_ds: LibSVMDataset train dataset
@@ -244,4 +249,7 @@ def create_data_loaders(train_ds: LibSVMDataset, val_ds: LibSVMDataset, num_work
     # Please note that the batch size for validation dataloader is twice the total_batch_size
     train_dl = DataLoader(train_ds, batch_size=total_batch_size, num_workers=num_workers, shuffle=True)
     val_dl = DataLoader(val_ds, batch_size=total_batch_size, num_workers=num_workers, shuffle=False)
-    return train_dl, val_dl
+    if test_ds is None:
+        return train_dl, val_dl
+    test_dl = DataLoader(test_ds, batch_size=total_batch_size, num_workers=num_workers, shuffle=False)
+    return train_dl, val_dl, test_dl

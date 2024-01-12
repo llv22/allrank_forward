@@ -479,6 +479,10 @@ Time 3:
 
 ### 2. Without feature 0 "Query term ratio in instructions"
 
+```bash
+PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth.json --run-id neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth --job-dir experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth #DONE
+```
+
 
 ### 3. Without feature 1 "Relevance between title and search query"
 

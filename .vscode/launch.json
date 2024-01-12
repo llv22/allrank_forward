@@ -5,6 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "sync_setting",
+            "type": "python",
+            "request": "launch",
+            "program": "allrank/settings/sync_setting.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "args": [
+                "--input",
+                "allrank/settings/approxndc/approxndc_Multimodal_Feature18_label2_on_cohere_ground_truth.json",
+            ], 
+            "justMyCode": true
+        },
+        {
             "name": "generate_output",
             "type": "python",
             "request": "launch",

@@ -26,9 +26,9 @@
         "get_test_statistics": true,
         "num_workers": 1,
         "batch_size": 64,
-        "slate_length": 1,
+        "slate_length": 240,
         "mark_feature_indexes": [
-            16
+            1
         ]
     },
     "optimizer": {
@@ -62,8 +62,13 @@
         "ap_10"
     ],
     "loss": {
-        "name": "binary_listNet",
-        "args": {}
+        "name": "neuralNDCG",
+        "args": {
+            "temperature": 1.0,
+            "k": null,
+            "powered_relevancies": true,
+            "stochastic": false
+        }
     },
     "detect_anomaly": false,
     "expected_metrics": {

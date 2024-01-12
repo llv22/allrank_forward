@@ -16,7 +16,7 @@
             "dropout": 0.1
         },
         "post_model": {
-            "output_activation": "Tanh",
+            "output_activation": null,
             "d_output": 1
         }
     },
@@ -26,9 +26,12 @@
         "get_test_statistics": true,
         "num_workers": 1,
         "batch_size": 64,
-        "slate_length": 1,
+        "slate_length": 240,
         "mark_feature_indexes": [
-            16
+            4,
+            5,
+            6,
+            7
         ]
     },
     "optimizer": {
@@ -62,13 +65,15 @@
         "ap_10"
     ],
     "loss": {
-        "name": "binary_listNet",
-        "args": {}
+        "name": "approxNDCGLoss",
+        "args": {
+            "alpha": 1.0
+        }
     },
     "detect_anomaly": false,
     "expected_metrics": {
         "val": {
-            "ndcg_5": 0.5
+            "ndcg_5": 0.49
         }
     }
 }

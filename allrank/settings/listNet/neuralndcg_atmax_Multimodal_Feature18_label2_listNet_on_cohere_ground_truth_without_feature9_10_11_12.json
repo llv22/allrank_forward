@@ -28,7 +28,10 @@
         "batch_size": 64,
         "slate_length": 1,
         "mark_feature_indexes": [
-            16
+            8,
+            9,
+            10,
+            11
         ]
     },
     "optimizer": {

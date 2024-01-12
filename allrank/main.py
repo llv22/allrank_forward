@@ -57,6 +57,7 @@ def run():
             slate_length=config.data.slate_length,
             validation_ds_role=config.data.validation_ds_role,
             get_test_statistics=config.data.get_test_statistics,
+            mark_feature_indexes=config.data.mark_feature_indexes,
         )
     else:
         train_ds, val_ds = load_libsvm_dataset(

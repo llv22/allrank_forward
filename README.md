@@ -442,6 +442,78 @@ PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=3 python allrank/main.py  --conf
 
 1. Label 2 - From Epoch 0 to Epoch 26(0.9501168727874756) Epoch 78(0.9514542818069458), then keep the best result
 
+* Cohere Re-ranking result
+
+```bash
+ln -s /data/orlando/workspace/metaGUI_forward/repo_upload/ground_truth/rerank_input_raw_data_label2.txt /data/orlando/workspace/allRank/mmdataset/Feature_18_coherent_label2/test.txt
+ln -s /data/orlando/workspace/metaGUI_forward/repo_upload/ground_truth/rerank_input_raw_data_label2.json /data/orlando/workspace/allRank/mmdataset/Feature_18_coherent_label2/test_qid_label2.json
+conda activate metaGUI
+```
+
+* NeurlNDCG
+
+```bash
+PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth.json --run-id neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth --job-dir experiments/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth #DONE
+```
+
+### 1. 18 features
+
+```bash
+PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth.json --run-id neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth --job-dir experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth #DONE
+```
+
+Time 1:
+[INFO] 2024-01-11 16:55:13 - Epoch : 19 Train loss: -0.8616754800851613 Val loss: -0.5326286527408298 Train ndcg_1 0.9028130173683167 Train ndcg_5 0.9484610557556152 Train ndcg_10 0.9529234766960144 Train mrr_1 0.9026862978935242 Train mrr_5 0.9384377598762512 Train mrr_10 0.9391921162605286 Train ap_1 0.23897619545459747 Train ap_5 0.2722625434398651 Train ap_10 0.27252301573753357 Val ndcg_1 0.9087750315666199 Val ndcg_5 0.9546259045600891 Val ndcg_10 0.9579418897628784 Val mrr_1 0.519548237323761 Val mrr_5 0.5557485818862915 Val mrr_10 0.5559899806976318 Val ap_1 0.29278889298439026 Val ap_5 0.32736751437187195 Val ap_10 0.3269151747226715
+[INFO] 2024-01-11 16:55:13 - Current:0.9546259045600891 Best:0.9546259045600891
+[INFO] 2024-01-11 16:55:13 - Test metrics: {'ndcg_1': 0.98290604, 'ndcg_5': 0.98323363, 'ndcg_10': 0.9909921, 'mrr_1': 0.52991456, 'mrr_5': 0.5370371, 'mrr_10': 0.5370371, 'ap_1': 0.17094018, 'ap_5': 0.17539175, 'ap_10': 0.17233358}
+
+Time 2:
+[INFO] 2024-01-11 17:01:23 - Epoch : 19 Train loss: -0.8616754800851613 Val loss: -0.5326286527408298 Train ndcg_1 0.9028130173683167 Train ndcg_5 0.9484610557556152 Train ndcg_10 0.9529234766960144 Train mrr_1 0.9026862978935242 Train mrr_5 0.9384377598762512 Train mrr_10 0.9391921162605286 Train ap_1 0.23897619545459747 Train ap_5 0.2722625434398651 Train ap_10 0.27252301573753357 Val ndcg_1 0.9087750315666199 Val ndcg_5 0.9546259045600891 Val ndcg_10 0.9579418897628784 Val mrr_1 0.519548237323761 Val mrr_5 0.5557485818862915 Val mrr_10 0.5559899806976318 Val ap_1 0.29278889298439026 Val ap_5 0.32736751437187195 Val ap_10 0.3269151747226715
+[INFO] 2024-01-11 17:01:23 - Current:0.9546259045600891 Best:0.9546259045600891
+[INFO] 2024-01-11 17:01:23 - Test metrics: {'ndcg_1': 0.98290604, 'ndcg_5': 0.98323363, 'ndcg_10': 0.9909921, 'mrr_1': 0.52991456, 'mrr_5': 0.5370371, 'mrr_10': 0.5370371, 'ap_1': 0.17094018, 'ap_5': 0.17539175, 'ap_10': 0.17233358}
+
+Time 3:
+[INFO] 2024-01-11 17:23:30 - Epoch : 19 Train loss: -0.8616754800851613 Val loss: -0.5326286527408298 Train ndcg_1 0.9028130173683167 Train ndcg_5 0.9484610557556152 Train ndcg_10 0.9529234766960144 Train mrr_1 0.9026862978935242 Train mrr_5 0.9384377598762512 Train mrr_10 0.9391921162605286 Train ap_1 0.23897619545459747 Train ap_5 0.2722625434398651 Train ap_10 0.27252301573753357 Val ndcg_1 0.9087750315666199 Val ndcg_5 0.9546259045600891 Val ndcg_10 0.9579418897628784 Val mrr_1 0.519548237323761 Val mrr_5 0.5557485818862915 Val mrr_10 0.5559899806976318 Val ap_1 0.29278889298439026 Val ap_5 0.32736751437187195 Val ap_10 0.3269151747226715
+[INFO] 2024-01-11 17:23:30 - Current:0.9546259045600891 Best:0.9546259045600891
+[INFO] 2024-01-11 17:23:30 - Test metrics: {'ndcg_1': 0.98290604, 'ndcg_5': 0.98323363, 'ndcg_10': 0.9909921, 'mrr_1': 0.52991456, 'mrr_5': 0.5370371, 'mrr_10': 0.5370371, 'ap_1': 0.17094018, 'ap_5': 0.17539175, 'ap_10': 0.17233358}
+
+### 2. Without feature 0 "Query term ratio in instructions"
+
+
+### 3. Without feature 1 "Relevance between title and search query"
+
+### 4. Without feature 2 "Keyword ratio"
+
+### 5. Without feature 3 "Instructions completion degree"
+
+### 6. Without feature 4-7 "Action term ratio in instructions (avg, min, max, var)"
+
+### 7. Without feature 8-11 "UI term matching ratio in instructions (avg, min, max, var)"
+
+### 8. Without feature 12-15 "Matched UI term frequency on UI (avg, min, max, var)"
+
+### 9.  Without feature 16 "Relative position of the last matched instruction term"
+
+### 10.  Without feature 17 "Moving distancing of instruction terms"
+
+* ListNet
+
+```bash
+PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Multimodal_Feature18_label2_listNet_on_cohere_ground_truth.json --run-id neuralndcg_atmax_Multimodal_Feature18_label2_listNet_on_cohere_ground_truth --job-dir experiments/neuralndcg_atmax_Multimodal_Feature18_label2_listNet_on_cohere_ground_truth #DONE
+```
+
+* LambdaRank
+
+```bash
+PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth.json --run-id lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth --job-dir experiments/lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth #DONE
+```
+
+* ApproxNDCG
+
+```bash
+PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/approxndc_Multimodal_Feature18_label2_on_cohere_ground_truth.json --run-id approxndc_Multimodal_Feature18_label2_on_cohere_ground_truth --job-dir experiments/approxndc_Multimodal_Feature18_label2_on_cohere_ground_truth #DONE
+```
+
 ## License
 
 Apache 2 License

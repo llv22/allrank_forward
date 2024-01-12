@@ -1,0 +1,71 @@
+{
+  "model": {
+    "fc_model": {
+      "sizes": [96],
+      "input_norm": false,
+      "activation": null,
+      "dropout": 0.0
+    },
+    "transformer": {
+      "N": 2,
+      "d_ff": 384,
+      "h": 1,
+      "positional_encoding" : null,
+      "dropout": 0.1
+    },
+    "post_model": {
+      "output_activation": "Tanh",
+      "d_output": 1
+    }
+  },
+  "data": {
+    "path": "mmdataset/Feature_18_coherent_label2",
+    "validation_ds_role": "val",
+    "get_test_statistics": true,
+    "mark_feature_indexes": [8,9,10,11],
+    "num_workers": 1,
+    "batch_size": 64,
+    "slate_length": 1
+  },
+  "optimizer": {
+    "name": "Adam",
+    "args": {
+      "lr": 0.001
+    }
+  },
+  "lr_scheduler": {
+    "name": "StepLR",
+    "args": {
+      "step_size": 50,
+      "gamma": 0.1
+    }
+  },
+  "training": {
+    "epochs": 20,
+    "early_stopping_patience": 20,
+    "gradient_clipping_norm": null
+  },
+  "val_metric": "ndcg_5",
+  "metrics": [
+    "ndcg_1",
+    "ndcg_5",
+    "ndcg_10",
+    "mrr_1",
+    "mrr_5",
+    "mrr_10",
+    "ap_1",
+    "ap_5",
+    "ap_10"
+  ],
+  "loss": {
+    "name": "binary_listNet",
+    "args": {
+    }
+  },
+  "detect_anomaly": false,
+  "expected_metrics" : {
+    "val": {
+      "ndcg_5": 0.5
+    }
+  }
+}

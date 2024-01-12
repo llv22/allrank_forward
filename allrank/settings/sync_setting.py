@@ -28,4 +28,4 @@ if __name__ == "__main__":
         run_files.append(f"PYTHONPATH=.:${{PYTHONPATH}} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name {feature_file} --run-id {folder} --job-dir experiments/{folder}")
     
     with open(f"{parent_folder}/run_{short_name}_group.sh", "w") as f:
-        f.write("\n".join(run_files))
+        f.write(" && ".join(run_files))

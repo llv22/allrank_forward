@@ -5,6 +5,24 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "weweb_test_val_split",
+            "type": "python",
+            "request": "launch",
+            "program": "allrank/weweb_val_split.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true
+        },
+        {
+            "name": "metagui_val_split",
+            "type": "python",
+            "request": "launch",
+            "program": "allrank/metagui_val_split.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true
+        },
+        {
             "name": "sync_setting",
             "type": "python",
             "request": "launch",
@@ -39,7 +57,7 @@
             "cwd": "${workspaceFolder}",
             "args": [
                 "--config-file-name",
-                "allrank/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth.json",
+                "allrank/settings/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth.json",
                 "--run-id",
                 "neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth",
                 "--job-dir",

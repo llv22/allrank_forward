@@ -14,17 +14,17 @@
       "dropout": 0.1
     },
     "post_model": {
-      "output_activation": null,
+      "output_activation": "Tanh",
       "d_output": 1
     }
   },
   "data": {
-    "path": "mmdataset/Feature_18_zeroshot_label2",
+    "path": "mmdataset/Feature_18_weweb_label2",
     "validation_ds_role": "val",
     "get_test_statistics": true,
     "num_workers": 1,
     "batch_size": 64,
-    "slate_length": 240
+    "slate_length": 1
   },
   "optimizer": {
     "name": "Adam",
@@ -53,20 +53,17 @@
     "mrr_5",
     "mrr_10",
     "ap_1",
-    "ap_5",
-    "ap_10"
+    "ap_5"
   ],
   "loss": {
-    "name": "approxNDCGLoss",
-    "args":
-    {
-      "alpha": 1.0
+    "name": "binary_listNet",
+    "args": {
     }
   },
   "detect_anomaly": false,
   "expected_metrics" : {
     "val": {
-      "ndcg_5": 0.49
+      "ndcg_5": 0.5
     }
   }
 }

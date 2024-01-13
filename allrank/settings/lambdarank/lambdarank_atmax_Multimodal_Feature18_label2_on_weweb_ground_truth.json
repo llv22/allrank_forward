@@ -19,7 +19,7 @@
     }
   },
   "data": {
-    "path": "mmdataset/Feature_18_zeroshot_label2",
+    "path": "mmdataset/Feature_18_weweb_label2",
     "validation_ds_role": "val",
     "get_test_statistics": true,
     "num_workers": 1,
@@ -53,20 +53,21 @@
     "mrr_5",
     "mrr_10",
     "ap_1",
-    "ap_5",
-    "ap_10"
+    "ap_5"
   ],
   "loss": {
-    "name": "approxNDCGLoss",
-    "args":
-    {
-      "alpha": 1.0
+    "name": "lambdaLoss",
+    "args": {
+      "weighing_scheme": "lambdaRank_scheme",
+      "k": null,
+      "mu": 10,
+      "sigma": 1.0
     }
   },
   "detect_anomaly": false,
   "expected_metrics" : {
     "val": {
-      "ndcg_5": 0.49
+      "ndcg_5": 0.50
     }
   }
 }

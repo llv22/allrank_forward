@@ -1,6 +1,8 @@
 import argparse
 import json
 
+from random import shuffle
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--query_label", type=str, default="mmdataset/Feature_18_zeroshot_label2/test_qid_label2.json")
@@ -12,17 +14,27 @@ if __name__ == "__main__":
         query_to_label = json.load(f)
     length = len(query_to_label) / 10
     cnt = 0
-    train_label, val_label, test_label = {}, {}, {}
-    for k, v in query_to_label.items():
-        if cnt < length * 6:
-            train_label[k] = v
+    keys = list(query_to_label.keys())
+    train_key, val_key, test_key = [], [], []
+    shuffle(keys)
+    for k in keys:
+        if cnt < length * 7:
+            train_key.append(k)
             cnt += 1
         elif cnt < length * 9:
-            val_label[k] = v
+            val_key.append(k)
             cnt += 1
         else:
-            test_label[k] = v
+            test_key.append(k)
             cnt += 1
+    train_label, val_label, test_label = {}, {}, {}
+    for k, v in query_to_label.items():
+        if k in train_key:
+            train_label[k] = v
+        elif k in val_key:
+            val_label[k] = v
+        else:
+            test_label[k] = v
     train_data, val_data, test_data = [], [], []
     with open(args.input, "r") as f:
         for l in f.readlines():

@@ -19,7 +19,7 @@
     }
   },
   "data": {
-    "path": "mmdataset/Feature_18_zeroshot_label2",
+    "path": "mmdataset/Feature_18_weweb_label2",
     "validation_ds_role": "val",
     "get_test_statistics": true,
     "num_workers": 1,
@@ -53,8 +53,7 @@
     "mrr_5",
     "mrr_10",
     "ap_1",
-    "ap_5",
-    "ap_10"
+    "ap_5"
   ],
   "loss": {
     "name": "approxNDCGLoss",

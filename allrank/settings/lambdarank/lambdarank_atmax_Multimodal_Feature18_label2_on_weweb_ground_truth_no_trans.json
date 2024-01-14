@@ -1,25 +1,22 @@
 {
   "model": {
     "fc_model": {
-      "sizes": [96],
-      "input_norm": false,
-      "activation": null,
-      "dropout": 0.0
+        "sizes": [
+            96
+        ],
+        "input_norm": false,
+        "activation": null,
+        "dropout": 0.0
     },
     "transformer": {
-      "N": 2,
-      "d_ff": 384,
-      "h": 1,
-      "positional_encoding" : null,
-      "dropout": 0.1
     },
     "post_model": {
-      "output_activation": null,
+      "output_activation": "Sigmoid",
       "d_output": 1
     }
   },
   "data": {
-    "path": "mmdataset/Feature_18_label2",
+    "path": "mmdataset/Feature_18_weweb_label2",
     "validation_ds_role": "val",
     "get_test_statistics": true,
     "num_workers": 1,
@@ -40,8 +37,8 @@
     }
   },
   "training": {
-    "epochs": 100,
-    "early_stopping_patience": 100,
+    "epochs": 20,
+    "early_stopping_patience": 20,
     "gradient_clipping_norm": null
   },
   "val_metric": "ndcg_5",
@@ -53,8 +50,7 @@
     "mrr_5",
     "mrr_10",
     "ap_1",
-    "ap_5",
-    "ap_10"
+    "ap_5"
   ],
   "loss": {
     "name": "lambdaLoss",

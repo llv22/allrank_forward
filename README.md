@@ -658,38 +658,151 @@ approxndc Time 1:
 
 ### neuralNDCG, listNet, lambdarank, approxndc on dataset "How-to" META-GUI via Sigmoid LTR
 
-neuralNDCG
+#### neuralNDCG
 
 ```bash
-PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_metagui_ground_truth_lr_model.json --run-id neuralndcg_atmax_Multimodal_Feature18_label2_on_metagui_ground_truth_lr_model --job-dir experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_metagui_ground_truth_lr_model # on METAGUI
-PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_weweb_ground_truth_lr_model.json --run-id neuralndcg_atmax_Multimodal_Feature18_label2_on_weweb_ground_truth_lr_model --job-dir experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_weweb_ground_truth_lr_model # on WeWeb
-PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model.json --run-id neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model --job-dir experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model # METAGUI -> WeWeb
+PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_metagui_ground_truth_no_trans.json --run-id neuralndcg_atmax_Multimodal_Feature18_label2_on_metagui_ground_truth_no_trans --job-dir experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_metagui_ground_truth_no_trans && PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_weweb_ground_truth_no_trans.json --run-id neuralndcg_atmax_Multimodal_Feature18_label2_on_weweb_ground_truth_no_trans --job-dir experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_weweb_ground_truth_no_trans && PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans.json --run-id neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans --job-dir experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans # METAGUI -> WeWeb
 ```
 
+"How-to" META-GUI
+
+2024-01-13 20:43:03,597 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: -0.9543615473567443 Val loss: -0.42135993639628094 Train ndcg_1 0.9996199011802673 Train ndcg_5 0.9998076558113098 Train ndcg_10 0.9998289346694946 Train mrr_1 0.9996199011802673 Train mrr_5 0.9997571110725403 Train mrr_10 0.9997571110725403 Train ap_1 0.33590978384017944 Train ap_5 0.3360460102558136 Train ap_10 0.33605340123176575 Val ndcg_1 1.0 Val ndcg_5 0.999628484249115 Val ndcg_10 0.9998435974121094 Val mrr_1 0.4444444477558136 Val mrr_5 0.4444444477558136 Val mrr_10 0.4444444477558136 Val ap_1 0.3177083432674408 Val ap_5 0.31736835837364197 Val ap_10 0.31739211082458496
+2024-01-13 20:43:03,603 - allrank.utils.ltr_logging - INFO - Current:0.999628484249115 Best:0.9997056126594543
+2024-01-13 20:43:03,942 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.9982609, 'ndcg_5': 0.9992387, 'ndcg_10': 0.9990704, 'mrr_1': 0.77565217, 'mrr_5': 0.77652174, 'mrr_10': 0.77652174, 'ap_1': 0.3826087, 'ap_5': 0.3836232, 'ap_10': 0.38342446}
+
+"How-to" WeWeb
+
+2024-01-13 20:43:17,182 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: -0.9183958172798157 Val loss: -0.8798767924308777 Train ndcg_1 0.9555555582046509 Train ndcg_5 0.9794867634773254 Train ndcg_10 0.984341025352478 Train mrr_1 0.9555555582046509 Train mrr_5 0.9777777791023254 Train mrr_10 0.9777777791023254 Train ap_1 0.3333333432674408 Train ap_5 0.3548148274421692 Val ndcg_1 1.0 Val ndcg_5 0.9799532294273376 Val ndcg_10 0.9892464280128479 Val mrr_1 1.0 Val mrr_5 1.0 Val mrr_10 1.0 Val ap_1 0.38461539149284363 Val ap_5 0.3619658052921295
+2024-01-13 20:43:17,185 - allrank.utils.ltr_logging - INFO - Current:0.9799532294273376 Best:0.9862615466117859
+2024-01-13 20:43:17,386 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.9830508, 'ndcg_5': 0.9920277, 'ndcg_10': 0.9956743, 'mrr_1': 0.9830508, 'mrr_5': 0.9915254, 'mrr_10': 0.9915254, 'ap_1': 0.016949153, 'ap_5': 0.027777776}
+
+Zero-shot
+
+2024-01-13 20:45:50,433 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: -0.9543615473567443 Val loss: -0.5785580262943105 Train ndcg_1 0.9996199011802673 Train ndcg_5 0.9998076558113098 Train ndcg_10 0.9998289346694946 Train mrr_1 0.9996199011802673 Train mrr_5 0.9997571110725403 Train mrr_10 0.9997571110725403 Train ap_1 0.33590978384017944 Train ap_5 0.3360460102558136 Train ap_10 0.33605340123176575 Val ndcg_1 1.0 Val ndcg_5 0.9997694492340088 Val ndcg_10 0.9998878240585327 Val mrr_1 0.6107732653617859 Val mrr_5 0.6107732653617859 Val mrr_10 0.6107732653617859 Val ap_1 0.38401392102241516 Val ap_5 0.3837822377681732 Val ap_10 0.38372915983200073
+2024-01-13 20:45:50,434 - allrank.utils.ltr_logging - INFO - Current:0.9997694492340088 Best:0.9995319247245789
+2024-01-13 20:45:50,660 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.99145305, 'ndcg_5': 0.9853995, 'ndcg_10': 0.9911009, 'mrr_1': 0.53846157, 'mrr_5': 0.54273504, 'mrr_10': 0.54273504, 'ap_1': 0.17948718, 'ap_5': 0.17526118, 'ap_10': 0.17198345}
+
+#### listNet
+
 ```bash
-PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/lambdarank/lambdarank_atmax_Multimodal_Feature18_label2_on_metagui_ground_truth_lr_model.json --run-id lambdarank_atmax_Multimodal_Feature18_label2_on_metagui_ground_truth_lr_model --job-dir experiments/lambdarank/lambdarank_atmax_Multimodal_Feature18_label2_on_metagui_ground_truth_lr_model # on METAGUI
-PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/lambdarank/lambdarank_atmax_Multimodal_Feature18_label2_on_weweb_ground_truth_lr_model.json --run-id lambdarank_atmax_Multimodal_Feature18_label2_on_weweb_ground_truth_lr_model --job-dir experiments/lambdarank/lambdarank_atmax_Multimodal_Feature18_label2_on_weweb_ground_truth_lr_model # on WeWeb
-PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/lambdarank/lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model.json --run-id lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model --job-dir experiments/lambdarank/lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model # METAGUI -> WeWeb
+PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/listNet/neuralndcg_atmax_Multimodal_Feature18_label2_listNet_on_metagui_ground_truth_no_trans.json --run-id neuralndcg_atmax_Multimodal_Feature18_label2_listNet_on_metagui_ground_truth_no_trans --job-dir experiments/listNet/neuralndcg_atmax_Multimodal_Feature18_label2_listNet_on_metagui_ground_truth_no_trans && PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/listNet/neuralndcg_atmax_Multimodal_Feature18_label2_listNet_on_weweb_ground_truth_no_trans.json --run-id neuralndcg_atmax_Multimodal_Feature18_label2_listNet_on_weweb_ground_truth_no_trans --job-dir experiments/listNet/neuralndcg_atmax_Multimodal_Feature18_label2_listNet_on_weweb_ground_truth_no_trans && PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/listNet/neuralndcg_atmax_Multimodal_Feature18_label2_listNet_on_cohere_ground_truth_no_trans.json --run-id neuralndcg_atmax_Multimodal_Feature18_label2_listNet_on_cohere_ground_truth_no_trans --job-dir experiments/listNet/neuralndcg_atmax_Multimodal_Feature18_label2_listNet_on_cohere_ground_truth_no_trans # METAGUI -> WeWeb
 ```
+
+"How-to" META-GUI
+
+2024-01-13 21:38:03,781 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 0.0 Val loss: 0.4932870931095547 Train ndcg_1 1.0 Train ndcg_5 1.0 Train ndcg_10 1.0 Train mrr_1 1.0 Train mrr_5 1.0 Train mrr_10 1.0 Train ap_1 0.3362899422645569 Train ap_5 0.7678619623184204 Train ap_10 0.9849826097488403 Val ndcg_1 0.9166666865348816 Val ndcg_5 0.9547337293624878 Val ndcg_10 0.9586650133132935 Val mrr_1 0.3611111044883728 Val mrr_5 0.38952547311782837 Val mrr_10 0.3900318443775177 Val ap_1 0.234375 Val ap_5 0.26288822293281555 Val ap_10 0.2621814012527466
+2024-01-13 21:38:03,783 - allrank.utils.ltr_logging - INFO - Current:0.9547337293624878 Best:0.9547337293624878
+2024-01-13 21:38:04,127 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.86260873, 'ndcg_5': 0.93177235, 'ndcg_10': 0.9373378, 'mrr_1': 0.64, 'mrr_5': 0.6914783, 'mrr_10': 0.69272876, 'ap_1': 0.24695653, 'ap_5': 0.29928988, 'ap_10': 0.300237}
+
+"How-to" WeWeb
+
+2024-01-13 21:38:16,115 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 0.0 Val loss: 0.6879475116729736 Train ndcg_1 1.0 Train ndcg_5 1.0 Train ndcg_10 1.0 Train mrr_1 1.0 Train mrr_5 1.0 Train mrr_10 1.0 Train ap_1 0.3777777850627899 Train ap_5 0.8625925779342651 Val ndcg_1 0.9230769872665405 Val ndcg_5 0.9526470899581909 Val ndcg_10 0.9619402885437012 Val mrr_1 0.9230769872665405 Val mrr_5 0.9615384936332703 Val mrr_10 0.9615384936332703 Val ap_1 0.3076923191547394 Val ap_5 0.32467949390411377
+2024-01-13 21:38:16,119 - allrank.utils.ltr_logging - INFO - Current:0.9526470899581909 Best:0.9526470899581909
+2024-01-13 21:38:16,299 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.9830508, 'ndcg_5': 0.9913773, 'ndcg_10': 0.9931907, 'mrr_1': 0.9830508, 'mrr_5': 0.9915254, 'mrr_10': 0.9915254, 'ap_1': 0.016949153, 'ap_5': 0.0259887}
+
+Zero-shot
+
+2024-01-13 21:39:04,894 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 0.0 Val loss: 0.5133136443722569 Train ndcg_1 1.0 Train ndcg_5 1.0 Train ndcg_10 1.0 Train mrr_1 1.0 Train mrr_5 1.0 Train mrr_10 1.0 Train ap_1 0.3362899422645569 Train ap_5 0.7678619623184204 Train ap_10 0.9849826097488403 Val ndcg_1 0.8757602572441101 Val ndcg_5 0.9325862526893616 Val ndcg_10 0.9399206638336182 Val mrr_1 0.4865334630012512 Val mrr_5 0.5290616750717163 Val mrr_10 0.5305718183517456 Val ap_1 0.2597741186618805 Val ap_5 0.30236393213272095 Val ap_10 0.30362439155578613
+2024-01-13 21:39:04,898 - allrank.utils.ltr_logging - INFO - Current:0.9325862526893616 Best:0.9325862526893616
+2024-01-13 21:39:05,126 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.99145305, 'ndcg_5': 0.9868452, 'ndcg_10': 0.99194443, 'mrr_1': 0.53846157, 'mrr_5': 0.54273504, 'mrr_10': 0.54273504, 'ap_1': 0.17948718, 'ap_5': 0.17757599, 'ap_10': 0.17502747}
+
+#### lambdarank
+
+```bash
+PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/lambdarank/lambdarank_atmax_Multimodal_Feature18_label2_on_metagui_ground_truth_no_trans.json --run-id lambdarank_atmax_Multimodal_Feature18_label2_on_metagui_ground_truth_no_trans --job-dir experiments/lambdarank/lambdarank_atmax_Multimodal_Feature18_label2_on_metagui_ground_truth_no_trans && PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/lambdarank/lambdarank_atmax_Multimodal_Feature18_label2_on_weweb_ground_truth_no_trans.json --run-id lambdarank_atmax_Multimodal_Feature18_label2_on_weweb_ground_truth_no_trans --job-dir experiments/lambdarank/lambdarank_atmax_Multimodal_Feature18_label2_on_weweb_ground_truth_no_trans && PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/lambdarank/lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans.json --run-id lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans --job-dir experiments/lambdarank/lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans # METAGUI -> WeWeb
+```
+
+"How-to" META-GUI
+
+2024-01-13 21:43:56,487 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 8.478063752671758 Val loss: 10.180869572692448 Train ndcg_1 0.9996199011802673 Train ndcg_5 0.9998396039009094 Train ndcg_10 0.9998387098312378 Train mrr_1 0.9996199011802673 Train mrr_5 0.9997888207435608 Train mrr_10 0.9997888207435608 Train ap_1 0.33590978384017944 Train ap_5 0.3360583484172821 Train ap_10 0.33605530858039856 Val ndcg_1 1.0 Val ndcg_5 0.999628484249115 Val ndcg_10 0.9998435974121094 Val mrr_1 0.4444444477558136 Val mrr_5 0.4444444477558136 Val mrr_10 0.4444444477558136 Val ap_1 0.3177083432674408 Val ap_5 0.31736835837364197 Val ap_10 0.31739211082458496
+2024-01-13 21:43:56,490 - allrank.utils.ltr_logging - INFO - Current:0.999628484249115 Best:1.0
+2024-01-13 21:43:56,839 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.9982609, 'ndcg_5': 0.99946684, 'ndcg_10': 0.99946684, 'mrr_1': 0.77565217, 'mrr_5': 0.77652174, 'mrr_10': 0.77652174, 'ap_1': 0.3826087, 'ap_5': 0.3836232, 'ap_10': 0.3836232}
+
+"How-to" WeWeb
+
+2024-01-13 21:44:09,981 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 6.458059310913086 Val loss: 3.359440803527832 Train ndcg_1 0.9555555582046509 Train ndcg_5 0.9632382392883301 Train ndcg_10 0.9759992957115173 Train mrr_1 0.9555555582046509 Train mrr_5 0.9666666984558105 Train mrr_10 0.9703704118728638 Train ap_1 0.3333333432674408 Train ap_5 0.3406481444835663 Val ndcg_1 1.0 Val ndcg_5 0.9815351366996765 Val ndcg_10 0.9908283352851868 Val mrr_1 1.0 Val mrr_5 1.0 Val mrr_10 1.0 Val ap_1 0.38461539149284363 Val ap_5 0.3658119738101959
+2024-01-13 21:44:09,983 - allrank.utils.ltr_logging - INFO - Current:0.9815351366996765 Best:0.9844529628753662
+2024-01-13 21:44:10,191 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.9830508, 'ndcg_5': 0.9920277, 'ndcg_10': 0.9957573, 'mrr_1': 0.9830508, 'mrr_5': 0.9915254, 'mrr_10': 0.9915254, 'ap_1': 0.016949153, 'ap_5': 0.027777776}
+
+Zero-shot
+
+2024-01-13 21:45:32,167 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 8.478063752671758 Val loss: 7.569999424920302 Train ndcg_1 0.9996199011802673 Train ndcg_5 0.9998396039009094 Train ndcg_10 0.9998387098312378 Train mrr_1 0.9996199011802673 Train mrr_5 0.9997888207435608 Train mrr_10 0.9997888207435608 Train ap_1 0.33590978384017944 Train ap_5 0.3360583484172821 Train ap_10 0.33605530858039856 Val ndcg_1 1.0 Val ndcg_5 0.9997962117195129 Val ndcg_10 0.99993896484375 Val mrr_1 0.6107732653617859 Val mrr_5 0.6107732653617859 Val mrr_10 0.6107732653617859 Val ap_1 0.38401392102241516 Val ap_5 0.38401392102241516 Val ap_10 0.38385945558547974
+2024-01-13 21:45:32,167 - allrank.utils.ltr_logging - INFO - Current:0.9997962117195129 Best:0.9997962117195129
+2024-01-13 21:45:32,400 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.98290604, 'ndcg_5': 0.98445654, 'ndcg_10': 0.9903541, 'mrr_1': 0.52991456, 'mrr_5': 0.53846157, 'mrr_10': 0.53846157, 'ap_1': 0.17094018, 'ap_5': 0.17384854, 'ap_10': 0.17181525}
+
+#### approxndc
+
+```bash
+PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/approxndc/approxndc_Multimodal_Feature18_label2_on_metagui_ground_truth_no_trans.json --run-id approxndc_Multimodal_Feature18_label2_on_metagui_ground_truth_no_trans --job-dir experiments/approxndc/approxndc_Multimodal_Feature18_label2_on_metagui_ground_truth_no_trans && PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/approxndc/approxndc_Multimodal_Feature18_label2_on_weweb_ground_truth_no_trans.json --run-id approxndc_Multimodal_Feature18_label2_on_weweb_ground_truth_no_trans --job-dir experiments/approxndc/approxndc_Multimodal_Feature18_label2_on_weweb_ground_truth_no_trans && PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/approxndc/approxndc_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans.json --run-id approxndc_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans --job-dir experiments/approxndc/approxndc_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans # METAGUI -> WeWeb
+```
+
+"How-to" META-GUI
+
+2024-01-13 21:54:36,743 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: -0.2674705851549312 Val loss: -0.2544657289981842 Train ndcg_1 0.9996199011802673 Train ndcg_5 0.9998497366905212 Train ndcg_10 0.9998497366905212 Train mrr_1 0.9996199011802673 Train mrr_5 0.9997888207435608 Train mrr_10 0.9997888207435608 Train ap_1 0.33590978384017944 Train ap_5 0.3360794484615326 Train ap_10 0.3360794484615326 Val ndcg_1 1.0 Val ndcg_5 0.999628484249115 Val ndcg_10 0.9998435974121094 Val mrr_1 0.4444444477558136 Val mrr_5 0.4444444477558136 Val mrr_10 0.4444444477558136 Val ap_1 0.3177083432674408 Val ap_5 0.31736835837364197 Val ap_10 0.31739211082458496
+2024-01-13 21:54:36,743 - allrank.utils.ltr_logging - INFO - Current:0.999628484249115 Best:0.9996328353881836
+2024-01-13 21:54:37,088 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.9982609, 'ndcg_5': 0.99946684, 'ndcg_10': 0.99945486, 'mrr_1': 0.77565217, 'mrr_5': 0.77652174, 'mrr_10': 0.77652174, 'ap_1': 0.3826087, 'ap_5': 0.3836232, 'ap_10': 0.3835818}
+
+"How-to" WeWeb
+
+2024-01-13 21:54:49,756 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: -0.3151623606681824 Val loss: -0.2801719903945923 Train ndcg_1 0.9555555582046509 Train ndcg_5 0.9635684490203857 Train ndcg_10 0.9752347469329834 Train mrr_1 0.9555555582046509 Train mrr_5 0.9666666984558105 Train mrr_10 0.9694444537162781 Train ap_1 0.3333333432674408 Train ap_5 0.34175926446914673 Val ndcg_1 0.9230769872665405 Val ndcg_5 0.9682123064994812 Val ndcg_10 0.9775055050849915 Val mrr_1 0.9230769872665405 Val mrr_5 0.9615384936332703 Val mrr_10 0.9615384936332703 Val ap_1 0.3076923191547394 Val ap_5 0.3529914617538452
+2024-01-13 21:54:49,760 - allrank.utils.ltr_logging - INFO - Current:0.9682123064994812 Best:0.9810370802879333
+2024-01-13 21:54:49,956 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.9830508, 'ndcg_5': 0.989552, 'ndcg_10': 0.99532926, 'mrr_1': 0.9830508, 'mrr_5': 0.9915254, 'mrr_10': 0.9915254, 'ap_1': 0.016949153, 'ap_5': 0.026836159}
+
+Zero-shot
+
+2024-01-13 21:56:11,050 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: -0.2674705851549312 Val loss: -0.3119836721235933 Train ndcg_1 0.9996199011802673 Train ndcg_5 0.9998497366905212 Train ndcg_10 0.9998497366905212 Train mrr_1 0.9996199011802673 Train mrr_5 0.9997888207435608 Train mrr_10 0.9997888207435608 Train ap_1 0.33590978384017944 Train ap_5 0.3360794484615326 Train ap_10 0.3360794484615326 Val ndcg_1 1.0 Val ndcg_5 0.9997962117195129 Val ndcg_10 0.9999414086341858 Val mrr_1 0.6107732653617859 Val mrr_5 0.6107732653617859 Val mrr_10 0.6107732653617859 Val ap_1 0.38401392102241516 Val ap_5 0.38401392102241516 Val ap_10 0.38386908173561096
+2024-01-13 21:56:11,053 - allrank.utils.ltr_logging - INFO - Current:0.9997962117195129 Best:0.9999539256095886
+2024-01-13 21:56:11,279 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.98290604, 'ndcg_5': 0.98412853, 'ndcg_10': 0.99006146, 'mrr_1': 0.52991456, 'mrr_5': 0.53846157, 'mrr_10': 0.53846157, 'ap_1': 0.17094018, 'ap_5': 0.17294635, 'ap_10': 0.17127392}
 
 ### Pointwise Loss
 
 pointwise bce loss
 
 ```bash
-PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/bce/pointwise_bce_Multimodal_Feature18_label2_on_metagui_ground_truth_lr_model.json --run-id pointwise_bce_Multimodal_Feature18_label2_on_metagui_ground_truth_lr_model --job-dir experiments/bce/pointwise_bce_Multimodal_Feature18_label2_on_metagui_ground_truth_lr_model # on METAGUI
-PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/bce/pointwise_bce_Multimodal_Feature18_label2_on_weweb_ground_truth_lr_model.json --run-id pointwise_bce_Multimodal_Feature18_label2_on_weweb_ground_truth_lr_model --job-dir experiments/bce/pointwise_bce_Multimodal_Feature18_label2_on_weweb_ground_truth_lr_model # on WeWeb
-PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/bce/pointwise_bce_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model.json --run-id pointwise_bce_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model --job-dir experiments/bce/pointwise_bce_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model # METAGUI -> WeWeb
+PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/bce/pointwise_bce_Multimodal_Feature18_label2_on_metagui_ground_truth_lr_model.json --run-id pointwise_bce_Multimodal_Feature18_label2_on_metagui_ground_truth_lr_model --job-dir experiments/bce/pointwise_bce_Multimodal_Feature18_label2_on_metagui_ground_truth_lr_model && PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/bce/pointwise_bce_Multimodal_Feature18_label2_on_weweb_ground_truth_lr_model.json --run-id pointwise_bce_Multimodal_Feature18_label2_on_weweb_ground_truth_lr_model --job-dir experiments/bce/pointwise_bce_Multimodal_Feature18_label2_on_weweb_ground_truth_lr_model && PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/bce/pointwise_bce_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model.json --run-id pointwise_bce_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model --job-dir experiments/bce/pointwise_bce_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model # on METAGUI -> WeWeb
 ```
+
+* META-GUI
+
+2024-01-13 18:20:39,951 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 2.4061221820838066 Val loss: 2.915162728892432 Train ndcg_1 0.8812721967697144 Train ndcg_5 0.9380508661270142 Train ndcg_10 0.9435099959373474 Train mrr_1 0.8812721967697144 Train mrr_5 0.924353837966919 Train mrr_10 0.9253323674201965 Train ap_1 0.21756209433078766 Train ap_5 0.25966590642929077 Train ap_10 0.2601567804813385 Val ndcg_1 0.9027777910232544 Val ndcg_5 0.9486153721809387 Val ndcg_10 0.9538309574127197 Val mrr_1 0.347222238779068 Val mrr_5 0.38029518723487854 Val mrr_10 0.3813698887825012 Val ap_1 0.220486119389534 Val ap_5 0.2557339668273926 Val ap_10 0.2561280429363251
+2024-01-13 18:20:39,954 - allrank.utils.ltr_logging - INFO - Current:0.9486153721809387 Best:0.9485266208648682
+2024-01-13 18:20:40,272 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.85391307, 'ndcg_5': 0.93252105, 'ndcg_10': 0.93622977, 'mrr_1': 0.6313044, 'mrr_5': 0.68811595, 'mrr_10': 0.6889856, 'ap_1': 0.23826088, 'ap_5': 0.2977778, 'ap_10': 0.29917645}
+
+* WeWeb
+
+2024-01-13 18:20:52,383 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 2.3240435123443604 Val loss: 3.482133388519287 Train ndcg_1 0.9333333373069763 Train ndcg_5 0.9540493488311768 Train ndcg_10 0.9639526605606079 Train mrr_1 0.9333333373069763 Train mrr_5 0.9562963247299194 Train mrr_10 0.9562963247299194 Train ap_1 0.31111112236976624 Train ap_5 0.32484567165374756 Val ndcg_1 0.8461538553237915 Val ndcg_5 0.9268097877502441 Val ndcg_10 0.9361029267311096 Val mrr_1 0.8461538553237915 Val mrr_5 0.9102565050125122 Val mrr_10 0.9102565050125122 Val ap_1 0.23076924681663513 Val ap_5 0.2974359095096588
+2024-01-13 18:20:52,386 - allrank.utils.ltr_logging - INFO - Current:0.9268097877502441 Best:0.9268097877502441
+2024-01-13 18:20:52,581 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 1.0, 'ndcg_5': 0.9912751, 'ndcg_10': 0.99513614, 'mrr_1': 1.0, 'mrr_5': 1.0, 'mrr_10': 1.0, 'ap_1': 0.033898305, 'ap_5': 0.029661017}
+
+* Zero-shot
+
+2024-01-13 18:22:14,064 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 2.4061221820838066 Val loss: 2.4725071565676107 Train ndcg_1 0.8812721967697144 Train ndcg_5 0.9380508661270142 Train ndcg_10 0.9435099959373474 Train mrr_1 0.8812721967697144 Train mrr_5 0.924353837966919 Train mrr_10 0.9253323674201965 Train ap_1 0.21756209433078766 Train ap_5 0.25966590642929077 Train ap_10 0.2601567804813385 Val ndcg_1 0.8627281188964844 Val ndcg_5 0.9305370450019836 Val ndcg_10 0.936080813407898 Val mrr_1 0.4735013246536255 Val mrr_5 0.5213003158569336 Val mrr_10 0.5220381617546082 Val ap_1 0.24674196541309357 Val ap_5 0.29723551869392395 Val ap_10 0.29832491278648376
+2024-01-13 18:22:14,067 - allrank.utils.ltr_logging - INFO - Current:0.9305370450019836 Best:0.9299390912055969
+2024-01-13 18:22:14,277 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.98290604, 'ndcg_5': 0.9853858, 'ndcg_10': 0.9923209, 'mrr_1': 0.52991456, 'mrr_5': 0.53846157, 'mrr_10': 0.53846157, 'ap_1': 0.17094018, 'ap_5': 0.17891738, 'ap_10': 0.17555182}
 
 pointwise rmse loss
 
 ```bash
-PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/bce/pointwise_bce_Multimodal_Feature18_label2_on_metagui_ground_truth_lr_model.json --run-id pointwise_bce_Multimodal_Feature18_label2_on_metagui_ground_truth_lr_model --job-dir experiments/bce/pointwise_bce_Multimodal_Feature18_label2_on_metagui_ground_truth_lr_model # on METAGUI
-PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/bce/pointwise_bce_Multimodal_Feature18_label2_on_weweb_ground_truth_lr_model.json --run-id pointwise_bce_Multimodal_Feature18_label2_on_weweb_ground_truth_lr_model --job-dir experiments/bce/pointwise_bce_Multimodal_Feature18_label2_on_weweb_ground_truth_lr_model # on WeWeb
-PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/bce/pointwise_bce_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model.json --run-id pointwise_bce_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model --job-dir experiments/bce/pointwise_bce_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model # METAGUI -> WeWeb
+PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/pointwise/pointwise_rmse_Multimodal_Feature18_label2_on_metagui_ground_truth_lr_model.json --run-id pointwise_rmse_Multimodal_Feature18_label2_on_metagui_ground_truth_lr_model --job-dir experiments/pointwise/pointwise_rmse_Multimodal_Feature18_label2_on_metagui_ground_truth_lr_model && PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/pointwise/pointwise_rmse_Multimodal_Feature18_label2_on_weweb_ground_truth_lr_model.json --run-id pointwise_rmse_Multimodal_Feature18_label2_on_weweb_ground_truth_lr_model --job-dir experiments/pointwise/pointwise_rmse_Multimodal_Feature18_label2_on_weweb_ground_truth_lr_model && PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/pointwise/pointwise_rmse_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model.json --run-id pointwise_rmse_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model --job-dir experiments/pointwise/pointwise_rmse_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model # METAGUI -> WeWeb
 ```
 
+* META-GUI
+
+2024-01-13 18:32:29,822 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 0.27578800019430016 Val loss: 0.2783466309515966 Train ndcg_1 0.8616320490837097 Train ndcg_5 0.9245414137840271 Train ndcg_10 0.9321139454841614 Train mrr_1 0.8616320490837097 Train mrr_5 0.9066480994224548 Train mrr_10 0.9086328148841858 Train ap_1 0.1979219615459442 Train ap_5 0.24395503103733063 Train ap_10 0.24624794721603394 Val ndcg_1 0.8940972089767456 Val ndcg_5 0.9430345892906189 Val ndcg_10 0.9482466578483582 Val mrr_1 0.3385416567325592 Val mrr_5 0.37051501870155334 Val mrr_10 0.37187913060188293 Val ap_1 0.2118055522441864 Val ap_5 0.24760320782661438 Val ap_10 0.24946369230747223
+2024-01-13 18:32:29,823 - allrank.utils.ltr_logging - INFO - Current:0.9430345892906189 Best:0.9439597725868225
+2024-01-13 18:32:30,147 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.8486957, 'ndcg_5': 0.9265971, 'ndcg_10': 0.9315074, 'mrr_1': 0.62608695, 'mrr_5': 0.6799421, 'mrr_10': 0.6818158, 'ap_1': 0.23304348, 'ap_5': 0.29092756, 'ap_10': 0.29350153}
+
+* WeWeb
+
+2024-01-13 18:32:42,568 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 0.4141063392162323 Val loss: 0.4083878695964813 Train ndcg_1 0.8888888955116272 Train ndcg_5 0.946821928024292 Train ndcg_10 0.9567252397537231 Train mrr_1 0.8888888955116272 Train mrr_5 0.9370371103286743 Train mrr_10 0.9370371103286743 Train ap_1 0.2666666805744171 Train ap_5 0.31577160954475403 Val ndcg_1 0.8461538553237915 Val ndcg_5 0.9268097877502441 Val ndcg_10 0.9361029267311096 Val mrr_1 0.8461538553237915 Val mrr_5 0.9102565050125122 Val mrr_10 0.9102565050125122 Val ap_1 0.23076924681663513 Val ap_5 0.2974359095096588
+2024-01-13 18:32:42,570 - allrank.utils.ltr_logging - INFO - Current:0.9268097877502441 Best:0.9268097877502441
+2024-01-13 18:32:42,763 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 1.0, 'ndcg_5': 0.9910232, 'ndcg_10': 0.99498695, 'mrr_1': 1.0, 'mrr_5': 1.0, 'mrr_10': 1.0, 'ap_1': 0.033898305, 'ap_5': 0.02881356}
+
+* Zero-shot
+
+2024-01-13 18:34:03,623 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 0.27578800019430016 Val loss: 0.33086358092330415 Train ndcg_1 0.8616320490837097 Train ndcg_5 0.9245414137840271 Train ndcg_10 0.9321139454841614 Train mrr_1 0.8616320490837097 Train mrr_5 0.9066480994224548 Train mrr_10 0.9086328148841858 Train ap_1 0.1979219615459442 Train ap_5 0.24395503103733063 Train ap_10 0.24624794721603394 Val ndcg_1 0.8540399670600891 Val ndcg_5 0.9252707362174988 Val ndcg_10 0.9321764707565308 Val mrr_1 0.464813232421875 Val mrr_5 0.5138285756111145 Val mrr_10 0.5149456262588501 Val ap_1 0.23805387318134308 Val ap_5 0.2915242910385132 Val ap_10 0.29392173886299133
+2024-01-13 18:34:03,623 - allrank.utils.ltr_logging - INFO - Current:0.9252707362174988 Best:0.9257491230964661
+2024-01-13 18:34:03,835 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.948718, 'ndcg_5': 0.9772547, 'ndcg_10': 0.9833162, 'mrr_1': 0.49572653, 'mrr_5': 0.51994306, 'mrr_10': 0.51994306, 'ap_1': 0.13675214, 'ap_5': 0.16342592, 'ap_10': 0.16355799}
 
 ## License
 

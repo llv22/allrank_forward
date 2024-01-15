@@ -1,11 +1,26 @@
 import numpy as np
 import torch
 
+global export_failure
+global collect_number
+global mrr_f_cnt
+global mrr_s_cnt
+global ap_f_cnt
+global ap_s_cnt
+global end_epoch
+
+export_failure = True
+collect_number = 30
+mrr_f_cnt = 0
+mrr_s_cnt = 0
+ap_f_cnt = 0
+ap_s_cnt = 0
+end_epoch = 19
+
 from allrank.data.dataset_loading import PADDED_Y_VALUE
 
-
 def ndcg(y_pred, y_true, ats=None, gain_function=lambda x: torch.pow(2, x) - 1, padding_indicator=PADDED_Y_VALUE,
-         filler_value=1.0):
+         filler_value=1.0, xb=None, model=None, epoch=None):
     """
     Normalized Discounted Cumulative Gain at k.
 
@@ -86,8 +101,21 @@ def dcg(y_pred, y_true, ats=None, gain_function=lambda x: torch.pow(2, x) - 1, p
 
     return dcg
 
+    
+def output_to_file(file_name, y_pred, y_true, xb, epoch):
+    def format_array(arr):
+        return [format(x, '.4f') for x in arr]
+    with open(file_name, 'a') as f:
+        f.write("epoch: " + str(epoch) + "\n")
+        for i in range(y_pred.shape[0]):
+            f.write("case: " + str(format_array(xb[i].tolist())) + "\n")
+            f.write("xb: " + str(format_array(xb[i].tolist())) + "\n")
+            f.write("y_pred: " + str(y_pred[i].tolist()) + "\n")
+            f.write("y_true: " + str(y_true[i].tolist()) + "\n")
+            f.write("\n")
 
-def mrr(y_pred, y_true, ats=None, padding_indicator=PADDED_Y_VALUE):
+
+def mrr(y_pred, y_true, ats=None, padding_indicator=PADDED_Y_VALUE, xb=None, model=None, epoch=None):
     """
     Mean Reciprocal Rank at k.
 
@@ -120,10 +148,39 @@ def mrr(y_pred, y_true, ats=None, padding_indicator=PADDED_Y_VALUE):
     result[zero_sum_mask] = 0.0
 
     result = result * within_at_mask
-
+    
+    if export_failure and not model.training:
+        mrr_index = 0
+        # threshold_success = 0.7 # 30
+        # threshold_failure = 0.3 # 0
+        threshold_success = 0.8
+        threshold_failure = 0.4
+        success_cases = ((result > threshold_success) & (result != 0))[:,0]
+        global mrr_f_cnt, mrr_s_cnt
+        if mrr_s_cnt < collect_number and y_pred[success_cases, mrr_index].shape[0] > 0:
+            if y_pred[success_cases, mrr_index].shape[0] - mrr_s_cnt >= collect_number:
+                # output the first [0, collect_number] success cases
+                take_number = collect_number - mrr_s_cnt
+                output_to_file("mrr_success_cases.txt", y_pred[success_cases, mrr_index][:take_number], y_true[success_cases, mrr_index][:take_number], xb[success_cases, mrr_index, :][:take_number,:], epoch)
+                mrr_s_cnt = collect_number
+            else:
+                # output the first [0, collect_number] success cases
+                output_to_file("mrr_success_cases.txt", y_pred[success_cases, mrr_index], y_true[success_cases, mrr_index], xb[success_cases, mrr_index, :], epoch)
+                mrr_s_cnt += success_cases.shape[0]
+        failure_cases = ((result < threshold_failure) & (result != 0))[:,0]
+        if mrr_f_cnt < collect_number and y_pred[failure_cases, mrr_index].shape[0] > 0:
+            if y_pred[failure_cases, mrr_index].shape[0] - mrr_f_cnt >= collect_number:
+                take_number = collect_number - mrr_f_cnt
+                output_to_file("mrr_failure_cases.txt", y_pred[failure_cases, mrr_index][:take_number], y_true[failure_cases, mrr_index][:take_number], xb[failure_cases, mrr_index, :][:take_number,:], epoch)
+                mrr_f_cnt = collect_number
+            else:
+                # output the first [0, collect_number] failure cases
+                output_to_file("mrr_failure_cases.txt", y_pred[failure_cases, mrr_index], y_true[failure_cases, mrr_index], xb[failure_cases, mrr_index, :], epoch)
+                mrr_f_cnt += y_pred[failure_cases, mrr_index].shape[0]
+        
     return result
 
-def ap(y_pred, y_true, ats=None, padding_indicator=PADDED_Y_VALUE):
+def ap(y_pred, y_true, ats=None, padding_indicator=PADDED_Y_VALUE, xb=None, model=None, epoch=None):
     y_true = y_true.clone()
     y_pred = y_pred.clone()
     
@@ -153,6 +210,37 @@ def ap(y_pred, y_true, ats=None, padding_indicator=PADDED_Y_VALUE):
     assert not torch.isnan(avg_precisions).any(), "avg_precisions should not be nan"
     assert (avg_precisions < 0.0).sum() >= 0, "every avg_precisions should be non-negative"
     assert (avg_precisions > 1.0).sum() >= 0, "every avg_precisions should be less-equal than 1"
+    
+    if export_failure and not model.training:
+        # threshold_success = 0.3 # 30
+        # threshold_failure = 0.1 # 0
+        threshold_success = 0.4
+        threshold_failure = 0.2
+        ap_index = 0
+        result = avg_precisions
+        success_cases = ((result > threshold_success) & (result != 0))[:,0]
+        failure_cases = ((result < threshold_failure) & (result != 0))[:,0]
+        global ap_f_cnt, ap_s_cnt
+        if ap_s_cnt < collect_number and y_pred[success_cases, ap_index].shape[0] > 0:
+            if y_pred[success_cases, ap_index].shape[0] - ap_s_cnt >= collect_number:
+                # output the first [0, collect_number] success cases
+                take_number = collect_number - ap_s_cnt
+                output_to_file("ap_success_cases.txt", y_pred[success_cases, ap_index][:take_number], y_true[success_cases, ap_index][:take_number], xb[success_cases, ap_index, :][:take_number,:], epoch)
+                ap_s_cnt = collect_number
+            else:
+                # output the first [0, collect_number] success cases
+                output_to_file("ap_success_cases.txt", y_pred[success_cases, ap_index], y_true[success_cases, ap_index], xb[success_cases, ap_index, :], epoch)
+                ap_s_cnt += success_cases.shape[0]
+        failure_cases = ((result < threshold_failure) & (result != 0))[:,0]
+        if ap_f_cnt < collect_number and y_pred[failure_cases, ap_index].shape[0] > 0:
+            if y_pred[failure_cases, ap_index].shape[0] - ap_f_cnt >= collect_number:
+                take_number = collect_number - ap_f_cnt
+                output_to_file("ap_failure_cases.txt", y_pred[failure_cases, ap_index][:take_number], y_true[failure_cases, ap_index][:take_number], xb[failure_cases, ap_index, :][:take_number,:], epoch)
+                ap_f_cnt = collect_number
+            else:
+                # output the first [0, collect_number] failure cases
+                output_to_file("ap_failure_cases.txt", y_pred[failure_cases, ap_index], y_true[failure_cases, ap_index], xb[failure_cases, ap_index, :], epoch)
+                ap_f_cnt += y_pred[failure_cases, ap_index].shape[0]
 
     return avg_precisions
     

@@ -804,6 +804,12 @@ PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --conf
 2024-01-13 18:34:03,623 - allrank.utils.ltr_logging - INFO - Current:0.9252707362174988 Best:0.9257491230964661
 2024-01-13 18:34:03,835 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.948718, 'ndcg_5': 0.9772547, 'ndcg_10': 0.9833162, 'mrr_1': 0.49572653, 'mrr_5': 0.51994306, 'mrr_10': 0.51994306, 'ap_1': 0.13675214, 'ap_5': 0.16342592, 'ap_10': 0.16355799}
 
+## Failure analysis
+
+```bash
+PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth.json --run-id neuralndcg_atmax_Multimodal_Feature18_label2_on_ground_truth_extra --job-dir experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_failure_analysis
+```
+
 ## License
 
 Apache 2 License

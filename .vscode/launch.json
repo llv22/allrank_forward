@@ -99,11 +99,11 @@
             "cwd": "${workspaceFolder}",
             "args": [
                 "--config-file-name",
-                "allrank/neuralndcg_atmax_Multimodal_Feature18_label2_on_ground_truth_extra.json",
+                "allrank/settings/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth.json",
                 "--run-id",
                 "neuralndcg_atmax_Multimodal_Feature18_label2_on_ground_truth_extra",
                 "--job-dir",
-                "experiments/neuralndcg_atmax_Multimodal_Feature18_label2_on_ground_truth_extra",
+                "experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_failure_analysis",
             ],
             "env": {
                 "PYTHONPATH": "${workspaceFolder}${pathSeparator}${env:PYTHONPATH}",

@@ -31,27 +31,30 @@ def loss_batch(model, loss_func, xb, yb, indices, gradient_clipping_norm, opt=No
     return loss.item(), len(xb)
 
 
-def metric_on_batch(metric, model, xb, yb, indices):
+def metric_on_batch(metric, model, xb, yb, indices, epoch):
     mask = (yb == PADDED_Y_VALUE)
-    return metric(model.score(xb, mask, indices), yb)
+    if metrics_module.export_failure:
+        return metric(model.score(xb, mask, indices), yb, xb=xb, model=model, epoch=epoch)
+    else:
+        return metric(model.score(xb, mask, indices), yb)
 
 
-def metric_on_epoch(metric, model, dl, dev):
+def metric_on_epoch(metric, model, dl, dev, epoch):
     metric_values = torch.mean(
         torch.cat(
-            [metric_on_batch(metric, model, xb.to(device=dev), yb.to(device=dev), indices.to(device=dev))
+            [metric_on_batch(metric, model, xb.to(device=dev), yb.to(device=dev), indices.to(device=dev), epoch)
              for xb, yb, indices in dl]
         ), dim=0
     ).cpu().numpy()
     return metric_values
 
 
-def compute_metrics(metrics, model, dl, dev):
+def compute_metrics(metrics, model, dl, dev, epoch):
     metric_values_dict = {}
     for metric_name, ats in metrics.items():
         metric_func = getattr(metrics_module, metric_name)
         metric_func_with_ats = partial(metric_func, ats=ats)
-        metrics_values = metric_on_epoch(metric_func_with_ats, model, dl, dev)
+        metrics_values = metric_on_epoch(metric_func_with_ats, model, dl, dev, epoch)
         metrics_names = ["{metric_name}_{at}".format(metric_name=metric_name, at=at) for at in ats]
         metric_values_dict.update(dict(zip(metrics_names, metrics_values)))
 
@@ -98,7 +101,7 @@ def fit(epochs, model, loss_func, optimizer, scheduler, train_dl, valid_dl, conf
                             gradient_clipping_norm, optimizer) for
                 xb, yb, indices in train_dl])
             train_loss = np.sum(np.multiply(train_losses, train_nums)) / np.sum(train_nums)
-            train_metrics = compute_metrics(config.metrics, model, train_dl, device)
+            train_metrics = compute_metrics(config.metrics, model, train_dl, device, epoch)
 
         model.eval()
         with torch.no_grad():
@@ -106,7 +109,7 @@ def fit(epochs, model, loss_func, optimizer, scheduler, train_dl, valid_dl, conf
                 *[loss_batch(model, loss_func, xb.to(device=device), yb.to(device=device), indices.to(device=device),
                              gradient_clipping_norm) for
                   xb, yb, indices in valid_dl])
-            val_metrics = compute_metrics(config.metrics, model, valid_dl, device)
+            val_metrics = compute_metrics(config.metrics, model, valid_dl, device, epoch)
 
         val_loss = np.sum(np.multiply(val_losses, val_nums)) / np.sum(val_nums)
 
@@ -139,7 +142,7 @@ def fit(epochs, model, loss_func, optimizer, scheduler, train_dl, valid_dl, conf
             break
 
     if test_dl is not None:
-        test_metrics = compute_metrics(config.metrics, model, test_dl, device)
+        test_metrics = compute_metrics(config.metrics, model, test_dl, device, epoch)
         logger.info("Test metrics: {}".format(test_metrics))
         test_metrics_to_tb = {("test", name): value for name, value in test_metrics.items()}
         tensorboard_metrics_dict.update(test_metrics_to_tb)

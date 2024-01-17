@@ -14,7 +14,7 @@
       "dropout": 0.1
     },
     "post_model": {
-      "output_activation": "Tanh",
+      "output_activation": "Sigmoid",
       "d_output": 1
     }
   },
@@ -54,7 +54,9 @@
     "mrr_10",
     "ap_1",
     "ap_5",
-    "ap_10"
+    "ap_10",
+    "precision_1",
+    "precision_5"
   ],
   "loss": {
     "name": "neuralNDCG",

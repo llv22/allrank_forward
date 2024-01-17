@@ -91,6 +91,27 @@
             "justMyCode": true
         },
         {
+            "name": "allrank_train_mm_weweb",
+            "type": "python",
+            "request": "launch",
+            "program": "allrank/main.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "args": [
+                "--config-file-name",
+                "allrank/settings/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_weweb_ground_truth.json",
+                "--run-id",
+                "neuralndcg_atmax_Multimodal_Feature18_label2_on_weweb_ground_truth",
+                "--job-dir",
+                "experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_weweb_ground_truth_weweb_debug",
+            ],
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}${pathSeparator}${env:PYTHONPATH}",
+                "CUDA_VISIBLE_DEVICES": "0"
+            },
+            "justMyCode": true
+        },
+        {
             "name": "allrank_train_mm",
             "type": "python",
             "request": "launch",

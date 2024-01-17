@@ -14,7 +14,7 @@
       "dropout": 0.1
     },
     "post_model": {
-      "output_activation": "Tanh",
+      "output_activation": "Sigmoid",
       "d_output": 1
     }
   },
@@ -23,7 +23,7 @@
     "validation_ds_role": "val",
     "get_test_statistics": true,
     "num_workers": 1,
-    "batch_size": 64,
+    "batch_size": 32,
     "slate_length": 240
   },
   "optimizer": {
@@ -40,8 +40,8 @@
     }
   },
   "training": {
-    "epochs": 20,
-    "early_stopping_patience": 20,
+    "epochs": 2,
+    "early_stopping_patience": 2,
     "gradient_clipping_norm": null
   },
   "val_metric": "ndcg_5",
@@ -53,7 +53,9 @@
     "mrr_5",
     "mrr_10",
     "ap_1",
-    "ap_5"
+    "ap_5",
+    "precision_1",
+    "precision_5"
   ],
   "loss": {
     "name": "neuralNDCG",

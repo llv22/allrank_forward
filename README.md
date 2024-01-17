@@ -1,4 +1,4 @@
-# allRank : Learning to Rank in PyTorch
+# allRank_forward : Learning to Rank in PyTorch (forked from [https://github.com/allegro/allRank](https://github.com/allegro/allRank))
 
 ## About
 
@@ -8,6 +8,14 @@ allRank is a PyTorch-based framework for training neural Learning-to-Rank (LTR) 
 * fully connected and Transformer-like scoring functions
 * commonly used evaluation metrics like Normalized Discounted Cumulative Gain (NDCG) and Mean Reciprocal Rank (MRR)
 * click-models for experiments on simulated click-through data
+
+We forked the original repository and added the following modifications:
+
+* support AP@K, precision@K
+* support {metric}_None to support get MRR, P
+* add tracing for failure and success cases (still refine code to dynamical determine the threshold)
+* fix the bug of MRR
+* support statistics report on the test set
 
 ### Motivation
 

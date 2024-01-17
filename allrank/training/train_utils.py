@@ -55,7 +55,10 @@ def compute_metrics(metrics, model, dl, dev, epoch):
         metric_func = getattr(metrics_module, metric_name)
         metric_func_with_ats = partial(metric_func, ats=ats)
         metrics_values = metric_on_epoch(metric_func_with_ats, model, dl, dev, epoch)
-        metrics_names = ["{metric_name}_{at}".format(metric_name=metric_name, at=at) for at in ats]
+        if ats is not None:
+            metrics_names = ["{metric_name}_{at}".format(metric_name=metric_name, at=at) for at in ats]
+        else:
+            metrics_names = [metric_name]
         metric_values_dict.update(dict(zip(metrics_names, metrics_values)))
 
     return metric_values_dict

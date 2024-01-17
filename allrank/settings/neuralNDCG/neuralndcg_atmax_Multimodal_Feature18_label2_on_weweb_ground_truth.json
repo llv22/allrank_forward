@@ -40,8 +40,8 @@
     }
   },
   "training": {
-    "epochs": 2,
-    "early_stopping_patience": 2,
+    "epochs": 20,
+    "early_stopping_patience": 20,
     "gradient_clipping_norm": null
   },
   "val_metric": "ndcg_5",
@@ -49,11 +49,8 @@
     "ndcg_1",
     "ndcg_5",
     "ndcg_10",
-    "mrr_1",
-    "mrr_5",
-    "mrr_10",
-    "ap_1",
-    "ap_5",
+    "mrr_None",
+    "ap_None",
     "precision_1",
     "precision_5"
   ],

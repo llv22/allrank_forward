@@ -109,7 +109,13 @@ class Config:
         for metric_string in metrics:
             try:
                 name, at = metric_string.split("_")
-                metrics_dict[name].append(int(at))
+                if at == "None":
+                    metrics_dict[name] = None
+                else:
+                    if metrics_dict[name] is None:
+                        metrics_dict[name] = []
+                        print(f"Warning: metric {name} is set to None, but other metrics of the same type are not.")
+                    metrics_dict[name].append(int(at))
             except (ValueError, TypeError):
                 raise MetricConfigError(
                     metric_string,

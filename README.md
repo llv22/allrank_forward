@@ -522,27 +522,11 @@ PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --conf
 
 neuralNDCG Time 1:
 
-2024-01-17 12:25:35,107 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: -0.8611217010643539 Val loss: -0.38119486967722577 Train ndcg_1 0.9045869708061218 Train ndcg_5 0.9499666094779968 Train ndcg_10 0.9542075395584106 Train mrr 0.2747216522693634 Train ap 0.27084892988204956 Train precision_1 0.23808921873569489 Train precision_5 0.17067918181419373 Val ndcg_1 0.9236111044883728 Val ndcg_5 0.9552834033966064 Val ndcg_10 0.9603060483932495 Val mrr 0.2666584253311157 Val ap 0.26388779282569885 Val precision_1 0.2413194477558136 Val precision_5 0.19930556416511536
-2024-01-17 12:25:35,111 - allrank.utils.ltr_logging - INFO - Current:0.9552834033966064 Best:0.999628484249115
-2024-01-17 12:25:35,671 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.8730435, 'ndcg_5': 0.9395627, 'ndcg_10': 0.9429519, 'mrr': 0.306833, 'ap': 0.3078383, 'precision_1': 0.2573913, 'precision_5': 0.1798261}
-
 listNet Time 1:
-
-2024-01-17 12:26:46,686 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 0.0 Val loss: 0.4930442836549547 Train ndcg_1 1.0 Train ndcg_5 1.0 Train ndcg_10 1.0 Train mrr 0.3362899422645569 Train ap 0.3362899422645569 Train precision_1 0.3362899422645569 Train precision_5 0.06725799292325974 Val ndcg_1 0.9652777910232544 Val ndcg_5 0.9774401187896729 Val ndcg_10 0.9808218479156494 Val mrr 0.2952711880207062 Val ap 0.28996574878692627 Val precision_1 0.2829861044883728 Val precision_5 0.20208333432674408
-2024-01-17 12:26:46,688 - allrank.utils.ltr_logging - INFO - Current:0.9774401187896729 Best:0.9774401187896729
-2024-01-17 12:26:47,268 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.9478261, 'ndcg_5': 0.97299826, 'ndcg_10': 0.9747495, 'mrr': 0.3551884, 'ap': 0.34907544, 'precision_1': 0.3321739, 'precision_5': 0.18191306}
 
 lambdarank Time 1:
 
-2024-01-17 12:28:41,908 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 1.0653540807244244 Val loss: 0.15311580730809105 Train ndcg_1 0.997085690498352 Train ndcg_5 0.9988618493080139 Train ndcg_10 0.9988750219345093 Train mrr 0.3353184759616852 Train ap 0.3346395194530487 Train precision_1 0.33426254987716675 Train precision_5 0.17691335082054138 Val ndcg_1 0.9982638955116272 Val ndcg_5 0.9994111657142639 Val ndcg_10 0.9996498227119446 Val mrr 0.3168402910232544 Val ap 0.3172469139099121 Val precision_1 0.315972238779068 Val precision_5 0.20590278506278992
-2024-01-17 12:28:41,909 - allrank.utils.ltr_logging - INFO - Current:0.9994111657142639 Best:0.9998606443405151
-2024-01-17 12:28:42,445 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.9965218, 'ndcg_5': 0.99810123, 'ndcg_10': 0.9985425, 'mrr': 0.38217393, 'ap': 0.38293675, 'precision_1': 0.38086957, 'precision_5': 0.18539132}
-
 approxndc Time 1:
-
-2024-01-17 12:30:34,118 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: -0.2955132419393562 Val loss: -0.2837591502401564 Train ndcg_1 0.9324632883071899 Train ndcg_5 0.9652770161628723 Train ndcg_10 0.967810332775116 Train mrr 0.29484182596206665 Train ap 0.29442521929740906 Train precision_1 0.26938673853874207 Train precision_5 0.17273187637329102 Val ndcg_1 0.9930555820465088 Val ndcg_5 0.9971479773521423 Val ndcg_10 0.9974541068077087 Val mrr 0.3142361044883728 Val ap 0.31398504972457886 Val precision_1 0.3107638955116272 Val precision_5 0.20555555820465088
-2024-01-17 12:30:34,118 - allrank.utils.ltr_logging - INFO - Current:0.9971479773521423 Best:0.9994111657142639
-2024-01-17 12:30:34,642 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.9930435, 'ndcg_5': 0.9966413, 'ndcg_10': 0.99727595, 'mrr': 0.38043478, 'ap': 0.38101894, 'precision_1': 0.3773913, 'precision_5': 0.18504348}
 
 ### neuralNDCG, listNet, lambdarank, approxndc on dataset "How-to" WeWeb
 
@@ -552,27 +536,11 @@ PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --conf
 
 neuralNDCG Time 1:
 
-2024-01-17 12:46:20,153 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: -0.9254235161675347 Val loss: -0.858471691608429 Train ndcg_1 0.9333333373069763 Train ndcg_5 0.9605004191398621 Train ndcg_10 0.9732151031494141 Train mrr 0.35555556416511536 Train ap 0.34229719638824463 Train precision_1 0.31111112236976624 Train precision_5 0.17333334684371948 Val ndcg_1 0.9230769872665405 Val ndcg_5 0.9389892220497131 Val ndcg_10 0.9482824206352234 Val mrr 0.3333333432674408 Val ap 0.3046153783798218 Val precision_1 0.3076923191547394 Val precision_5 0.26153844594955444
-2024-01-17 12:46:20,156 - allrank.utils.ltr_logging - INFO - Current:0.9389892220497131 Best:0.9869554042816162
-2024-01-17 12:46:20,515 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 1.0, 'ndcg_5': 0.99414927, 'ndcg_10': 0.9976932, 'mrr': 0.033898305, 'ap': 0.028719397, 'precision_1': 0.033898305, 'precision_5': 0.013559322}
-
 listNet Time 1:
-
-2024-01-17 12:46:39,557 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 0.0 Val loss: 0.6905723810195923 Train ndcg_1 1.0 Train ndcg_5 1.0 Train ndcg_10 1.0 Train mrr 0.3777777850627899 Train ap 0.3777777850627899 Train precision_1 0.3777777850627899 Train precision_5 0.07555555552244186 Val ndcg_1 0.9230769872665405 Val ndcg_5 0.9356609582901001 Val ndcg_10 0.9449541568756104 Val mrr 0.32692310214042664 Val ap 0.302051305770874 Val precision_1 0.32692310214042664 Val precision_5 0.26153844594955444
-2024-01-17 12:46:39,561 - allrank.utils.ltr_logging - INFO - Current:0.9356609582901001 Best:0.9356609582901001
-2024-01-17 12:46:39,905 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.9830508, 'ndcg_5': 0.98890156, 'ndcg_10': 0.9942099, 'mrr': 0.025423728, 'ap': 0.024654292, 'precision_1': 0.016949153, 'precision_5': 0.010169492}
 
 lambdarank Time 1:
 
-2024-01-17 12:46:59,176 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 8.808390617370605 Val loss: 3.3968024253845215 Train ndcg_1 0.9555555582046509 Train ndcg_5 0.965339183807373 Train ndcg_10 0.9730667471885681 Train mrr 0.36666667461395264 Train ap 0.3352469205856323 Train precision_1 0.3333333432674408 Train precision_5 0.17777778208255768 Val ndcg_1 1.0 Val ndcg_5 0.9774507880210876 Val ndcg_10 0.9867439866065979 Val mrr 0.38461539149284363 Val ap 0.3558974266052246 Val precision_1 0.38461539149284363 Val precision_5 0.26153844594955444
-2024-01-17 12:46:59,176 - allrank.utils.ltr_logging - INFO - Current:0.9774507880210876 Best:0.9887639880180359
-2024-01-17 12:46:59,525 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 1.0, 'ndcg_5': 0.99414927, 'ndcg_10': 0.9975415, 'mrr': 0.033898305, 'ap': 0.02834275, 'precision_1': 0.033898305, 'precision_5': 0.013559322}
-
 approxndc Time 1:
-
-2024-01-17 12:47:18,806 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: -0.34636956453323364 Val loss: -0.33445975184440613 Train ndcg_1 0.9333333373069763 Train ndcg_5 0.9690677523612976 Train ndcg_10 0.9741458892822266 Train mrr 0.36666667461395264 Train ap 0.3470017910003662 Train precision_1 0.3333333432674408 Train precision_5 0.17777779698371887 Val ndcg_1 1.0 Val ndcg_5 0.9797265529632568 Val ndcg_10 0.9890197515487671 Val mrr 0.38461539149284363 Val ap 0.36017096042633057 Val precision_1 0.38461539149284363 Val precision_5 0.26153844594955444
-2024-01-17 12:47:18,807 - allrank.utils.ltr_logging - INFO - Current:0.9797265529632568 Best:0.9869554042816162
-2024-01-17 12:47:19,146 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.9830508, 'ndcg_5': 0.9920277, 'ndcg_10': 0.99550277, 'mrr': 0.025423728, 'ap': 0.026836159, 'precision_1': 0.016949153, 'precision_5': 0.013559322}
 
 ### neuralNDCG, listNet, lambdarank, approxndc on train and validate on "How-to" metaGUI and test on Extrated instruction for "How-to" WeWeb
 
@@ -580,31 +548,226 @@ approxndc Time 1:
 PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth.json --run-id neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth --job-dir experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth && PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/listNet/neuralndcg_atmax_Multimodal_Feature18_label2_listNet_on_cohere_ground_truth.json --run-id neuralndcg_atmax_Multimodal_Feature18_label2_listNet_on_cohere_ground_truth --job-dir experiments/listNet/neuralndcg_atmax_Multimodal_Feature18_label2_listNet_on_cohere_ground_truth && PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/lambdarank/lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth.json --run-id lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth --job-dir experiments/lambdarank/lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth && PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/approxndc/approxndc_Multimodal_Feature18_label2_on_cohere_ground_truth.json --run-id approxndc_Multimodal_Feature18_label2_on_cohere_ground_truth --job-dir experiments/approxndc/approxndc_Multimodal_Feature18_label2_on_cohere_ground_truth
 ```
 
-neuralNDCG Time 1:
+* neuralNDCG without Google Rank:
 
-2024-01-17 13:02:28,922 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: -0.8611217010643539 Val loss: -0.5326286494265837 Train ndcg_1 0.9045869708061218 Train ndcg_5 0.9499666094779968 Train ndcg_10 0.9542075395584106 Train mrr 0.2747216522693634 Train ap 0.27084892988204956 Train precision_1 0.23808921873569489 Train precision_5 0.17067918181419373 Val ndcg_1 0.8792354464530945 Val ndcg_5 0.9410944581031799 Val ndcg_10 0.945366382598877 Val mrr 0.30962932109832764 Val ap 0.3103864789009094 Val precision_1 0.26324936747550964 Val precision_5 0.21112076938152313
-2024-01-17 13:02:28,924 - allrank.utils.ltr_logging - INFO - Current:0.9410944581031799 Best:0.9991475343704224
-2024-01-17 13:02:29,294 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.97435904, 'ndcg_5': 0.98032117, 'ndcg_10': 0.986086, 'mrr': 0.17521368, 'ap': 0.16505888, 'precision_1': 0.16239317, 'precision_5': 0.10256412}
+2024-01-21 12:13:05,230 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: -0.9063339655131206 Val loss: -0.9046579749734552 Train ndcg_1 0.9942656755447388 Train ndcg_5 0.9941678643226624 Train ndcg_10 0.9949824810028076 Train mrr 0.9963098764419556 Train ap 0.9907324910163879 Train precision_1 0.9928321242332458 Train precision_5 0.29735586047172546 Val ndcg_1 0.9898648858070374 Val ndcg_5 0.9933796525001526 Val ndcg_10 0.9941566586494446 Val mrr 0.9947447180747986 Val ap 0.9904809594154358 Val precision_1 0.9898648858070374 Val precision_5 0.2797297239303589
+2024-01-21 12:13:05,234 - allrank.utils.ltr_logging - INFO - Current:0.9933796525001526 Best:1.0
+2024-01-21 12:13:05,593 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.26495728, 'ndcg_5': 0.28738827, 'ndcg_10': 0.2960714, 'mrr': 0.29110706, 'ap': 0.27940682, 'precision_1': 0.26495728, 'precision_5': 0.107692316} -> 117/167
+{'ndcg_1': 0.18562875305389223,
+ 'ndcg_5': 0.20134387778443116,
+ 'ndcg_10': 0.20742726826347305,
+ 'mrr': 0.2039492576047904,
+ 'ap': 0.19575208347305392,
+ 'precision_1': 0.18562875305389223,
+ 'precision_5': 0.07544910761676647}
 
-listNet Time 1:
+* neuralNDCG with Google Rank adjustment:
 
-[INFO] 2024-01-18 11:42:02 - Epoch : 19 Train loss: 0.0 Val loss: 0.5127761647182895 Train ndcg_1 1.0 Train ndcg_5 1.0 Train ndcg_10 1.0 Train mrr 0.3362899422645569 Train ap 0.3362899422645569 Train precision_1 0.3362899422645569 Train precision_5 0.06725799292325974 Val ndcg_1 0.9443961977958679 Val ndcg_5 0.9736691117286682 Val ndcg_10 0.975189745426178 Val mrr 0.3532952666282654 Val ap 0.34878823161125183 Val precision_1 0.3284100890159607 Val precision_5 0.2158123403787613
-[INFO] 2024-01-18 11:42:02 - Current:0.9736691117286682 Best:0.9736691117286682
-[INFO] 2024-01-18 11:42:03 - Test metrics: {'ndcg_1': 0.98290604, 'ndcg_5': 0.9815232, 'ndcg_10': 0.98756665, 'mrr': 0.17735043, 'ap': 0.16807438, 'precision_1': 0.17094018, 'precision_5': 0.10085471}
+```bash
+python end_to_end_statistics.py --rerank_result experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth/results/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth//predicted_result.txt
+```
 
-lambdarank Time 1:
+python end_to_end_statistics.py --rerank_result experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth/results/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth//predicted_result.txt
+How to pause history tracking in YouTube {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306} {'mrr': 0.16666666666666666, 'p1': 0.0, 'p5': 0.0, 'ndcg1': 0.0, 'ndcg5': 0.0}
+How to share an article link in FlipBoard {'mrr': 0.5, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.6309297535714575} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+google[mrr] > execution_statistics[mrr]: 27, google[mrr] < execution_statistics[mrr]: 2, google[mrr] = execution_statistics[mrr]: 88, zero_cnt_execution_statistics: 86, non_zero_cnt_execution_statistics: 31, total_query: 117
+google average statistics: {'mrr': 0.10238170502348029, 'p1': 0.05389221556886228, 'p5': 0.05389221556886228, 'ndcg1': 0.05389221556886228, 'ndcg5': 0.10419093916874589}
+execution average statistics: {'mrr': 0.20309381237524948, 'p1': 0.18562874251497005, 'p5': 0.07904191616766469, 'ndcg1': 0.18562874251497005, 'ndcg5': 0.2032960374207608}
 
-2024-01-17 13:05:46,027 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 1.0653540807244244 Val loss: 0.1975612408383632 Train ndcg_1 0.997085690498352 Train ndcg_5 0.9988618493080139 Train ndcg_10 0.9988750219345093 Train mrr 0.3353184759616852 Train ap 0.3346395194530487 Train precision_1 0.33426254987716675 Train precision_5 0.17691335082054138 Val ndcg_1 0.9991312026977539 Val ndcg_5 0.9994964599609375 Val ndcg_10 0.9996118545532227 Val mrr 0.3834346830844879 Val ap 0.3834119141101837 Val precision_1 0.3831450939178467 Val precision_5 0.21894006431102753
-2024-01-17 13:05:46,029 - allrank.utils.ltr_logging - INFO - Current:0.9994964599609375 Best:0.9995915293693542
-2024-01-17 13:05:46,405 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.97435904, 'ndcg_5': 0.9821217, 'ndcg_10': 0.9891801, 'mrr': 0.17521368, 'ap': 0.17064428, 'precision_1': 0.16239317, 'precision_5': 0.10085471}
+* listNet without Google Rank:
 
-approxndc Time 1:
+2024-01-21 12:13:59,132 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 0.0 Val loss: 1.3611424484768428 Train ndcg_1 0.9993628859519958 Train ndcg_5 0.9993628859519958 Train ndcg_10 0.9993628859519958 Train mrr 0.9993628859519958 Train ap 0.9993628859519958 Train precision_1 0.9993628859519958 Train precision_5 0.19987258315086365 Val ndcg_1 0.46396398544311523 Val ndcg_5 0.7163776159286499 Val ndcg_10 0.7357118725776672 Val mrr 0.6543144583702087 Val ap 0.6470947265625 Val precision_1 0.46396398544311523 Val precision_5 0.24279280006885529
+2024-01-21 12:13:59,134 - allrank.utils.ltr_logging - INFO - Current:0.7163776159286499 Best:0.7163776159286499
+2024-01-21 12:13:59,508 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.16239317, 'ndcg_5': 0.21822327, 'ndcg_10': 0.2394602, 'mrr': 0.21765088, 'ap': 0.21370506, 'precision_1': 0.16239317, 'precision_5': 0.09230771} -> 117/167
 
-2024-01-17 13:07:44,000 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: -0.2955132419393562 Val loss: -0.34856001259864255 Train ndcg_1 0.9324632883071899 Train ndcg_5 0.9652770161628723 Train ndcg_10 0.967810332775116 Train mrr 0.29484182596206665 Train ap 0.29442521929740906 Train precision_1 0.26938673853874207 Train precision_5 0.17273187637329102 Val ndcg_1 0.9956559538841248 Val ndcg_5 0.9978927969932556 Val ndcg_10 0.9981629252433777 Val mrr 0.38184189796447754 Val ap 0.38127270340919495 Val precision_1 0.3796698749065399 Val precision_5 0.2185925394296646
-2024-01-17 13:07:44,001 - allrank.utils.ltr_logging - INFO - Current:0.9978927969932556 Best:0.9995501637458801
-2024-01-17 13:07:44,381 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.98290604, 'ndcg_5': 0.9851743, 'ndcg_10': 0.9910126, 'mrr': 0.17948718, 'ap': 0.17327124, 'precision_1': 0.17094018, 'precision_5': 0.10256411}
+{'ndcg_1': 0.11377246041916167,
+ 'ndcg_5': 0.15288696161676646,
+ 'ndcg_10': 0.1677655293413174,
+ 'mrr': 0.15248594586826344,
+ 'ap': 0.1497215091017964,
+ 'precision_1': 0.11377246041916167,
+ 'precision_5': 0.06467067107784431}
+
+* listNet wih Google Rank Adjustment:
+
+```bash
+python end_to_end_statistics.py --rerank_result  experiments/listNet/neuralndcg_atmax_Multimodal_Feature18_label2_listNet_on_cohere_ground_truth/results/neuralndcg_atmax_Multimodal_Feature18_label2_listNet_on_cohere_ground_truth/predicted_result.txt
+```
+
+How do I reply to a specific message? in Google Chat {'mrr': 0.3333333333333333, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.5} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+How do I reply to a specific message? in Messenger {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306} {'mrr': 0.2, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.38685280723454163}
+How do I turn on/off my active status? in Messenger {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306} {'mrr': 0.09090909090909091, 'p1': 0.0, 'p5': 0.0, 'ndcg1': 0.0, 'ndcg5': 0.0}
+How do I unsend a message? in Messenger {'mrr': 1.0, 'p1': 1.0, 'p5': 0.4, 'ndcg1': 1.0, 'ndcg5': 0.9197207891481876} {'mrr': 0.3333333333333333, 'p1': 0.0, 'p5': 0.4, 'ndcg1': 0.0, 'ndcg5': 0.5706417189553201}
+How to add Home or Work in Google Maps {'mrr': 1.0, 'p1': 1.0, 'p5': 0.6, 'ndcg1': 1.0, 'ndcg5': 0.6843515475204855} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.4, 'ndcg1': 0.0, 'ndcg5': 0.38356636737133565}
+How to apply coupon? in eBay {'mrr': 0.3333333333333333, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.3065735963827292} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.2640681225725909}
+How to pause history tracking in YouTube {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306} {'mrr': 0.16666666666666666, 'p1': 0.0, 'p5': 0.0, 'ndcg1': 0.0, 'ndcg5': 0.0}
+google[mrr] > execution_statistics[mrr]: 22, google[mrr] < execution_statistics[mrr]: 7, google[mrr] = execution_statistics[mrr]: 88, zero_cnt_execution_statistics: 98, non_zero_cnt_execution_statistics: 19, total_query: 117
+google average statistics: {'mrr': 0.10238170502348029, 'p1': 0.05389221556886228, 'p5': 0.05389221556886228, 'ndcg1': 0.05389221556886228, 'ndcg5': 0.10419093916874589}
+execution average statistics: {'mrr': 0.1524859372164761, 'p1': 0.11377245508982035, 'p5': 0.06467065868263475, 'ndcg1': 0.11377245508982035, 'ndcg5': 0.15288695620307285}
+
+* approxndc without Google Rank:
+
+2024-01-21 12:16:56,040 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: -0.9966119197987948 Val loss: -0.9938635546881873 Train ndcg_1 0.9988850355148315 Train ndcg_5 0.9990139007568359 Train ndcg_10 0.9990105628967285 Train mrr 0.9990442991256714 Train ap 0.9980828166007996 Train precision_1 0.9982478618621826 Train precision_5 0.2986301779747009 Val ndcg_1 1.0 Val ndcg_5 1.0 Val ndcg_10 1.0 Val mrr 1.0 Val ap 1.0 Val precision_1 1.0 Val precision_5 0.2806306481361389
+2024-01-21 12:16:56,042 - allrank.utils.ltr_logging - INFO - Current:1.0 Best:1.0
+2024-01-21 12:16:56,454 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.26495728, 'ndcg_5': 0.2888895, 'ndcg_10': 0.29544598, 'mrr': 0.29017097, 'ap': 0.27788368, 'precision_1': 0.26495728, 'precision_5': 0.109401725} -> 117/167
+{'ndcg_1': 0.18562875305389223,
+ 'ndcg_5': 0.2023956377245509,
+ 'ndcg_10': 0.20698909976047905,
+ 'mrr': 0.2032934340718563,
+ 'ap': 0.19468497341317365,
+ 'precision_1': 0.18562875305389223,
+ 'precision_5': 0.07664671751497007}
+
+* approxndc with Google Rank adjustment:
+
+```bash
+python end_to_end_statistics.py --rerank_result experiments/approxndc/approxndc_Multimodal_Feature18_label2_on_cohere_ground_truth/results/approxndc_Multimodal_Feature18_label2_on_cohere_ground_truth/predicted_result.txt
+```
+
+How to add Home or Work in Google Maps {'mrr': 1.0, 'p1': 1.0, 'p5': 0.6, 'ndcg1': 1.0, 'ndcg5': 0.6843515475204855} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.4, 'ndcg1': 0.0, 'ndcg5': 0.38356636737133565}
+How to pause history tracking in YouTube {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306} {'mrr': 0.2, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.38685280723454163}
+How to share an article link in FlipBoard {'mrr': 0.5, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.6309297535714575} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+google[mrr] > execution_statistics[mrr]: 27, google[mrr] < execution_statistics[mrr]: 3, google[mrr] = execution_statistics[mrr]: 87, zero_cnt_execution_statistics: 86, non_zero_cnt_execution_statistics: 31, total_query: 117
+google average statistics: {'mrr': 0.10238170502348029, 'p1': 0.05389221556886228, 'p5': 0.05389221556886228, 'ndcg1': 0.05389221556886228, 'ndcg5': 0.10419093916874589}
+execution average statistics: {'mrr': 0.20329341317365268, 'p1': 0.18562874251497005, 'p5': 0.07664670658682635, 'ndcg1': 0.18562874251497005, 'ndcg5': 0.20239561662786645}
+
+* lambdarank without Google Rank:
+
+2024-01-21 12:15:27,868 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 0.06408040969733145 Val loss: 0.002021976289347754 Train ndcg_1 0.9988850355148315 Train ndcg_5 0.9991609454154968 Train ndcg_10 0.9991609454154968 Train mrr 0.9992035627365112 Train ap 0.9991106986999512 Train precision_1 0.9990442991256714 Train precision_5 0.2986301779747009 Val ndcg_1 1.0 Val ndcg_5 1.0 Val ndcg_10 1.0 Val mrr 1.0 Val ap 1.0 Val precision_1 1.0 Val precision_5 0.2806306481361389
+2024-01-21 12:15:27,870 - allrank.utils.ltr_logging - INFO - Current:1.0 Best:1.0
+2024-01-21 12:15:28,285 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.2905983, 'ndcg_5': 0.30285743, 'ndcg_10': 0.30491447, 'mrr': 0.304416, 'ap': 0.29099444, 'precision_1': 0.2905983, 'precision_5': 0.116239324} -> 117/167
+{'ndcg_1': 0.20359282095808381,
+ 'ndcg_5': 0.21218155275449102,
+ 'ndcg_10': 0.21362271251497006,
+ 'mrr': 0.21327348502994012,
+ 'ap': 0.2038703561676647,
+ 'precision_1': 0.20359282095808381,
+ 'precision_5': 0.08143713118562874}
+
+* lambdarank with Google Rank adjustment:
+
+```bash
+python end_to_end_statistics.py --rerank_result experiments/lambdarank/lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth/results/lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth/predicted_result.txt
+```
+
+How to pause history tracking in YouTube {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306} {'mrr': 0.2, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.38685280723454163}
+How to share an article link in FlipBoard {'mrr': 0.5, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.6309297535714575} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+google[mrr] > execution_statistics[mrr]: 27, google[mrr] < execution_statistics[mrr]: 2, google[mrr] = execution_statistics[mrr]: 88, zero_cnt_execution_statistics: 83, non_zero_cnt_execution_statistics: 34, total_query: 117
+google average statistics: {'mrr': 0.10238170502348029, 'p1': 0.05389221556886228, 'p5': 0.05389221556886228, 'ndcg1': 0.05389221556886228, 'ndcg5': 0.10419093916874589}
+execution average statistics: {'mrr': 0.21327345309381235, 'p1': 0.20359281437125748, 'p5': 0.08143712574850301, 'ndcg1': 0.20359281437125748, 'ndcg5': 0.2121815454375664}
 
 ### neuralNDCG, listNet, lambdarank, approxndc on dataset "How-to" META-GUI via Sigmoid MLP
+
+```bash
+PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans.json --run-id neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans --job-dir experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans && PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/listNet/neuralndcg_atmax_Multimodal_Feature18_label2_listNet_on_cohere_ground_truth_no_trans.json --run-id neuralndcg_atmax_Multimodal_Feature18_label2_listNet_on_cohere_ground_truth_no_trans --job-dir experiments/listNet/neuralndcg_atmax_Multimodal_Feature18_label2_listNet_on_cohere_ground_truth_no_trans && PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/lambdarank/lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans.json --run-id lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans --job-dir experiments/lambdarank/lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans && PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/approxndc/approxndc_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans.json --run-id approxndc_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans --job-dir experiments/approxndc/approxndc_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans # METAGUI -> WeWeb
+```
+
+* neuralNDCG without Google Rank:
+
+2024-01-21 12:22:43,086 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: -0.9063806808765772 Val loss: -0.9025418189194825 Train ndcg_1 0.9992035627365112 Train ndcg_5 0.9992708563804626 Train ndcg_10 0.9992708563804626 Train mrr 0.9992832541465759 Train ap 0.9992088675498962 Train precision_1 0.9992035627365112 Train precision_5 0.29863014817237854 Val ndcg_1 1.0 Val ndcg_5 1.0 Val ndcg_10 1.0 Val mrr 1.0 Val ap 1.0 Val precision_1 1.0 Val precision_5 0.2806306481361389
+2024-01-21 12:22:43,089 - allrank.utils.ltr_logging - INFO - Current:1.0 Best:1.0
+2024-01-21 12:22:43,493 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.25641027, 'ndcg_5': 0.28600442, 'ndcg_10': 0.2917161, 'mrr': 0.28418806, 'ap': 0.2748781, 'precision_1': 0.25641027, 'precision_5': 0.11282053} -> 117/167
+{'ndcg_1': 0.17964072808383233,
+ 'ndcg_5': 0.2003743541317365,
+ 'ndcg_10': 0.20437595029940117,
+ 'mrr': 0.19910181449101796,
+ 'ap': 0.19257926766467065,
+ 'precision_1': 0.17964072808383233,
+ 'precision_5': 0.07904192820359282}
+
+* neuralNDCG with Google Rank adjustment:
+
+```bash
+python end_to_end_statistics.py --rerank_result experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans/results/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans/predicted_result.txt
+```
+
+python end_to_end_statistics.py --rerank_result experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans/results/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans/predicted_result.txt
+How to add Home or Work in Google Maps {'mrr': 1.0, 'p1': 1.0, 'p5': 0.6, 'ndcg1': 1.0, 'ndcg5': 0.6843515475204855} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.6, 'ndcg1': 0.0, 'ndcg5': 0.5296347172140421}
+How to pause history tracking in YouTube {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306} {'mrr': 0.16666666666666666, 'p1': 0.0, 'p5': 0.0, 'ndcg1': 0.0, 'ndcg5': 0.0}
+How to share an article link in FlipBoard {'mrr': 0.5, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.6309297535714575} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+google[mrr] > execution_statistics[mrr]: 27, google[mrr] < execution_statistics[mrr]: 3, google[mrr] = execution_statistics[mrr]: 87, zero_cnt_execution_statistics: 87, non_zero_cnt_execution_statistics: 30, total_query: 117
+google average statistics: {'mrr': 0.10238170502348029, 'p1': 0.05389221556886228, 'p5': 0.05389221556886228, 'ndcg1': 0.05389221556886228, 'ndcg5': 0.10419093916874589}
+execution average statistics: {'mrr': 0.19910179640718562, 'p1': 0.17964071856287422, 'p5': 0.07904191616766468, 'ndcg1': 0.17964071856287422, 'ndcg5': 0.20037433800518994}
+
+* approxndc without Google Rank:
+
+2024-01-21 12:26:14,507 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: -0.707638318389037 Val loss: -0.712489253765828 Train ndcg_1 0.9992035627365112 Train ndcg_5 0.9992371797561646 Train ndcg_10 0.9992564916610718 Train mrr 0.9992832541465759 Train ap 0.9991770386695862 Train precision_1 0.9992035627365112 Train precision_5 0.2985982894897461 Val ndcg_1 1.0 Val ndcg_5 0.9999096393585205 Val ndcg_10 0.9999096393585205 Val mrr 1.0 Val ap 0.9998123645782471 Val precision_1 1.0 Val precision_5 0.2806306481361389
+2024-01-21 12:26:14,511 - allrank.utils.ltr_logging - INFO - Current:0.9999096393585205 Best:0.999819278717041
+2024-01-21 12:26:14,922 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.25641027, 'ndcg_5': 0.28610703, 'ndcg_10': 0.2919317, 'mrr': 0.28418806, 'ap': 0.27532113, 'precision_1': 0.25641027, 'precision_5': 0.11282053} -> 117/167
+{'ndcg_1': 0.17964072808383233,
+ 'ndcg_5': 0.2004462425748503,
+ 'ndcg_10': 0.20452699940119762,
+ 'mrr': 0.19910181449101796,
+ 'ap': 0.19288965395209584,
+ 'precision_1': 0.17964072808383233,
+ 'precision_5': 0.07904192820359282}
+
+* approxndc with Google Rank adjustment:
+
+```bash
+python end_to_end_statistics.py --rerank_result experiments/approxndc/approxndc_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans/results/approxndc_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans/predicted_result.txt
+```
+
+How to add Home or Work in Google Maps {'mrr': 1.0, 'p1': 1.0, 'p5': 0.6, 'ndcg1': 1.0, 'ndcg5': 0.6843515475204855} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.6, 'ndcg1': 0.0, 'ndcg5': 0.5147714448836774}
+How to pause history tracking in YouTube {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306} {'mrr': 0.16666666666666666, 'p1': 0.0, 'p5': 0.0, 'ndcg1': 0.0, 'ndcg5': 0.0}
+How to share an article link in FlipBoard {'mrr': 0.5, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.6309297535714575} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+google[mrr] > execution_statistics[mrr]: 27, google[mrr] < execution_statistics[mrr]: 3, google[mrr] = execution_statistics[mrr]: 87, zero_cnt_execution_statistics: 87, non_zero_cnt_execution_statistics: 30, total_query: 117
+google average statistics: {'mrr': 0.10238170502348029, 'p1': 0.05389221556886228, 'p5': 0.05389221556886228, 'ndcg1': 0.05389221556886228, 'ndcg5': 0.10419093916874589}
+execution average statistics: {'mrr': 0.19910179640718562, 'p1': 0.17964071856287422, 'p5': 0.07904191616766468, 'ndcg1': 0.17964071856287422, 'ndcg5': 0.20044623703197398}
+
+* lambdarank without Google Rank:
+
+2024-01-21 12:24:55,555 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 95.47729390865301 Val loss: 90.27464586550052 Train ndcg_1 0.9992035627365112 Train ndcg_5 0.999198317527771 Train ndcg_10 0.9992368817329407 Train mrr 0.9992832541465759 Train ap 0.9991318583488464 Train precision_1 0.9992035627365112 Train precision_5 0.29856646060943604 Val ndcg_1 1.0 Val ndcg_5 0.999728798866272 Val ndcg_10 0.999728798866272 Val mrr 1.0 Val ap 0.9994369745254517 Val precision_1 1.0 Val precision_5 0.2806306481361389
+2024-01-21 12:24:55,556 - allrank.utils.ltr_logging - INFO - Current:0.999728798866272 Best:0.9995905756950378
+2024-01-21 12:24:55,955 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.25641027, 'ndcg_5': 0.28712347, 'ndcg_10': 0.29279655, 'mrr': 0.28561255, 'ap': 0.27622625, 'precision_1': 0.25641027, 'precision_5': 0.11282053} -> 117/167
+{'ndcg_1': 0.17964072808383233,
+ 'ndcg_5': 0.2011583592215569,
+ 'ndcg_10': 0.2051329122754491,
+ 'mrr': 0.20009981047904193,
+ 'ap': 0.19352377994011977,
+ 'precision_1': 0.17964072808383233,
+ 'precision_5': 0.07904192820359282}
+
+* lambdarank with Google Rank adjustment:
+
+```bash
+python end_to_end_statistics.py --rerank_result experiments/lambdarank/lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans/results/lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_no_trans/predicted_result.txt
+```
+
+How to add Home or Work in Google Maps {'mrr': 1.0, 'p1': 1.0, 'p5': 0.6, 'ndcg1': 1.0, 'ndcg5': 0.6843515475204855} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.6, 'ndcg1': 0.0, 'ndcg5': 0.5296347172140421}
+How to pause history tracking in YouTube {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306} {'mrr': 0.16666666666666666, 'p1': 0.0, 'p5': 0.0, 'ndcg1': 0.0, 'ndcg5': 0.0}
+How to share an article link in FlipBoard {'mrr': 0.5, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.6309297535714575} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+google[mrr] > execution_statistics[mrr]: 27, google[mrr] < execution_statistics[mrr]: 3, google[mrr] = execution_statistics[mrr]: 87, zero_cnt_execution_statistics: 87, non_zero_cnt_execution_statistics: 30, total_query: 117
+google average statistics: {'mrr': 0.10238170502348029, 'p1': 0.05389221556886228, 'p5': 0.05389221556886228, 'ndcg1': 0.05389221556886228, 'ndcg5': 0.10419093916874589}
+execution average statistics: {'mrr': 0.20009980039920158, 'p1': 0.17964071856287422, 'p5': 0.07904191616766468, 'ndcg1': 0.17964071856287422, 'ndcg5': 0.20115834850561787}
+
+* listNet without Google Rank:
+
+2024-01-21 12:23:36,726 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 0.0 Val loss: 1.3319710439389891 Train ndcg_1 0.9993628859519958 Train ndcg_5 0.9993628859519958 Train ndcg_10 0.9993628859519958 Train mrr 0.9993628859519958 Train ap 0.9993628859519958 Train precision_1 0.9993628859519958 Train precision_5 0.19987258315086365 Val ndcg_1 0.8220720887184143 Val ndcg_5 0.9075261354446411 Val ndcg_10 0.9129072427749634 Val mrr 0.8934175372123718 Val ap 0.8783726096153259 Val precision_1 0.8220720887184143 Val precision_5 0.2704955041408539
+2024-01-21 12:23:36,728 - allrank.utils.ltr_logging - INFO - Current:0.9075261354446411 Best:0.9075261354446411
+2024-01-21 12:23:37,121 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.21367523, 'ndcg_5': 0.24847877, 'ndcg_10': 0.26463625, 'mrr': 0.24744609, 'ap': 0.24046874, 'precision_1': 0.21367523, 'precision_5': 0.10256411} -> 117/167
+{'ndcg_1': 0.14970061023952094,
+ 'ndcg_5': 0.17408392868263473,
+ 'ndcg_10': 0.1854038398203593,
+ 'mrr': 0.17336043431137724,
+ 'ap': 0.168472111257485,
+ 'precision_1': 0.14970061023952094,
+ 'precision_5': 0.07185629263473053}
+
+* listNet with Google Rank adjustment:
+
+```bash
+python end_to_end_statistics.py --rerank_result experiments/listNet/neuralndcg_atmax_Multimodal_Feature18_label2_listNet_on_cohere_ground_truth_no_trans/results/neuralndcg_atmax_Multimodal_Feature18_label2_listNet_on_cohere_ground_truth_no_trans/predicted_result.txt
+```
+
+How do I reply to a specific message? in Messenger {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306} {'mrr': 0.2, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.38685280723454163}
+How do I turn on/off my active status? in Messenger {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306} {'mrr': 0.1, 'p1': 0.0, 'p5': 0.0, 'ndcg1': 0.0, 'ndcg5': 0.0}
+How to pause history tracking in YouTube {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306} {'mrr': 0.125, 'p1': 0.0, 'p5': 0.0, 'ndcg1': 0.0, 'ndcg5': 0.0}
+How to scan item? in eBay {'mrr': 0.5, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.6309297535714575} {'mrr': 0.3333333333333333, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.5}
+How to share an article link in FlipBoard {'mrr': 0.5, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.6309297535714575} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+google[mrr] > execution_statistics[mrr]: 23, google[mrr] < execution_statistics[mrr]: 5, google[mrr] = execution_statistics[mrr]: 89, zero_cnt_execution_statistics: 92, non_zero_cnt_execution_statistics: 25, total_query: 117
+google average statistics: {'mrr': 0.10238170502348029, 'p1': 0.05389221556886228, 'p5': 0.05389221556886228, 'ndcg1': 0.05389221556886228, 'ndcg5': 0.10419093916874589}
+execution average statistics: {'mrr': 0.17336042201311663, 'p1': 0.1497005988023952, 'p5': 0.07185628742514971, 'ndcg1': 0.1497005988023952, 'ndcg5': 0.17408391507708737}
 
 #### neuralNDCG
 
@@ -614,21 +777,9 @@ PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --conf
 
 "How-to" META-GUI
 
-2024-01-16 22:24:33,078 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: -0.9543206191763803 Val loss: -0.4196500910653008 Train ndcg_1 0.9996199011802673 Train ndcg_5 0.9998519420623779 Train ndcg_10 0.9998519420623779 Train mrr 0.3360787332057953 Train ap_10 0.33608582615852356 Train precision_1 0.33590978384017944 Train precision_5 0.17693868279457092 Val ndcg_1 1.0 Val ndcg_5 0.999628484249115 Val ndcg_10 0.9998435974121094 Val mrr 0.3177083432674408 Val ap_10 0.31739211082458496 Val precision_1 0.3177083432674408 Val precision_5 0.20590278506278992
-2024-01-16 22:24:33,079 - allrank.utils.ltr_logging - INFO - Current:0.999628484249115 Best:0.999628484249115
-2024-01-16 22:24:33,605 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.9982609, 'ndcg_5': 0.99946684, 'ndcg_10': 0.99946684, 'mrr': 0.38347828, 'ap_10': 0.3836232, 'precision_1': 0.3826087, 'precision_5': 0.18643478}
-
 "How-to" WeWeb
 
-2024-01-16 22:24:52,704 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: -0.9183958768844604 Val loss: -0.8798767328262329 Train ndcg_1 0.9555555582046509 Train ndcg_5 0.9794867038726807 Train ndcg_10 0.984341025352478 Train mrr 0.35555556416511536 Train ap_10 0.35279983282089233 Train precision_1 0.3333333432674408 Train precision_5 0.18222224712371826 Val ndcg_1 1.0 Val ndcg_5 0.9799532294273376 Val ndcg_10 0.9892464280128479 Val mrr 0.38461539149284363 Val ap_10 0.36017096042633057 Val precision_1 0.38461539149284363 Val precision_5 0.26153844594955444
-2024-01-16 22:24:52,705 - allrank.utils.ltr_logging - INFO - Current:0.9799532294273376 Best:0.9862615466117859
-2024-01-16 22:24:53,047 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.9830508, 'ndcg_5': 0.9920277, 'ndcg_10': 0.9956743, 'mrr': 0.025423728, 'ap_10': 0.027266614, 'precision_1': 0.016949153, 'precision_5': 0.013559322}
-
 Zero-shot
-
-2024-01-16 22:27:50,091 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: -0.9543206191763803 Val loss: -0.5758784037377915 Train ndcg_1 0.9996199011802673 Train ndcg_5 0.9998519420623779 Train ndcg_10 0.9998519420623779 Train mrr 0.3360787332057953 Train ap 0.33608582615852356 Train precision_1 0.33590978384017944 Train precision_5 0.17693868279457092 Val ndcg_1 1.0 Val ndcg_5 0.9999539256095886 Val ndcg_10 0.9999539256095886 Val mrr 0.38401392102241516 Val ap 0.3838980793952942 Val precision_1 0.38401392102241516 Val precision_5 0.21911382675170898
-2024-01-16 22:27:50,094 - allrank.utils.ltr_logging - INFO - Current:0.9999539256095886 Best:0.9997694492340088
-2024-01-16 22:27:50,466 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.98290604, 'ndcg_5': 0.985451, 'ndcg_10': 0.99028474, 'mrr': 0.17948718, 'ap': 0.17141147, 'precision_1': 0.17094018, 'precision_5': 0.104273506}
 
 #### listNet
 
@@ -638,21 +789,9 @@ PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --conf
 
 "How-to" META-GUI"
 
-2024-01-17 12:00:25,297 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 0.0 Val loss: 0.4932870931095547 Train ndcg_1 1.0 Train ndcg_5 1.0 Train ndcg_10 1.0 Train mrr 0.3362899422645569 Train ap 0.3362899422645569 Train precision_1 0.3362899422645569 Train precision_5 0.06725798547267914 Val ndcg_1 0.9166666865348816 Val ndcg_5 0.9547337293624878 Val ndcg_10 0.9586650133132935 Val mrr 0.2634197473526001 Val ap 0.2623297870159149 Val precision_1 0.234375 Val precision_5 0.19930556416511536
-2024-01-17 12:00:25,301 - allrank.utils.ltr_logging - INFO - Current:0.9547337293624878 Best:0.9547337293624878
-2024-01-17 12:00:25,860 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.86260873, 'ndcg_5': 0.93177235, 'ndcg_10': 0.9373378, 'mrr': 0.29968533, 'ap': 0.30061364, 'precision_1': 0.24695653, 'precision_5': 0.17808697}
-
 "How-to" WeWeb
 
-2024-01-17 12:00:47,991 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 0.0 Val loss: 0.6879475116729736 Train ndcg_1 1.0 Train ndcg_5 1.0 Train ndcg_10 1.0 Train mrr 0.3777777850627899 Train ap 0.3777777850627899 Train precision_1 0.3777777850627899 Train precision_5 0.07555556297302246 Val ndcg_1 0.9230769872665405 Val ndcg_5 0.9526470899581909 Val ndcg_10 0.9619402885437012 Val mrr 0.3461538553237915 Val ap 0.3251282274723053 Val precision_1 0.3076923191547394 Val precision_5 0.26153844594955444
-2024-01-17 12:00:47,993 - allrank.utils.ltr_logging - INFO - Current:0.9526470899581909 Best:0.9526470899581909
-2024-01-17 12:00:48,380 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.9830508, 'ndcg_5': 0.9913773, 'ndcg_10': 0.9931907, 'mrr': 0.025423728, 'ap': 0.025608629, 'precision_1': 0.016949153, 'precision_5': 0.013559322}
-
 Zero-shot
-
-2024-01-17 12:02:05,398 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 0.0 Val loss: 0.5133136443722569 Train ndcg_1 1.0 Train ndcg_5 1.0 Train ndcg_10 1.0 Train mrr 0.3362899422645569 Train ap 0.3362899422645569 Train precision_1 0.3362899422645569 Train precision_5 0.06725798547267914 Val ndcg_1 0.8757602572441101 Val ndcg_5 0.9325862526893616 Val ndcg_10 0.9399206638336182 Val mrr 0.3038914203643799 Val ap 0.3034215271472931 Val precision_1 0.2597741186618805 Val precision_5 0.20816682279109955
-2024-01-17 12:02:05,401 - allrank.utils.ltr_logging - INFO - Current:0.9325862526893616 Best:0.9325862526893616
-2024-01-17 12:02:05,818 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.99145305, 'ndcg_5': 0.9868452, 'ndcg_10': 0.99194443, 'mrr': 0.18376069, 'ap': 0.17455474, 'precision_1': 0.17948718, 'precision_5': 0.10256411}
 
 #### lambdarank
 
@@ -662,20 +801,9 @@ PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --conf
 
 "How-to" META-GUI
 
-2024-01-17 12:08:25,043 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 8.487708106297136 Val loss: 10.506359888447655 Train ndcg_1 0.9996199011802673 Train ndcg_5 0.9998519420623779 Train ndcg_10 0.9998519420623779 Train mrr 0.3360787332057953 Train ap 0.33608582615852356 Train precision_1 0.33590978384017944 Train precision_5 0.17693868279457092 Val ndcg_1 1.0 Val ndcg_5 0.999628484249115 Val ndcg_10 0.9998435974121094 Val mrr 0.3177083432674408 Val ap 0.31738531589508057 Val precision_1 0.3177083432674408 Val precision_5 0.20590278506278992
-2024-01-17 12:08:25,043 - allrank.utils.ltr_logging - INFO - Current:0.999628484249115 Best:0.9997056126594543
-2024-01-17 12:08:25,549 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.9982609, 'ndcg_5': 0.99946684, 'ndcg_10': 0.99946684, 'mrr': 0.38347828, 'ap': 0.3835493, 'precision_1': 0.3826087, 'precision_5': 0.18643478}
-
 "How-to" WeWeb
-2024-01-17 12:08:44,700 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 6.458059787750244 Val loss: 3.359440803527832 Train ndcg_1 0.9555555582046509 Train ndcg_5 0.9632382392883301 Train ndcg_10 0.9759992361068726 Train mrr 0.3481481671333313 Train ap 0.3416975438594818 Train precision_1 0.3333333432674408 Train precision_5 0.17777778208255768 Val ndcg_1 1.0 Val ndcg_5 0.9815351366996765 Val ndcg_10 0.9908283352851868 Val mrr 0.38461539149284363 Val ap 0.3640170991420746 Val precision_1 0.38461539149284363 Val precision_5 0.26153844594955444
-2024-01-17 12:08:44,703 - allrank.utils.ltr_logging - INFO - Current:0.9815351366996765 Best:0.9844529628753662
-2024-01-17 12:08:45,033 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.9830508, 'ndcg_5': 0.9920277, 'ndcg_10': 0.9957573, 'mrr': 0.025423728, 'ap': 0.027502017, 'precision_1': 0.016949153, 'precision_5': 0.013559322}
 
 Zero-shot
-
-2024-01-17 12:10:30,189 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 8.487708106297136 Val loss: 7.815946905847015 Train ndcg_1 0.9996199011802673 Train ndcg_5 0.9998519420623779 Train ndcg_10 0.9998519420623779 Train mrr 0.3360787332057953 Train ap 0.33608582615852356 Train precision_1 0.33590978384017944 Train precision_5 0.17693868279457092 Val ndcg_1 1.0 Val ndcg_5 0.9997962117195129 Val ndcg_10 0.99993896484375 Val mrr 0.38401392102241516 Val ap 0.38385945558547974 Val precision_1 0.38401392102241516 Val precision_5 0.21894007921218872
-2024-01-17 12:10:30,189 - allrank.utils.ltr_logging - INFO - Current:0.9997962117195129 Best:0.9999539256095886
-2024-01-17 12:10:30,560 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.98290604, 'ndcg_5': 0.98412853, 'ndcg_10': 0.9900988, 'mrr': 0.17948718, 'ap': 0.1712627, 'precision_1': 0.17094018, 'precision_5': 0.10256412}
 
 #### approxndc
 
@@ -685,21 +813,10 @@ PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --conf
 
 "How-to" META-GUI
 
-2024-01-17 12:13:08,257 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: -0.2674980818681528 Val loss: -0.254199806186888 Train ndcg_1 0.9996199011802673 Train ndcg_5 0.9998519420623779 Train ndcg_10 0.9998519420623779 Train mrr 0.3360787332057953 Train ap 0.33608582615852356 Train precision_1 0.33590978384017944 Train precision_5 0.17693868279457092 Val ndcg_1 1.0 Val ndcg_5 0.999628484249115 Val ndcg_10 0.9998435974121094 Val mrr 0.3177083432674408 Val ap 0.31738436222076416 Val precision_1 0.3177083432674408 Val precision_5 0.20590278506278992
-2024-01-17 12:13:08,258 - allrank.utils.ltr_logging - INFO - Current:0.999628484249115 Best:0.9996328353881836
-2024-01-17 12:13:08,790 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.9982609, 'ndcg_5': 0.99946684, 'ndcg_10': 0.99945486, 'mrr': 0.38347828, 'ap': 0.38350788, 'precision_1': 0.3826087, 'precision_5': 0.18643478}
 
 "How-to" WeWeb
 
-2024-01-17 12:13:27,892 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: -0.3151623606681824 Val loss: -0.2801719903945923 Train ndcg_1 0.9555555582046509 Train ndcg_5 0.9635684490203857 Train ndcg_10 0.9752347469329834 Train mrr 0.347222238779068 Train ap 0.3410714566707611 Train precision_1 0.3333333432674408 Train precision_5 0.17777778208255768 Val ndcg_1 0.9230769872665405 Val ndcg_5 0.9682123064994812 Val ndcg_10 0.9775055050849915 Val mrr 0.3461538553237915 Val ap 0.3511965870857239 Val precision_1 0.3076923191547394 Val precision_5 0.26153844594955444
-2024-01-17 12:13:27,893 - allrank.utils.ltr_logging - INFO - Current:0.9682123064994812 Best:0.9810370802879333
-2024-01-17 12:13:28,230 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.9830508, 'ndcg_5': 0.989552, 'ndcg_10': 0.99532926, 'mrr': 0.025423728, 'ap': 0.02665456, 'precision_1': 0.016949153, 'precision_5': 0.010169492}
-
 Zero-shot
-
-2024-01-17 12:15:13,215 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: -0.2674980818681528 Val loss: -0.31151211647548227 Train ndcg_1 0.9996199011802673 Train ndcg_5 0.9998519420623779 Train ndcg_10 0.9998519420623779 Train mrr 0.3360787332057953 Train ap 0.33608582615852356 Train precision_1 0.33590978384017944 Train precision_5 0.17693868279457092 Val ndcg_1 1.0 Val ndcg_5 0.9999539256095886 Val ndcg_10 0.9999539256095886 Val mrr 0.38401392102241516 Val ap 0.3838980793952942 Val precision_1 0.38401392102241516 Val precision_5 0.21911382675170898
-2024-01-17 12:15:13,215 - allrank.utils.ltr_logging - INFO - Current:0.9999539256095886 Best:0.9999539256095886
-2024-01-17 12:15:13,591 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.98290604, 'ndcg_5': 0.98412853, 'ndcg_10': 0.9900988, 'mrr': 0.17948718, 'ap': 0.1712627, 'precision_1': 0.17094018, 'precision_5': 0.10256412}
 
 ### Pointwise Loss
 
@@ -709,23 +826,42 @@ pointwise bce loss
 PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/bce/pointwise_bce_Multimodal_Feature18_label2_on_metagui_ground_truth_lr_model.json --run-id pointwise_bce_Multimodal_Feature18_label2_on_metagui_ground_truth_lr_model --job-dir experiments/bce/pointwise_bce_Multimodal_Feature18_label2_on_metagui_ground_truth_lr_model && PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/bce/pointwise_bce_Multimodal_Feature18_label2_on_weweb_ground_truth_lr_model.json --run-id pointwise_bce_Multimodal_Feature18_label2_on_weweb_ground_truth_lr_model --job-dir experiments/bce/pointwise_bce_Multimodal_Feature18_label2_on_weweb_ground_truth_lr_model && PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/bce/pointwise_bce_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model.json --run-id pointwise_bce_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model --job-dir experiments/bce/pointwise_bce_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model # on METAGUI -> WeWeb
 ```
 
-* META-GUI
-
-2024-01-16 22:36:35,866 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 2.4028068545864008 Val loss: 2.9149234294891357 Train ndcg_1 0.8813989162445068 Train ndcg_5 0.9381269216537476 Train ndcg_10 0.9435863494873047 Train mrr 0.2617996335029602 Train ap 0.26029592752456665 Train precision_1 0.21768881380558014 Train precision_5 0.16943740844726562 Val ndcg_1 0.9027777910232544 Val ndcg_5 0.9486153721809387 Val ndcg_10 0.9538309574127197 Val mrr 0.2546337842941284 Val ap 0.2559460699558258 Val precision_1 0.220486119389534 Val precision_5 0.19930556416511536
-2024-01-16 22:36:35,868 - allrank.utils.ltr_logging - INFO - Current:0.9486153721809387 Best:0.9485266208648682
-2024-01-16 22:36:36,390 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.85391307, 'ndcg_5': 0.93252105, 'ndcg_10': 0.93622977, 'mrr': 0.29610014, 'ap': 0.29935238, 'precision_1': 0.23826088, 'precision_5': 0.17947826}
-
-* WeWeb
-
-2024-01-16 22:36:55,481 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 2.3240435123443604 Val loss: 3.482133388519287 Train ndcg_1 0.9333333373069763 Train ndcg_5 0.9540493488311768 Train ndcg_10 0.9639526605606079 Train mrr 0.33407407999038696 Train ap 0.32233864068984985 Train precision_1 0.31111112236976624 Train precision_5 0.17333334684371948 Val ndcg_1 0.8461538553237915 Val ndcg_5 0.9268097877502441 Val ndcg_10 0.9361029267311096 Val mrr 0.29487180709838867 Val ap 0.29487180709838867 Val precision_1 0.23076924681663513 Val precision_5 0.26153844594955444
-2024-01-16 22:36:55,484 - allrank.utils.ltr_logging - INFO - Current:0.9268097877502441 Best:0.9268097877502441
-2024-01-16 22:36:55,804 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 1.0, 'ndcg_5': 0.9912751, 'ndcg_10': 0.99513614, 'mrr': 0.033898305, 'ap': 0.026964562, 'precision_1': 0.033898305, 'precision_5': 0.010169492}
-
 * Zero-shot
 
-2024-01-16 22:38:40,607 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 2.4028068545864008 Val loss: 2.47221563050894 Train ndcg_1 0.8813989162445068 Train ndcg_5 0.9381269216537476 Train ndcg_10 0.9435863494873047 Train mrr 0.2617996335029602 Train ap 0.26029592752456665 Train precision_1 0.21768881380558014 Train precision_5 0.16943740844726562 Val ndcg_1 0.8627281188964844 Val ndcg_5 0.9307160377502441 Val ndcg_10 0.9362598061561584 Val mrr 0.2954718768596649 Val ap 0.29876530170440674 Val precision_1 0.24674196541309357 Val precision_5 0.20990444719791412
-2024-01-16 22:38:40,612 - allrank.utils.ltr_logging - INFO - Current:0.9307160377502441 Best:0.9300907254219055
-2024-01-16 22:38:40,968 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.98290604, 'ndcg_5': 0.9853858, 'ndcg_10': 0.9923209, 'mrr': 0.17948718, 'ap': 0.17531584, 'precision_1': 0.17094018, 'precision_5': 0.10085471}
+```bash
+PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/bce/pointwise_bce_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model.json --run-id pointwise_bce_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model --job-dir experiments/bce/pointwise_bce_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model
+```
+
+BCE without Google Rank:
+
+2024-01-21 12:57:34,792 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 2.745351061846808 Val loss: 2.6144230193919964 Train ndcg_1 0.8442178964614868 Train ndcg_5 0.9182736277580261 Train ndcg_10 0.9227007031440735 Train mrr 0.9101946949958801 Train ap 0.8890700936317444 Train precision_1 0.8442178964614868 Train precision_5 0.28999683260917664 Val ndcg_1 0.8400900959968567 Val ndcg_5 0.9131476879119873 Val ndcg_10 0.9186704158782959 Val mrr 0.9035566449165344 Val ap 0.8846280574798584 Val precision_1 0.8400900959968567 Val precision_5 0.2713964283466339
+2024-01-21 12:57:34,794 - allrank.utils.ltr_logging - INFO - Current:0.9131476879119873 Best:0.9128440022468567
+2024-01-21 12:57:35,107 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.23931625, 'ndcg_5': 0.27728394, 'ndcg_10': 0.28498685, 'mrr': 0.27735046, 'ap': 0.26439884, 'precision_1': 0.23931625, 'precision_5': 0.109401725} ->117/167
+{'ndcg_1': 0.16766467814371258,
+ 'ndcg_5': 0.19426479628742516,
+ 'ndcg_10': 0.19966144580838324,
+ 'mrr': 0.19431140011976047,
+ 'ap': 0.18523751065868266,
+ 'precision_1': 0.16766467814371258,
+ 'precision_5': 0.07664671751497007}
+
+BCE with Google Rank adjustment:
+
+```bash
+python end_to_end_statistics.py --rerank_result experiments/bce/pointwise_bce_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model/results/pointwise_bce_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model/predicted_result.txt
+```
+
+How to add multi-stops in Here WeGo {'mrr': 1.0, 'p1': 1.0, 'p5': 0.2, 'ndcg1': 1.0, 'ndcg5': 1.0} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.6309297535714575}
+How to pause history tracking in YouTube {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306} {'mrr': 0.2, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.38685280723454163}
+How to share an article link in FlipBoard {'mrr': 0.5, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.6309297535714575} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+how to connect to wifi step by step on Android {'mrr': 1.0, 'p1': 1.0, 'p5': 0.6, 'ndcg1': 1.0, 'ndcg5': 0.6548086577531307} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.4, 'ndcg1': 0.0, 'ndcg5': 0.36005461457723403}
+google[mrr] > execution_statistics[mrr]: 27, google[mrr] < execution_statistics[mrr]: 4, google[mrr] = execution_statistics[mrr]: 86, zero_cnt_execution_statistics: 89, non_zero_cnt_execution_statistics: 28, total_query: 117
+google average statistics: {'mrr': 0.10238170502348029, 'p1': 0.05389221556886228, 'p5': 0.05389221556886228, 'ndcg1': 0.05389221556886228, 'ndcg5': 0.10419093916874589}
+execution average statistics: {'mrr': 0.194311377245509, 'p1': 0.16766467065868262, 'p5': 0.07664670658682636, 'ndcg1': 0.16766467065868262, 'ndcg5': 0.19426477609123186}
+
+* META-GUI
+
+* WeWeb
 
 pointwise rmse loss
 
@@ -735,21 +871,9 @@ PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --conf
 
 * META-GUI
 
-2024-01-16 22:47:33,567 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 0.2757926740231879 Val loss: 0.2783577792449958 Train ndcg_1 0.8616320490837097 Train ndcg_5 0.9245247840881348 Train ndcg_10 0.9320967197418213 Train mrr 0.245081827044487 Train ap 0.24650868773460388 Train precision_1 0.1979219615459442 Train precision_5 0.1671566218137741 Val ndcg_1 0.8940972089767456 Val ndcg_5 0.9431739449501038 Val ndcg_10 0.9483860731124878 Val mrr 0.2452729493379593 Val ap 0.25031164288520813 Val precision_1 0.2118055522441864 Val precision_5 0.19861111044883728
-2024-01-16 22:47:33,567 - allrank.utils.ltr_logging - INFO - Current:0.9431739449501038 Best:0.9439597725868225
-2024-01-16 22:47:34,095 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.8486957, 'ndcg_5': 0.9265971, 'ndcg_10': 0.9315074, 'mrr': 0.28888097, 'ap': 0.29395592, 'precision_1': 0.23304348, 'precision_5': 0.17808697}
-
 * WeWeb
 
-2024-01-16 22:47:53,112 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 0.4141063392162323 Val loss: 0.4083878695964813 Train ndcg_1 0.8888888955116272 Train ndcg_5 0.946821928024292 Train ndcg_10 0.9567252397537231 Train mrr 0.31481486558914185 Train ap 0.31419050693511963 Train precision_1 0.2666666805744171 Train precision_5 0.17333334684371948 Val ndcg_1 0.8461538553237915 Val ndcg_5 0.9268097877502441 Val ndcg_10 0.9361029267311096 Val mrr 0.29487180709838867 Val ap 0.29487180709838867 Val precision_1 0.23076924681663513 Val precision_5 0.26153844594955444
-2024-01-16 22:47:53,113 - allrank.utils.ltr_logging - INFO - Current:0.9268097877502441 Best:0.9268097877502441
-2024-01-16 22:47:53,447 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 1.0, 'ndcg_5': 0.9910232, 'ndcg_10': 0.99498695, 'mrr': 0.033898305, 'ap': 0.026867708, 'precision_1': 0.033898305, 'precision_5': 0.010169492}
-
 * Zero-shot
-
-2024-01-16 22:49:38,259 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 0.2757926740231879 Val loss: 0.3308690315635177 Train ndcg_1 0.8616320490837097 Train ndcg_5 0.9245247840881348 Train ndcg_10 0.9320967197418213 Train mrr 0.245081827044487 Train ap 0.24650868773460388 Train precision_1 0.1979219615459442 Train precision_5 0.1671566218137741 Val ndcg_1 0.8540399670600891 Val ndcg_5 0.9252707362174988 Val ndcg_10 0.9321764707565308 Val mrr 0.2882787585258484 Val ap 0.2942636013031006 Val precision_1 0.23805387318134308 Val precision_5 0.20816682279109955
-2024-01-16 22:49:38,263 - allrank.utils.ltr_logging - INFO - Current:0.9252707362174988 Best:0.9257491230964661
-2024-01-16 22:49:38,617 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.948718, 'ndcg_5': 0.9772547, 'ndcg_10': 0.9833162, 'mrr': 0.16096868, 'ap': 0.1635739, 'precision_1': 0.13675214, 'precision_5': 0.10256412}
 
 ## Failure analysis
 

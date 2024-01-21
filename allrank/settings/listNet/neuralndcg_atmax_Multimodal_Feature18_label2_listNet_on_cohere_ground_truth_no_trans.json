@@ -19,8 +19,9 @@
     "path": "mmdataset/Feature_18_zeroshot_label2",
     "validation_ds_role": "val",
     "get_test_statistics": true,
+    "mark_test_feature_indexes": [18],
     "num_workers": 1,
-    "batch_size": 64,
+    "batch_size": 128,
     "slate_length": 1
   },
   "optimizer": {

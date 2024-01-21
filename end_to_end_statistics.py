@@ -54,6 +54,11 @@ def sort_key_for_dictionary(dic):
     sorted_dict = {i: dic[i] for i in myKeys}
     return sorted_dict
 
+def convert_to_end_to_end(statistic):
+    for k, v, in statistic.items():
+        statistic[k] = v * 117/167
+    return statistic
+
 if __name__ == "__main__":
     args = argparse.ArgumentParser()
     args.add_argument("--exclude_google_rank_for_execution", type=bool, default=True)

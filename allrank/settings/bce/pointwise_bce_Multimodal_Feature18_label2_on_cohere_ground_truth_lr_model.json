@@ -13,6 +13,7 @@
     "path": "mmdataset/Feature_18_zeroshot_label2",
     "validation_ds_role": "val",
     "get_test_statistics": true,
+    "mark_test_feature_indexes": [18],
     "num_workers": 1,
     "batch_size": 128,
     "slate_length": 240
@@ -31,8 +32,8 @@
     }
   },
   "training": {
-    "epochs": 30,
-    "early_stopping_patience": 30,
+    "epochs": 20,
+    "early_stopping_patience": 20,
     "gradient_clipping_norm": null
   },
   "val_metric": "ndcg_5",

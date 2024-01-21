@@ -8,19 +8,24 @@ global mrr_s_cnt
 global ap_f_cnt
 global ap_s_cnt
 global end_epoch
+global query_id
 
-export_failure = True
-collect_number = 30
+export_failure = False
+collect_number = 1000
 mrr_f_cnt = 0
 mrr_s_cnt = 0
 ap_f_cnt = 0
 ap_s_cnt = 0
+p_f_cnt = 0
+p_s_cnt = 0
 end_epoch = 19
+query_id = 10000000
 
 from allrank.data.dataset_loading import PADDED_Y_VALUE
 
+# see: as we need to make the model to learn order, so we set filler_value = 0.0001 to force the model to learn where to put the positive cases
 def ndcg(y_pred, y_true, ats=None, gain_function=lambda x: torch.pow(2, x) - 1, padding_indicator=PADDED_Y_VALUE,
-         filler_value=1.0, xb=None, model=None, epoch=None):
+         filler_value=0.0, xb=None, model=None, epoch=None, output_dir=None):
     """
     Normalized Discounted Cumulative Gain at k.
 
@@ -37,6 +42,8 @@ def ndcg(y_pred, y_true, ats=None, gain_function=lambda x: torch.pow(2, x) - 1, 
     ndcg_ = dcg(y_pred, y_true, ats, gain_function, padding_indicator) / idcg
     idcg_mask = idcg == 0
     ndcg_[idcg_mask] = filler_value  # if idcg == 0 , set ndcg to filler_value
+    # num_zeros = torch.eq(idcg, 0).sum()
+    # print("Number of zeros:", num_zeros.item())
 
     assert (ndcg_ < 0.0).sum() >= 0, "every ndcg should be non-negative"
 
@@ -63,7 +70,7 @@ def __apply_mask_and_get_indices_and_true_sorted_by_preds(y_pred, y_true, paddin
     return indices, torch.gather(y_true, dim=1, index=indices)
 
 
-def dcg(y_pred, y_true, ats=None, gain_function=lambda x: torch.pow(2, x) - 1, padding_indicator=PADDED_Y_VALUE):
+def dcg(y_pred, y_true, ats=None, gain_function=lambda x: torch.pow(2, x) - 1, padding_indicator=PADDED_Y_VALUE, output_dir=None):
     """
     Discounted Cumulative Gain at k.
 
@@ -114,8 +121,20 @@ def output_to_file(file_name, y_pred, y_true, xb, epoch, start_index):
             f.write("y_true: " + str(y_true[i].tolist()) + "\n")
             f.write("\n")
 
+def output_to_file_p(file_name, y_pred, y_true, xb):
+    def format_array(arr):
+        return [float(format(x, '.6f')) for x in arr]
+    global query_id
+    with open(file_name, 'a') as f:
+        for i in range(y_pred.shape[0]):
+            f.write(f"query_id: {query_id}\n")
+            for j in range(y_pred.shape[1]):
+                if y_pred[i][j] != float('-inf') and y_true[i][j] >= 0:
+                    f.write(f"xb: {format_array(xb[i][j].tolist())}; y_pred: {format(y_pred[i][j].item(), '.6f')}; y_true: {format(y_true[i][j].item(), '.6f')}\n")
+            f.write("\n")
+            query_id += 1
 
-def mrr(y_pred, y_true, ats=None, padding_indicator=PADDED_Y_VALUE, xb=None, model=None, epoch=None):
+def mrr(y_pred, y_true, ats=None, padding_indicator=PADDED_Y_VALUE, xb=None, model=None, epoch=None, output_dir=None):
     """
     Mean Reciprocal Rank at k.
 
@@ -126,6 +145,41 @@ def mrr(y_pred, y_true, ats=None, padding_indicator=PADDED_Y_VALUE, xb=None, mod
     :param padding_indicator: an indicator of the y_true index containing a padded item, e.g. -1
     :return: MRR values for each slate and evaluation position, shape [batch_size, len(ats)]
     """
+    if export_failure and not model.training:
+        # see: neuralNDCG
+        # mrr_index = 0
+        # meta_setting = 0.18376069
+        # threshold_success = meta_setting * 0.8 #
+        # threshold_failure = meta_setting * 0.2 # 
+        # success_cases = (result > threshold_success)[:,0]
+        # global mrr_f_cnt, mrr_s_cnt
+        # if mrr_s_cnt < collect_number and y_pred[success_cases, mrr_index].shape[0] > 0:
+        #     if y_pred[success_cases, mrr_index].shape[0] - mrr_s_cnt >= collect_number:
+        #         # output the first [0, collect_number] success cases
+        #         take_number = collect_number - mrr_s_cnt
+        #         output_to_file("mrr_success_cases.txt", y_pred[success_cases, mrr_index][:take_number], y_true[success_cases, mrr_index][:take_number], xb[success_cases, mrr_index, :][:take_number,:], epoch, mrr_s_cnt)
+        #         mrr_s_cnt = collect_number
+        #     else:
+        #         # output the first [0, collect_number] success cases
+        #         output_to_file("mrr_success_cases.txt", y_pred[success_cases, mrr_index], y_true[success_cases, mrr_index], xb[success_cases, mrr_index, :], epoch, mrr_s_cnt)
+        #         mrr_s_cnt += success_cases.shape[0]
+        # failure_cases = (result <= threshold_failure)[:,0]
+        # if mrr_f_cnt < collect_number and y_pred[failure_cases, mrr_index].shape[0] > 0:
+        #     if y_pred[failure_cases, mrr_index].shape[0] - mrr_f_cnt >= collect_number:
+        #         take_number = collect_number - mrr_f_cnt
+        #         output_to_file("mrr_failure_cases.txt", y_pred[failure_cases, mrr_index][:take_number], y_true[failure_cases, mrr_index][:take_number], xb[failure_cases, mrr_index, :][:take_number,:], epoch, mrr_f_cnt)
+        #         mrr_f_cnt = collect_number
+        #     else:
+        #         # output the first [0, collect_number] failure cases
+        #         output_to_file("mrr_failure_cases.txt", y_pred[failure_cases, mrr_index], y_true[failure_cases, mrr_index], xb[failure_cases, mrr_index, :], epoch, mrr_f_cnt)
+        #         mrr_f_cnt += y_pred[failure_cases, mrr_index].shape[0]
+        # see: export for checking results
+        if output_dir is not None:
+            f = f"{output_dir}/predicted_result.txt"
+        else:
+            f = "predicted_result.txt"
+        output_to_file_p(f, y_pred, y_true, xb)
+        
     y_true = y_true.clone()
     y_pred = y_pred.clone()
 
@@ -152,50 +206,10 @@ def mrr(y_pred, y_true, ats=None, padding_indicator=PADDED_Y_VALUE, xb=None, mod
 
     result = result * within_at_mask
     
-    if export_failure and not model.training and epoch == end_epoch:
-        mrr_index = 0
-        meta_setting =  0.7757
-        threshold_success = meta_setting * 0.8 #
-        threshold_failure = meta_setting * 0.2 # 
-        # bce
-        # meta_setting =  0.6313
-        # threshold_success = meta_setting * 0.8 #
-        # threshold_failure = meta_setting * 0.2 # 
-        # threshold_success = 0.8 # 
-        # threshold_failure = 0.4 # 
-        # threshold_success = 0.9 # 
-        # threshold_failure = 0.5 # 
-        # threshold_success = 0.95 #
-        # threshold_failure = 0.6 # 
-        # threshold_success = 0.95 #
-        # threshold_failure = 0.8 #
-        success_cases = (result > threshold_success)[:,0]
-        global mrr_f_cnt, mrr_s_cnt
-        if mrr_s_cnt < collect_number and y_pred[success_cases, mrr_index].shape[0] > 0:
-            if y_pred[success_cases, mrr_index].shape[0] - mrr_s_cnt >= collect_number:
-                # output the first [0, collect_number] success cases
-                take_number = collect_number - mrr_s_cnt
-                output_to_file("mrr_success_cases.txt", y_pred[success_cases, mrr_index][:take_number], y_true[success_cases, mrr_index][:take_number], xb[success_cases, mrr_index, :][:take_number,:], epoch, mrr_s_cnt)
-                mrr_s_cnt = collect_number
-            else:
-                # output the first [0, collect_number] success cases
-                output_to_file("mrr_success_cases.txt", y_pred[success_cases, mrr_index], y_true[success_cases, mrr_index], xb[success_cases, mrr_index, :], epoch, mrr_s_cnt)
-                mrr_s_cnt += success_cases.shape[0]
-        failure_cases = (result <= threshold_failure)[:,0]
-        if mrr_f_cnt < collect_number and y_pred[failure_cases, mrr_index].shape[0] > 0:
-            if y_pred[failure_cases, mrr_index].shape[0] - mrr_f_cnt >= collect_number:
-                take_number = collect_number - mrr_f_cnt
-                output_to_file("mrr_failure_cases.txt", y_pred[failure_cases, mrr_index][:take_number], y_true[failure_cases, mrr_index][:take_number], xb[failure_cases, mrr_index, :][:take_number,:], epoch, mrr_f_cnt)
-                mrr_f_cnt = collect_number
-            else:
-                # output the first [0, collect_number] failure cases
-                output_to_file("mrr_failure_cases.txt", y_pred[failure_cases, mrr_index], y_true[failure_cases, mrr_index], xb[failure_cases, mrr_index, :], epoch, mrr_f_cnt)
-                mrr_f_cnt += y_pred[failure_cases, mrr_index].shape[0]
-        
     return result
 
 
-def precision(y_pred, y_true, ats=None, padding_indicator=PADDED_Y_VALUE, xb=None, model=None, epoch=None):
+def precision(y_pred, y_true, ats=None, padding_indicator=PADDED_Y_VALUE, xb=None, model=None, epoch=None, output_dir=None):
     y_true = y_true.clone()
     y_pred = y_pred.clone()
     
@@ -217,10 +231,51 @@ def precision(y_pred, y_true, ats=None, padding_indicator=PADDED_Y_VALUE, xb=Non
     assert not torch.isnan(precisions).any(), "precision should not be nan"
     assert (precisions < 0.0).sum() >= 0, "every precisions should be non-negative"
     assert (precisions > 1.0).sum() >= 0, "every precisions should be less-equal than 1"
+    
+    # if export_failure and not model.training:  
+    #     # see: neuralNDCG
+    #     result = precisions
+    #     meta_settings = [0.17948718, 0.104273506]
+    #     threshold_successes = [i * 0.7 for i in meta_settings] #
+    #     threshold_failures = [i * 0.2 for i in meta_settings]#       
+    #     result = precisions
+    #     global ap_f_cnt, ap_s_cnt
+    #     p_indexs = [0, 1]
+    #     for p_index in p_indexs:
+    #         if p_index == 0:
+    #             ap_success_cases_f = "p1_success_cases.txt"
+    #             ap_failure_cases_f = "p1_failure_cases.txt"
+    #         else:    
+    #             ap_success_cases_f = "p5_success_cases.txt"
+    #             ap_failure_cases_f = "p5_failure_cases.txt"
+    #         threshold_success = threshold_successes[p_index]
+    #         success_cases = (result > threshold_success)[:,0]
+    #         if ap_s_cnt < collect_number and y_pred[success_cases, p_index].shape[0] > 0:
+    #             if y_pred[success_cases, p_index].shape[0] - ap_s_cnt >= collect_number:
+    #                 # output the first [0, collect_number] success cases
+    #                 take_number = collect_number - ap_s_cnt
+    #                 output_to_file(ap_success_cases_f, y_pred[success_cases, p_index][:take_number], y_true[success_cases, p_index][:take_number], xb[success_cases, p_index, :][:take_number,:], epoch, ap_s_cnt)
+    #                 ap_s_cnt = collect_number
+    #             else:
+    #                 # output the first [0, collect_number] success cases
+    #                 output_to_file(ap_success_cases_f, y_pred[success_cases, p_index], y_true[success_cases, p_index], xb[success_cases, p_index, :], epoch, ap_s_cnt)
+    #                 ap_s_cnt += success_cases.shape[0]
+    #         threshold_failure = threshold_failures[p_index]
+    #         failure_cases = (result <= threshold_failure)[:,0]
+    #         if ap_f_cnt < collect_number and y_pred[failure_cases, p_index].shape[0] > 0:
+    #             if y_pred[failure_cases, p_index].shape[0] - ap_f_cnt >= collect_number:
+    #                 take_number = collect_number - ap_f_cnt
+    #                 output_to_file(ap_failure_cases_f, y_pred[failure_cases, p_index][:take_number], y_true[failure_cases, p_index][:take_number], xb[failure_cases, p_index, :][:take_number,:], epoch, ap_f_cnt)
+    #                 ap_f_cnt = collect_number
+    #             else:
+    #                 # output the first [0, collect_number] failure cases
+    #                 output_to_file(ap_failure_cases_f, y_pred[failure_cases, p_index], y_true[failure_cases, p_index], xb[failure_cases, p_index, :], epoch, ap_f_cnt)
+    #                 ap_f_cnt += y_pred[failure_cases, p_index].shape[0]
+
 
     return precisions
 
-def ap(y_pred, y_true, ats=None, padding_indicator=PADDED_Y_VALUE, xb=None, model=None, epoch=None):
+def ap(y_pred, y_true, ats=None, padding_indicator=PADDED_Y_VALUE, xb=None, model=None, epoch=None, output_dir=None):
     y_true = y_true.clone()
     y_pred = y_pred.clone()
     
@@ -250,48 +305,6 @@ def ap(y_pred, y_true, ats=None, padding_indicator=PADDED_Y_VALUE, xb=None, mode
     assert not torch.isnan(avg_precisions).any(), "avg_precisions should not be nan"
     assert (avg_precisions < 0.0).sum() >= 0, "every avg_precisions should be non-negative"
     assert (avg_precisions > 1.0).sum() >= 0, "every avg_precisions should be less-equal than 1"
-    
-    if export_failure and not model.training and epoch == end_epoch:
-        # setting for bce on "How-to" METAGUI    
-        result = avg_precisions
-        meta_settings = [0.3826, 0.3829]
-        # bce setting
-        # meta_settings = [0.2383, 0.2978]
-        threshold_successes = [i * 0.7 for i in meta_settings] #
-        threshold_failures = [i * 0.2 for i in meta_settings]#       
-        result = avg_precisions
-        global ap_f_cnt, ap_s_cnt
-        ap_indexs = [0, 1]
-        for ap_index in ap_indexs:
-            if ap_index == 0:
-                ap_success_cases_f = "ap1_success_cases.txt"
-                ap_failure_cases_f = "ap1_failure_cases.txt"
-            else:    
-                ap_success_cases_f = "ap5_success_cases.txt"
-                ap_failure_cases_f = "ap5_failure_cases.txt"
-            threshold_success = threshold_successes[ap_index]
-            success_cases = (result > threshold_success)[:,0]
-            if ap_s_cnt < collect_number and y_pred[success_cases, ap_index].shape[0] > 0:
-                if y_pred[success_cases, ap_index].shape[0] - ap_s_cnt >= collect_number:
-                    # output the first [0, collect_number] success cases
-                    take_number = collect_number - ap_s_cnt
-                    output_to_file(ap_success_cases_f, y_pred[success_cases, ap_index][:take_number], y_true[success_cases, ap_index][:take_number], xb[success_cases, ap_index, :][:take_number,:], epoch, ap_s_cnt)
-                    ap_s_cnt = collect_number
-                else:
-                    # output the first [0, collect_number] success cases
-                    output_to_file(ap_success_cases_f, y_pred[success_cases, ap_index], y_true[success_cases, ap_index], xb[success_cases, ap_index, :], epoch, ap_s_cnt)
-                    ap_s_cnt += success_cases.shape[0]
-            threshold_failure = threshold_failures[ap_index]
-            failure_cases = (result <= threshold_failure)[:,0]
-            if ap_f_cnt < collect_number and y_pred[failure_cases, ap_index].shape[0] > 0:
-                if y_pred[failure_cases, ap_index].shape[0] - ap_f_cnt >= collect_number:
-                    take_number = collect_number - ap_f_cnt
-                    output_to_file(ap_failure_cases_f, y_pred[failure_cases, ap_index][:take_number], y_true[failure_cases, ap_index][:take_number], xb[failure_cases, ap_index, :][:take_number,:], epoch, ap_f_cnt)
-                    ap_f_cnt = collect_number
-                else:
-                    # output the first [0, collect_number] failure cases
-                    output_to_file(ap_failure_cases_f, y_pred[failure_cases, ap_index], y_true[failure_cases, ap_index], xb[failure_cases, ap_index, :], epoch, ap_f_cnt)
-                    ap_f_cnt += y_pred[failure_cases, ap_index].shape[0]
 
     return avg_precisions
     

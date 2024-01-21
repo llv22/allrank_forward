@@ -31,30 +31,30 @@ def loss_batch(model, loss_func, xb, yb, indices, gradient_clipping_norm, opt=No
     return loss.item(), len(xb)
 
 
-def metric_on_batch(metric, model, xb, yb, indices, epoch):
+def metric_on_batch(metric, model, xb, yb, indices, epoch, output_dir=None):
     mask = (yb == PADDED_Y_VALUE)
     if metrics_module.export_failure:
-        return metric(model.score(xb, mask, indices), yb, xb=xb, model=model, epoch=epoch)
+        return metric(model.score(xb, mask, indices), yb, xb=xb, model=model, epoch=epoch, output_dir=output_dir)
     else:
         return metric(model.score(xb, mask, indices), yb)
 
 
-def metric_on_epoch(metric, model, dl, dev, epoch):
+def metric_on_epoch(metric, model, dl, dev, epoch, output_dir=None):
     metric_values = torch.mean(
         torch.cat(
-            [metric_on_batch(metric, model, xb.to(device=dev), yb.to(device=dev), indices.to(device=dev), epoch)
+            [metric_on_batch(metric, model, xb.to(device=dev), yb.to(device=dev), indices.to(device=dev), epoch, output_dir)
              for xb, yb, indices in dl]
         ), dim=0
     ).cpu().numpy()
     return metric_values
 
 
-def compute_metrics(metrics, model, dl, dev, epoch):
+def compute_metrics(metrics, model, dl, dev, epoch, output_dir=None):
     metric_values_dict = {}
     for metric_name, ats in metrics.items():
         metric_func = getattr(metrics_module, metric_name)
         metric_func_with_ats = partial(metric_func, ats=ats)
-        metrics_values = metric_on_epoch(metric_func_with_ats, model, dl, dev, epoch)
+        metrics_values = metric_on_epoch(metric_func_with_ats, model, dl, dev, epoch, output_dir)
         if ats is not None:
             metrics_names = ["{metric_name}_{at}".format(metric_name=metric_name, at=at) for at in ats]
         else:
@@ -145,7 +145,9 @@ def fit(epochs, model, loss_func, optimizer, scheduler, train_dl, valid_dl, conf
             break
 
     if test_dl is not None:
-        test_metrics = compute_metrics(config.metrics, model, test_dl, device, epoch)
+        model.eval()
+        metrics_module.export_failure = True
+        test_metrics = compute_metrics(config.metrics, model, test_dl, device, epoch, output_dir)
         logger.info("Test metrics: {}".format(test_metrics))
         test_metrics_to_tb = {("test", name): value for name, value in test_metrics.items()}
         tensorboard_metrics_dict.update(test_metrics_to_tb)

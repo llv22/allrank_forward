@@ -106,7 +106,7 @@ class LibSVMDataset(Dataset):
         """
         X = X.toarray()
 
-        _, indices, counts = np.unique(query_ids, return_index=True, return_counts=True)
+        u, indices, counts = np.unique(query_ids, return_index=True, return_counts=True)
         groups = np.cumsum(counts[np.argsort(indices)])
 
         self.X_by_qid = np.split(X, groups)[:-1]
@@ -181,7 +181,10 @@ def load_libsvm_role(input_path: str, role: str, mark_feature_indexes: [int]=Non
     logger.info("will load {} data from {}".format(role, path))
     with open_local_or_gs(path, "rb") as input_stream:
         ds = LibSVMDataset.from_svm_file(input_stream, mark_feature_indexes)
-    logger.info("{} DS shape: {}".format(role, ds.shape))
+    if len(mark_feature_indexes) > 0:
+        logger.info("{} DS shape: {} with last dimension deducted by mark field length: {}".format(role, ds.shape, len(mark_feature_indexes)))
+    else:
+        logger.info("{} DS shape: {}".format(role, ds.shape))
     return ds
 
 
@@ -197,7 +200,7 @@ def fix_length_to_longest_slate(ds: LibSVMDataset) -> Compose:
     return transforms.Compose([FixLength(int(ds.longest_query_length)), ToTensor()])
 
 
-def load_libsvm_dataset(input_path: str, slate_length: int, validation_ds_role: str, get_test_statistics: bool=False, mark_feature_indexes: [int]=None) \
+def load_libsvm_dataset(input_path: str, slate_length: int, validation_ds_role: str, get_test_statistics: bool=False, mark_feature_indexes: [int]=None, mark_test_feature_indexes: [int]=None) \
         -> Tuple[LibSVMDataset, LibSVMDataset]:
     """
     Helper function loading a train LibSVMDataset and a specified validation LibSVMDataset.
@@ -213,7 +216,7 @@ def load_libsvm_dataset(input_path: str, slate_length: int, validation_ds_role: 
     val_ds = load_libsvm_dataset_role(validation_ds_role, input_path, slate_length, mark_feature_indexes)
     
     if get_test_statistics:
-        test_ds = load_libsvm_dataset_role("test", input_path, slate_length, mark_feature_indexes)
+        test_ds = load_libsvm_dataset_role("test", input_path, slate_length, mark_test_feature_indexes)
         return train_ds, val_ds, test_ds
 
     return train_ds, val_ds

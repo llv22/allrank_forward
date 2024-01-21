@@ -58,6 +58,7 @@ def run():
             validation_ds_role=config.data.validation_ds_role,
             get_test_statistics=config.data.get_test_statistics,
             mark_feature_indexes=config.data.mark_feature_indexes,
+            mark_test_feature_indexes=config.data.mark_test_feature_indexes,
         )
     else:
         train_ds, val_ds = load_libsvm_dataset(
@@ -77,7 +78,6 @@ def run():
         train_dl, val_dl = create_data_loaders(
             train_ds, val_ds, num_workers=config.data.num_workers, batch_size=config.data.batch_size)
     
-
     # gpu support
     dev = get_torch_device()
     logger.info("Model training will execute on {}".format(dev.type))

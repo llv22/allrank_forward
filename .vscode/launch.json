@@ -14,6 +14,15 @@
             "justMyCode": true
         },
         {
+            "name": "end_to_end_with_google_rank",
+            "type": "python",
+            "request": "launch",
+            "program": "end_to_end_statistics.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true
+        },
+        {
             "name": "metagui_val_split",
             "type": "python",
             "request": "launch",
@@ -104,6 +113,27 @@
                 "neuralndcg_atmax_Multimodal_Feature18_label2_on_weweb_ground_truth",
                 "--job-dir",
                 "experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_weweb_ground_truth_weweb_debug",
+            ],
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}${pathSeparator}${env:PYTHONPATH}",
+                "CUDA_VISIBLE_DEVICES": "0"
+            },
+            "justMyCode": true
+        },
+        {
+            "name": "allrank_train_mm_bce",
+            "type": "python",
+            "request": "launch",
+            "program": "allrank/main.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "args": [
+                "--config-file-name",
+                "allrank/settings/bce/pointwise_bce_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model.json",
+                "--run-id",
+                "pointwise_bce_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model",
+                "--job-dir",
+                "experiments/bce/pointwise_bce_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model",
             ],
             "env": {
                 "PYTHONPATH": "${workspaceFolder}${pathSeparator}${env:PYTHONPATH}",

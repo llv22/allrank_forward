@@ -16,16 +16,16 @@
             "dropout": 0.1
         },
         "post_model": {
-            "output_activation": "Tanh",
+            "output_activation": "Sigmoid",
             "d_output": 1
         }
     },
     "data": {
-        "path": "mmdataset/Feature_18_coherent_label2",
+        "path": "mmdataset/Feature_18_zeroshot_label2",
         "validation_ds_role": "val",
         "get_test_statistics": true,
         "num_workers": 1,
-        "batch_size": 64,
+        "batch_size": 128,
         "slate_length": 240,
         "mark_feature_indexes": [
             8,
@@ -48,8 +48,8 @@
         }
     },
     "training": {
-        "epochs": 20,
-        "early_stopping_patience": 20,
+        "epochs": 30,
+        "early_stopping_patience": 30,
         "gradient_clipping_norm": null
     },
     "val_metric": "ndcg_5",
@@ -57,12 +57,10 @@
         "ndcg_1",
         "ndcg_5",
         "ndcg_10",
-        "mrr_1",
-        "mrr_5",
-        "mrr_10",
-        "ap_1",
-        "ap_5",
-        "ap_10"
+        "mrr_None",
+        "ap_None",
+        "precision_1",
+        "precision_5"
     ],
     "loss": {
         "name": "neuralNDCG",

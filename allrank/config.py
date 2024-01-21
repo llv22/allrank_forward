@@ -50,6 +50,7 @@ class DataConfig:
     validation_ds_role = attrib(type=str)
     get_test_statistics = attrib(type=bool, default=False)
     mark_feature_indexes = attrib(type=[int], default=[])
+    mark_test_feature_indexes = attrib(type=[int], default=[])
 
 
 @attrs

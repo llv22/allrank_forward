@@ -5,6 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "statisitc_significance",
+            "type": "python",
+            "request": "launch",
+            "program": "significant_analysis.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true
+        },
+
+        {
             "name": "weweb_test_val_split",
             "type": "python",
             "request": "launch",

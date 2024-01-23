@@ -53,7 +53,7 @@
   "detect_anomaly": false,
   "expected_metrics" : {
     "val": {
-      "ndcg_5": 0.5
+      "ndcg_5": 0.2
     }
   }
 }

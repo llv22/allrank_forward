@@ -461,7 +461,7 @@ conda activate metaGUI
 * NeurlNDCG
 
 ```bash
-PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth.json --run-id neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth --job-dir experiments/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth #DONE
+PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth.json --run-id neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth --job-dir experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth #DONE
 ```
 
 ### 1. 18 features
@@ -469,6 +469,10 @@ PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --conf
 ```bash
 PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --config-file-name allrank/settings/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth.json --run-id neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth --job-dir experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth #DONE
 ```
+
+[INFO] 2024-01-22 09:40:52 - Epoch : 19 Train loss: -0.9063339655131206 Val loss: -0.9046579749734552 Train ndcg_1 0.9942656755447388 Train ndcg_5 0.9941678643226624 Train ndcg_10 0.9949824810028076 Train mrr 0.9963098764419556 Train ap 0.9907324910163879 Train precision_1 0.9928321242332458 Train precision_5 0.29735586047172546 Val ndcg_1 0.9898648858070374 Val ndcg_5 0.9933796525001526 Val ndcg_10 0.9941566586494446 Val mrr 0.9947447180747986 Val ap 0.9904809594154358 Val precision_1 0.9898648858070374 Val precision_5 0.2797297239303589
+[INFO] 2024-01-22 09:40:52 - Current:0.9933796525001526 Best:1.0
+[INFO] 2024-01-22 09:40:53 - Test metrics: {'ndcg_1': 0.26495728, 'ndcg_5': 0.28738827, 'ndcg_10': 0.2960714, 'mrr': 0.29110706, 'ap': 0.27940682, 'precision_1': 0.26495728, 'precision_5': 0.107692316}
 
 ### 2. Without feature 0 "Query term ratio in instructions"
 
@@ -522,11 +526,27 @@ PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --conf
 
 neuralNDCG Time 1:
 
+[INFO] 2024-01-22 09:33:37 - Epoch : 19 Train loss: -0.9063339655131206 Val loss: -0.4570321904288398 Train ndcg_1 0.9942656755447388 Train ndcg_5 0.9941678643226624 Train ndcg_10 0.9949824810028076 Train mrr 0.9963098764419556 Train ap 0.9907324910163879 Train precision_1 0.9928321242332458 Train precision_5 0.29735586047172546 Val ndcg_1 0.2326388955116272 Val ndcg_5 0.27378058433532715 Val ndcg_10 0.27711227536201477 Val mrr 0.26250413060188293 Val ap 0.26316431164741516 Val precision_1 0.2326388955116272 Val precision_5 0.20104166865348816
+[INFO] 2024-01-22 09:33:37 - Current:0.27378058433532715 Best:0.29597318172454834
+[INFO] 2024-01-22 09:33:41 - Test metrics: {'ndcg_1': 0.26434782, 'ndcg_5': 0.32604983, 'ndcg_10': 0.33070648, 'mrr': 0.3112029, 'ap': 0.3126666, 'precision_1': 0.26434782, 'precision_5': 0.17878261}
+
 listNet Time 1:
+
+[INFO] 2024-01-22 10:52:17 - Epoch : 19 Train loss: 0.8899635142602522 Val loss: 0.49296434058083427 Train ndcg_1 0.9899649620056152 Train ndcg_5 0.9947431087493896 Train ndcg_10 0.9950008988380432 Train mrr 0.9945312142372131 Train ap 0.9926384687423706 Train precision_1 0.9906021356582642 Train precision_5 0.29802486300468445 Val ndcg_1 0.21875 Val ndcg_5 0.26425012946128845 Val ndcg_10 0.2694321572780609 Val mrr 0.2517836391925812 Val ap 0.2535860538482666 Val precision_1 0.21875 Val precision_5 0.19895833730697632
+[INFO] 2024-01-22 10:52:17 - Current:0.26425012946128845 Best:0.2708679735660553
+[INFO] 2024-01-22 10:52:20 - Test metrics: {'ndcg_1': 0.24695653, 'ndcg_5': 0.31522298, 'ndcg_10': 0.32162762, 'mrr': 0.29837102, 'ap': 0.3009607, 'precision_1': 0.24695653, 'precision_5': 0.17704348}
 
 lambdarank Time 1:
 
+2024-01-22 08:52:31 - Epoch : 19 Train loss: 0.06408040969733145 Val loss: 19.628841824001736 Train ndcg_1 0.9988850355148315 Train ndcg_5 0.9991609454154968 Train ndcg_10 0.9991609454154968 Train mrr 0.9992035627365112 Train ap 0.9991106986999512 Train precision_1 0.9990442991256714 Train precision_5 0.2986301779747009 Val ndcg_1 0.265625 Val ndcg_5 0.2896327078342438 Val ndcg_10 0.2924577593803406 Val mrr 0.2857060134410858 Val ap 0.2823547422885895 Val precision_1 0.265625 Val precision_5 0.20243056118488312
+2024-01-22 08:52:31 - Current:0.2896327078342438 Best:0.30427107214927673
+2024-01-22 08:52:34 - Test metrics: {'ndcg_1': 0.29391304, 'ndcg_5': 0.34495965, 'ndcg_10': 0.34703442, 'mrr': 0.3343768, 'ap': 0.33268175, 'precision_1': 0.29391304, 'precision_5': 0.1826087}
+
 approxndc Time 1:
+
+[INFO] 2024-01-22 10:03:20 - Epoch : 19 Train loss: -0.9955557235185793 Val loss: -0.26082850164837307 Train ndcg_1 0.9947435855865479 Train ndcg_5 0.9971022009849548 Train ndcg_10 0.997189462184906 Train mrr 0.9968276023864746 Train ap 0.9961496591567993 Train precision_1 0.9941064119338989 Train precision_5 0.2983434498310089 Val ndcg_1 0.2326388955116272 Val ndcg_5 0.27194035053253174 Val ndcg_10 0.2761770486831665 Val mrr 0.25984206795692444 Val ap 0.2622193694114685 Val precision_1 0.2326388955116272 Val precision_5 0.20173612236976624
+[INFO] 2024-01-22 10:03:20 - Current:0.27194035053253174 Best:0.3040275573730469
+[INFO] 2024-01-22 10:03:23 - Test metrics: {'ndcg_1': 0.26956522, 'ndcg_5': 0.32612193, 'ndcg_10': 0.3310262, 'mrr': 0.31213045, 'ap': 0.31199834, 'precision_1': 0.26956522, 'precision_5': 0.18017393}
 
 ### neuralNDCG, listNet, lambdarank, approxndc on dataset "How-to" WeWeb
 
@@ -576,17 +596,18 @@ execution average statistics: {'mrr': 0.20309381237524948, 'p1': 0.1856287425149
 
 * listNet without Google Rank:
 
-2024-01-21 12:13:59,132 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 0.0 Val loss: 1.3611424484768428 Train ndcg_1 0.9993628859519958 Train ndcg_5 0.9993628859519958 Train ndcg_10 0.9993628859519958 Train mrr 0.9993628859519958 Train ap 0.9993628859519958 Train precision_1 0.9993628859519958 Train precision_5 0.19987258315086365 Val ndcg_1 0.46396398544311523 Val ndcg_5 0.7163776159286499 Val ndcg_10 0.7357118725776672 Val mrr 0.6543144583702087 Val ap 0.6470947265625 Val precision_1 0.46396398544311523 Val precision_5 0.24279280006885529
-2024-01-21 12:13:59,134 - allrank.utils.ltr_logging - INFO - Current:0.7163776159286499 Best:0.7163776159286499
-2024-01-21 12:13:59,508 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.16239317, 'ndcg_5': 0.21822327, 'ndcg_10': 0.2394602, 'mrr': 0.21765088, 'ap': 0.21370506, 'precision_1': 0.16239317, 'precision_5': 0.09230771} -> 117/167
 
-{'ndcg_1': 0.11377246041916167,
- 'ndcg_5': 0.15288696161676646,
- 'ndcg_10': 0.1677655293413174,
- 'mrr': 0.15248594586826344,
- 'ap': 0.1497215091017964,
- 'precision_1': 0.11377246041916167,
- 'precision_5': 0.06467067107784431}
+[INFO] 2024-01-22 11:23:24 - Epoch : 19 Train loss: 0.8899635142602522 Val loss: 0.8315677615973327 Train ndcg_1 0.9899649620056152 Train ndcg_5 0.9947431087493896 Train ndcg_10 0.9950008988380432 Train mrr 0.9945312142372131 Train ap 0.9926384687423706 Train precision_1 0.9906021356582642 Train precision_5 0.29802486300468445 Val ndcg_1 0.9853603839874268 Val ndcg_5 0.9939936995506287 Val ndcg_10 0.9942396283149719 Val mrr 0.9926801919937134 Val ap 0.9916432499885559 Val precision_1 0.9853603839874268 Val precision_5 0.2804054319858551
+[INFO] 2024-01-22 11:23:24 - Current:0.9939936995506287 Best:1.0
+[INFO] 2024-01-22 11:23:24 - Test metrics: {'ndcg_1': 0.25641027, 'ndcg_5': 0.28601643, 'ndcg_10': 0.2935485, 'mrr': 0.29039478, 'ap': 0.2788039, 'precision_1': 0.26495728, 'precision_5': 0.11282053} -> 117/167
+
+{'ndcg_1': 0.17964072808383233,
+ 'ndcg_5': 0.2003827683233533,
+ 'ndcg_10': 0.20565972754491016,
+ 'mrr': 0.20345023508982038,
+ 'ap': 0.19532967844311377,
+ 'precision_1': 0.18562875305389223,
+ 'precision_5': 0.07904192820359282}
 
 * listNet wih Google Rank Adjustment:
 
@@ -606,6 +627,11 @@ google average statistics: {'mrr': 0.10238170502348029, 'p1': 0.0538922155688622
 execution average statistics: {'mrr': 0.1524859372164761, 'p1': 0.11377245508982035, 'p5': 0.06467065868263475, 'ndcg1': 0.11377245508982035, 'ndcg5': 0.15288695620307285}
 
 * approxndc without Google Rank:
+
+
+[INFO] 2024-01-22 10:15:15 - Epoch : 19 Train loss: -0.9966119197987948 Val loss: -0.9938635546881873 Train ndcg_1 0.9988850355148315 Train ndcg_5 0.9990139007568359 Train ndcg_10 0.9990105628967285 Train mrr 0.9990442991256714 Train ap 0.9980828166007996 Train precision_1 0.9982478618621826 Train precision_5 0.2986301779747009 Val ndcg_1 1.0 Val ndcg_5 1.0 Val ndcg_10 1.0 Val mrr 1.0 Val ap 1.0 Val precision_1 1.0 Val precision_5 0.2806306481361389
+[INFO] 2024-01-22 10:15:15 - Current:1.0 Best:1.0
+[INFO] 2024-01-22 10:15:16 - Test metrics: {'ndcg_1': 0.26495728, 'ndcg_5': 0.2888895, 'ndcg_10': 0.29544598, 'mrr': 0.29017097, 'ap': 0.27788368, 'precision_1': 0.26495728, 'precision_5': 0.109401725}
 
 2024-01-21 12:16:56,040 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: -0.9966119197987948 Val loss: -0.9938635546881873 Train ndcg_1 0.9988850355148315 Train ndcg_5 0.9990139007568359 Train ndcg_10 0.9990105628967285 Train mrr 0.9990442991256714 Train ap 0.9980828166007996 Train precision_1 0.9982478618621826 Train precision_5 0.2986301779747009 Val ndcg_1 1.0 Val ndcg_5 1.0 Val ndcg_10 1.0 Val mrr 1.0 Val ap 1.0 Val precision_1 1.0 Val precision_5 0.2806306481361389
 2024-01-21 12:16:56,042 - allrank.utils.ltr_logging - INFO - Current:1.0 Best:1.0
@@ -632,6 +658,11 @@ google average statistics: {'mrr': 0.10238170502348029, 'p1': 0.0538922155688622
 execution average statistics: {'mrr': 0.20329341317365268, 'p1': 0.18562874251497005, 'p5': 0.07664670658682635, 'ndcg1': 0.18562874251497005, 'ndcg5': 0.20239561662786645}
 
 * lambdarank without Google Rank:
+
+[INFO] 2024-01-22 08:57:06 - Current learning rate: 0.001
+[INFO] 2024-01-22 08:57:10 - Epoch : 19 Train loss: 0.06408040969733145 Val loss: 0.002021976289347754 Train ndcg_1 0.9988850355148315 Train ndcg_5 0.9991609454154968 Train ndcg_10 0.9991609454154968 Train mrr 0.9992035627365112 Train ap 0.9991106986999512 Train precision_1 0.9990442991256714 Train precision_5 0.2986301779747009 Val ndcg_1 1.0 Val ndcg_5 1.0 Val ndcg_10 1.0 Val mrr 1.0 Val ap 1.0 Val precision_1 1.0 Val precision_5 0.2806306481361389
+[INFO] 2024-01-22 08:57:10 - Current:1.0 Best:1.0
+[INFO] 2024-01-22 08:57:10 - Test metrics: {'ndcg_1': 0.2905983, 'ndcg_5': 0.30285743, 'ndcg_10': 0.30491447, 'mrr': 0.304416, 'ap': 0.29099444, 'precision_1': 0.2905983, 'precision_5': 0.116239324}
 
 2024-01-21 12:15:27,868 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 0.06408040969733145 Val loss: 0.002021976289347754 Train ndcg_1 0.9988850355148315 Train ndcg_5 0.9991609454154968 Train ndcg_10 0.9991609454154968 Train mrr 0.9992035627365112 Train ap 0.9991106986999512 Train precision_1 0.9990442991256714 Train precision_5 0.2986301779747009 Val ndcg_1 1.0 Val ndcg_5 1.0 Val ndcg_10 1.0 Val mrr 1.0 Val ap 1.0 Val precision_1 1.0 Val precision_5 0.2806306481361389
 2024-01-21 12:15:27,870 - allrank.utils.ltr_logging - INFO - Current:1.0 Best:1.0
@@ -769,6 +800,8 @@ google[mrr] > execution_statistics[mrr]: 23, google[mrr] < execution_statistics[
 google average statistics: {'mrr': 0.10238170502348029, 'p1': 0.05389221556886228, 'p5': 0.05389221556886228, 'ndcg1': 0.05389221556886228, 'ndcg5': 0.10419093916874589}
 execution average statistics: {'mrr': 0.17336042201311663, 'p1': 0.1497005988023952, 'p5': 0.07185628742514971, 'ndcg1': 0.1497005988023952, 'ndcg5': 0.17408391507708737}
 
+### MLP + Loss
+
 #### neuralNDCG
 
 ```bash
@@ -776,6 +809,10 @@ PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --conf
 ```
 
 "How-to" META-GUI
+
+2024-01-21 23:13:16,626 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: -0.9094336908423396 Val loss: -0.38125332196553546 Train ndcg_1 0.9993628859519958 Train ndcg_5 0.9993501305580139 Train ndcg_10 0.9993501305580139 Train mrr 0.9993628859519958 Train ap_10 0.9993363618850708 Train precision_1 0.9993628859519958 Train precision_5 0.29863014817237854 Val ndcg_1 0.2065972238779068 Val ndcg_5 0.25481468439102173 Val ndcg_10 0.26165100932121277 Val mrr 0.2391844391822815 Val ap_10 0.2440851479768753 Val precision_1 0.2065972238779068 Val precision_5 0.19722221791744232
+2024-01-21 23:13:16,627 - allrank.utils.ltr_logging - INFO - Current:0.25481468439102173 Best:0.28698232769966125
+2024-01-21 23:13:23,082 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.21739131, 'ndcg_5': 0.30020073, 'ndcg_10': 0.30700687, 'mrr': 0.2761398, 'ap_10': 0.28196734, 'precision_1': 0.21739131, 'precision_5': 0.17669566}
 
 "How-to" WeWeb
 
@@ -789,6 +826,10 @@ PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --conf
 
 "How-to" META-GUI"
 
+2024-01-21 23:14:22,826 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 0.0 Val loss: 0.4932870931095547 Train ndcg_1 0.9993628859519958 Train ndcg_5 0.9993628859519958 Train ndcg_10 0.9993628859519958 Train mrr 0.9993628859519958 Train ap 0.9993628859519958 Train precision_1 0.9993628859519958 Train precision_5 0.19987258315086365 Val ndcg_1 0.234375 Val ndcg_5 0.27244213223457336 Val ndcg_10 0.27637332677841187 Val mrr 0.2634197473526001 Val ap 0.2623297870159149 Val precision_1 0.234375 Val precision_5 0.19930556416511536
+2024-01-21 23:14:22,827 - allrank.utils.ltr_logging - INFO - Current:0.27244213223457336 Best:0.27244213223457336
+2024-01-21 23:14:31,703 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.24695653, 'ndcg_5': 0.31612018, 'ndcg_10': 0.32168564, 'mrr': 0.29968533, 'ap': 0.30061364, 'precision_1': 0.24695653, 'precision_5': 0.17808697}
+
 "How-to" WeWeb
 
 Zero-shot
@@ -800,6 +841,10 @@ PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --conf
 ```
 
 "How-to" META-GUI
+
+2024-01-21 23:16:01,858 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 47.04511473990808 Val loss: 10.773070318831337 Train ndcg_1 0.9992035627365112 Train ndcg_5 0.9992766380310059 Train ndcg_10 0.9992766380310059 Train mrr 0.9992832541465759 Train ap 0.9992221593856812 Train precision_1 0.9992035627365112 Train precision_5 0.29863014817237854 Val ndcg_1 0.2065972238779068 Val ndcg_5 0.2546476721763611 Val ndcg_10 0.2614840269088745 Val mrr 0.23895835876464844 Val ap 0.24439819157123566 Val precision_1 0.2065972238779068 Val precision_5 0.19722221791744232
+2024-01-21 23:16:01,859 - allrank.utils.ltr_logging - INFO - Current:0.2546476721763611 Best:0.2713039219379425
+2024-01-21 23:16:10,475 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.21565218, 'ndcg_5': 0.2995025, 'ndcg_10': 0.30612543, 'mrr': 0.27493352, 'ap': 0.28152198, 'precision_1': 0.21565218, 'precision_5': 0.17669566}
 
 "How-to" WeWeb
 
@@ -813,10 +858,17 @@ PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --conf
 
 "How-to" META-GUI
 
+[INFO] 2024-01-22 13:11:58 - Epoch : 19 Train loss: -0.707638318389037 Val loss: -0.24607786536216736 Train ndcg_1 0.9992035627365112 Train ndcg_5 0.9992371797561646 Train ndcg_10 0.9992564916610718 Train mrr 0.9992832541465759 Train ap 0.9991770386695862 Train precision_1 0.9992035627365112 Train precision_5 0.2985982894897461 Val ndcg_1 0.2065972238779068 Val ndcg_5 0.2558635175228119 Val ndcg_10 0.26212114095687866 Val mrr 0.23985923826694489 Val ap 0.2451452761888504 Val precision_1 0.2065972238779068 Val precision_5 0.19756944477558136
+[INFO] 2024-01-22 13:11:58 - Current:0.2558635175228119 Best:0.28453683853149414
+[INFO] 2024-01-22 13:12:01 - Test metrics: {'ndcg_1': 0.2226087, 'ndcg_5': 0.3035813, 'ndcg_10': 0.31035638, 'mrr': 0.28074643, 'ap': 0.28681475, 'precision_1': 0.2226087, 'precision_5': 0.17669566}
 
 "How-to" WeWeb
 
 Zero-shot
+
+[INFO] 2024-01-22 13:28:41 - Epoch : 19 Train loss: -0.707638318389037 Val loss: -0.712489253765828 Train ndcg_1 0.9992035627365112 Train ndcg_5 0.9992371797561646 Train ndcg_10 0.9992564916610718 Train mrr 0.9992832541465759 Train ap 0.9991770386695862 Train precision_1 0.9992035627365112 Train precision_5 0.2985982894897461 Val ndcg_1 1.0 Val ndcg_5 0.9999096393585205 Val ndcg_10 0.9999096393585205 Val mrr 1.0 Val ap 0.9998123645782471 Val precision_1 1.0 Val precision_5 0.2806306481361389
+[INFO] 2024-01-22 13:28:41 - Current:0.9999096393585205 Best:0.999819278717041
+[INFO] 2024-01-22 13:28:42 - Test metrics: {'ndcg_1': 0.25641027, 'ndcg_5': 0.28610703, 'ndcg_10': 0.2919317, 'mrr': 0.28418806, 'ap': 0.27532113, 'precision_1': 0.25641027, 'precision_5': 0.11282053}
 
 ### Pointwise Loss
 
@@ -860,6 +912,10 @@ google average statistics: {'mrr': 0.10238170502348029, 'p1': 0.0538922155688622
 execution average statistics: {'mrr': 0.194311377245509, 'p1': 0.16766467065868262, 'p5': 0.07664670658682636, 'ndcg1': 0.16766467065868262, 'ndcg5': 0.19426477609123186}
 
 * META-GUI
+
+[INFO] 2024-01-22 08:26:25 - Epoch : 19 Train loss: 1.9755361210430227 Val loss: 2.419004612498813 Train ndcg_1 0.9424976110458374 Train ndcg_5 0.9684039354324341 Train ndcg_10 0.9700592756271362 Train mrr 0.967902660369873 Train ap 0.9554974436759949 Train precision_1 0.9424976110458374 Train precision_5 0.2954125702381134 Val ndcg_1 0.2152777761220932 Val ndcg_5 0.26506659388542175 Val ndcg_10 0.269875168800354 Val mrr 0.2508721947669983 Val ap 0.2541239559650421 Val precision_1 0.2152777761220932 Val precision_5 0.20000000298023224
+[INFO] 2024-01-22 08:26:25 - Current:0.26506659388542175 Best:0.2648300230503082
+[INFO] 2024-01-22 08:26:28 - Test metrics: {'ndcg_1': 0.23826088, 'ndcg_5': 0.3143243, 'ndcg_10': 0.31855163, 'mrr': 0.29377642, 'ap': 0.29690367, 'precision_1': 0.23826088, 'precision_5': 0.17913043}
 
 * WeWeb
 

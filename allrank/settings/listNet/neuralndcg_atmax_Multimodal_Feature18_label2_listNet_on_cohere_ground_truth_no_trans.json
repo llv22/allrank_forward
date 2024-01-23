@@ -22,7 +22,7 @@
     "mark_test_feature_indexes": [18],
     "num_workers": 1,
     "batch_size": 128,
-    "slate_length": 1
+    "slate_length": 240
   },
   "optimizer": {
     "name": "Adam",

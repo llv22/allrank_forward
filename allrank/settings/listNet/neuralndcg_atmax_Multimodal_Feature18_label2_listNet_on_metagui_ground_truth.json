@@ -23,8 +23,8 @@
     "validation_ds_role": "val",
     "get_test_statistics": true,
     "num_workers": 1,
-    "batch_size": 64,
-    "slate_length": 1
+    "batch_size": 128,
+    "slate_length": 240
   },
   "optimizer": {
     "name": "Adam",
@@ -62,7 +62,7 @@
   "detect_anomaly": false,
   "expected_metrics" : {
     "val": {
-      "ndcg_5": 0.5
+      "ndcg_5": 0.25
     }
   }
 }

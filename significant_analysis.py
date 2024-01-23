@@ -9,18 +9,18 @@ np_array_structured = np.array(tab.as_array())
 # print(np_array_structured)
 
 # Example data
-baseline = np.array(list(np_array_structured[0])[1:])[0:2]
+baseline = np.array(list(np_array_structured[0])[1:]) * 167
 for i in range(1, len(np_array_structured)):
-    new_result = np.array(list(np_array_structured[i])[1:])[0:2]
+    new_result = np.array(list(np_array_structured[i])[1:]) * 167
     # Perform a two-sample t-test
     t_stat, p_value = stats.ttest_ind(baseline, new_result)
 
-    # print("T-statistic:", t_stat)
-    # print("p-value:", p_value)
+    print("T-statistic:", t_stat)
+    print("p-value:", p_value)
 
     # Interpret the result
     alpha = 0.05
     if p_value < alpha:
         print("Result is statistically significant")
-    # else:
-    #     print("No significant difference found")
+    else:
+        print("No significant difference found")

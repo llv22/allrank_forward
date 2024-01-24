@@ -176,14 +176,14 @@ if __name__ == "__main__":
             "ndcg1": ndcg(ground_true_google_ranking, k=1),
             f"ndcg{ndcg_k}": ndcg(ground_true_google_ranking, k=ndcg_k),
         }
-        rerank_relevance_scoring = [-1] * len(google_rank_to_index)
+        rerank_relevance_scoring = [-float('inf')] * len(google_rank_to_index)
         # see: adjust the reranking result
         if search_query in query_to_qid:
             qid = query_to_qid[search_query]
             if qid in qid_to_ranks:
                 ranks = qid_to_ranks[qid]
                 for r in ranks:
-                    assert r['scoring'] >= 0.0
+                    assert r['scoring'] >= -float('inf')
                     rerank_relevance_scoring[google_rank_to_index[r['google_rank']]] = r['scoring']
         sp = list(zip(rerank_relevance_scoring, google_rank))
         el = sorted(enumerate(sp), key = lambda x: (x[1][0], -x[1][1]), reverse=True)

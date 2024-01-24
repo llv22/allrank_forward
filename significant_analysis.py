@@ -9,12 +9,11 @@ np_array_structured = np.array(tab.as_array())
 # print(np_array_structured)
 
 # Example data
-baseline = np.array(list(np_array_structured[0])[1:]) * 167
+baseline = np.array(list(np_array_structured[0])[1:])
 for i in range(1, len(np_array_structured)):
-    for j in range(1, len(np_array_structured[i])):
-        new_result = np.array([np_array_structured[i][j]]) * 167
+        new_result = np.array(list(np_array_structured[i])[1:])
         # Perform a two-sample t-test
-        t_stat, p_value = stats.ttest_ind(baseline[j-1], new_result)
+        t_stat, p_value = stats.ttest_ind(baseline, new_result)
 
         # print("T-statistic:", t_stat)
         # print("p-value:", p_value)

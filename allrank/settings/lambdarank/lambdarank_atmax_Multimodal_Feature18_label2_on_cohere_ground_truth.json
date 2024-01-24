@@ -14,7 +14,7 @@
       "dropout": 0.1
     },
     "post_model": {
-      "output_activation": null,
+      "output_activation":  null,
       "d_output": 1
     }
   },

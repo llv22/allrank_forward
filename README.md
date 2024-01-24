@@ -570,32 +570,29 @@ PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --conf
 
 * neuralNDCG without Google Rank:
 
-2024-01-21 12:13:05,230 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: -0.9063339655131206 Val loss: -0.9046579749734552 Train ndcg_1 0.9942656755447388 Train ndcg_5 0.9941678643226624 Train ndcg_10 0.9949824810028076 Train mrr 0.9963098764419556 Train ap 0.9907324910163879 Train precision_1 0.9928321242332458 Train precision_5 0.29735586047172546 Val ndcg_1 0.9898648858070374 Val ndcg_5 0.9933796525001526 Val ndcg_10 0.9941566586494446 Val mrr 0.9947447180747986 Val ap 0.9904809594154358 Val precision_1 0.9898648858070374 Val precision_5 0.2797297239303589
-2024-01-21 12:13:05,234 - allrank.utils.ltr_logging - INFO - Current:0.9933796525001526 Best:1.0
-2024-01-21 12:13:05,593 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.26495728, 'ndcg_5': 0.28738827, 'ndcg_10': 0.2960714, 'mrr': 0.29110706, 'ap': 0.27940682, 'precision_1': 0.26495728, 'precision_5': 0.107692316} -> 117/167
-{'ndcg_1': 0.18562875305389223,
- 'ndcg_5': 0.20134387778443116,
- 'ndcg_10': 0.20742726826347305,
- 'mrr': 0.2039492576047904,
- 'ap': 0.19575208347305392,
- 'precision_1': 0.18562875305389223,
- 'precision_5': 0.07544910761676647}
+[INFO] 2024-01-24 12:42:34 - Epoch : 19 Train loss: -0.9995626235091789 Val loss: -0.9999954042238877 Train ndcg_1 0.9987257122993469 Train ndcg_5 0.9991149306297302 Train ndcg_10 0.999103844165802 Train mrr 0.9993628859519958 Train ap 0.9987462759017944 Train precision_1 0.9993628859519958 Train precision_5 0.2986301779747009 Val ndcg_1 0.9988901615142822 Val ndcg_5 0.9988901615142822 Val ndcg_10 0.9988901615142822 Val mrr 0.9988901615142822 Val ap 0.9988901615142822 Val precision_1 0.9988901615142822 Val precision_5 0.27902331948280334
+[INFO] 2024-01-24 12:42:34 - Current:0.9988901615142822 Best:0.9988901615142822
+[INFO] 2024-01-24 12:42:34 - Test metrics: {'ndcg_1': 0.37362638, 'ndcg_5': 0.38222086, 'ndcg_10': 0.39003342, 'mrr': 0.38772893, 'ap': 0.37555692, 'precision_1': 0.37362638, 'precision_5': 0.13846155}
 
 * neuralNDCG with Google Rank adjustment:
 
 ```bash
-python end_to_end_statistics.py --rerank_result experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth/results/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth//predicted_result.txt
+python end_to_end_statistics.py --rerank_result experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth/results/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth/predicted_result.txt
 ```
 
-python end_to_end_statistics.py --rerank_result experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth/results/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth//predicted_result.txt
-How to pause history tracking in YouTube {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306} {'mrr': 0.16666666666666666, 'p1': 0.0, 'p5': 0.0, 'ndcg1': 0.0, 'ndcg5': 0.0}
+all data length: 3321
+How to add Home or Work in Google Maps {'mrr': 1.0, 'p1': 1.0, 'p5': 0.6, 'ndcg1': 1.0, 'ndcg5': 0.6843515475204855} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.4, 'ndcg1': 0.0, 'ndcg5': 0.34519134224686937}
+How to apply coupon? in Target {'mrr': 1.0, 'p1': 1.0, 'p5': 0.2, 'ndcg1': 1.0, 'ndcg5': 1.0} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+How to change your profile picture in Trip Advisor {'mrr': 1.0, 'p1': 1.0, 'p5': 0.4, 'ndcg1': 1.0, 'ndcg5': 0.9197207891481876} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.4, 'ndcg1': 0.0, 'ndcg5': 0.6509209298071326}
+How to list an item? in eBay {'mrr': 1.0, 'p1': 1.0, 'p5': 0.2, 'ndcg1': 1.0, 'ndcg5': 1.0} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+How to pause history tracking in YouTube {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306} {'mrr': 0.2, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.38685280723454163}
 How to share an article link in FlipBoard {'mrr': 0.5, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.6309297535714575} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
-google[mrr] > execution_statistics[mrr]: 27, google[mrr] < execution_statistics[mrr]: 2, google[mrr] = execution_statistics[mrr]: 88, zero_cnt_execution_statistics: 86, non_zero_cnt_execution_statistics: 31, total_query: 117
-google average statistics: {'mrr': 0.10238170502348029, 'p1': 0.05389221556886228, 'p5': 0.05389221556886228, 'ndcg1': 0.05389221556886228, 'ndcg5': 0.10419093916874589}
-execution average statistics: {'mrr': 0.20309381237524948, 'p1': 0.18562874251497005, 'p5': 0.07904191616766469, 'ndcg1': 0.18562874251497005, 'ndcg5': 0.2032960374207608}
+how to change emoji for group chat  in Messenger {'mrr': 0.3333333333333333, 'p1': 0.0, 'p5': 0.4, 'ndcg1': 0.0, 'ndcg5': 0.4367467095119258} {'mrr': 0.2, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.18154179253735267}
+google[mrr] > execution_statistics[mrr]: 24, google[mrr] < execution_statistics[mrr]: 7, google[mrr] = execution_statistics[mrr]: 136, zero_cnt_execution_statistics: 129, non_zero_cnt_execution_statistics: 38, total_query: 167
+google average statistics: {'mrr': 0.17821906906879376, 'p1': 0.11377245508982035, 'p5': 0.08502994011976044, 'ndcg1': 0.11377245508982035, 'ndcg5': 0.1692227773353583}
+execution average statistics: {'mrr': 0.2565808329360173, 'p1': 0.2275449101796407, 'p5': 0.10059880239520955, 'ndcg1': 0.2275449101796407, 'ndcg5': 0.23420341451381946}
 
 * listNet without Google Rank:
-
 
 [INFO] 2024-01-22 11:23:24 - Epoch : 19 Train loss: 0.8899635142602522 Val loss: 0.8315677615973327 Train ndcg_1 0.9899649620056152 Train ndcg_5 0.9947431087493896 Train ndcg_10 0.9950008988380432 Train mrr 0.9945312142372131 Train ap 0.9926384687423706 Train precision_1 0.9906021356582642 Train precision_5 0.29802486300468445 Val ndcg_1 0.9853603839874268 Val ndcg_5 0.9939936995506287 Val ndcg_10 0.9942396283149719 Val mrr 0.9926801919937134 Val ap 0.9916432499885559 Val precision_1 0.9853603839874268 Val precision_5 0.2804054319858551
 [INFO] 2024-01-22 11:23:24 - Current:0.9939936995506287 Best:1.0
@@ -628,7 +625,6 @@ execution average statistics: {'mrr': 0.1524859372164761, 'p1': 0.11377245508982
 
 * approxndc without Google Rank:
 
-
 [INFO] 2024-01-22 10:15:15 - Epoch : 19 Train loss: -0.9966119197987948 Val loss: -0.9938635546881873 Train ndcg_1 0.9988850355148315 Train ndcg_5 0.9990139007568359 Train ndcg_10 0.9990105628967285 Train mrr 0.9990442991256714 Train ap 0.9980828166007996 Train precision_1 0.9982478618621826 Train precision_5 0.2986301779747009 Val ndcg_1 1.0 Val ndcg_5 1.0 Val ndcg_10 1.0 Val mrr 1.0 Val ap 1.0 Val precision_1 1.0 Val precision_5 0.2806306481361389
 [INFO] 2024-01-22 10:15:15 - Current:1.0 Best:1.0
 [INFO] 2024-01-22 10:15:16 - Test metrics: {'ndcg_1': 0.26495728, 'ndcg_5': 0.2888895, 'ndcg_10': 0.29544598, 'mrr': 0.29017097, 'ap': 0.27788368, 'precision_1': 0.26495728, 'precision_5': 0.109401725}
@@ -659,21 +655,9 @@ execution average statistics: {'mrr': 0.20329341317365268, 'p1': 0.1856287425149
 
 * lambdarank without Google Rank:
 
-[INFO] 2024-01-22 08:57:06 - Current learning rate: 0.001
-[INFO] 2024-01-22 08:57:10 - Epoch : 19 Train loss: 0.06408040969733145 Val loss: 0.002021976289347754 Train ndcg_1 0.9988850355148315 Train ndcg_5 0.9991609454154968 Train ndcg_10 0.9991609454154968 Train mrr 0.9992035627365112 Train ap 0.9991106986999512 Train precision_1 0.9990442991256714 Train precision_5 0.2986301779747009 Val ndcg_1 1.0 Val ndcg_5 1.0 Val ndcg_10 1.0 Val mrr 1.0 Val ap 1.0 Val precision_1 1.0 Val precision_5 0.2806306481361389
-[INFO] 2024-01-22 08:57:10 - Current:1.0 Best:1.0
-[INFO] 2024-01-22 08:57:10 - Test metrics: {'ndcg_1': 0.2905983, 'ndcg_5': 0.30285743, 'ndcg_10': 0.30491447, 'mrr': 0.304416, 'ap': 0.29099444, 'precision_1': 0.2905983, 'precision_5': 0.116239324}
-
-2024-01-21 12:15:27,868 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 0.06408040969733145 Val loss: 0.002021976289347754 Train ndcg_1 0.9988850355148315 Train ndcg_5 0.9991609454154968 Train ndcg_10 0.9991609454154968 Train mrr 0.9992035627365112 Train ap 0.9991106986999512 Train precision_1 0.9990442991256714 Train precision_5 0.2986301779747009 Val ndcg_1 1.0 Val ndcg_5 1.0 Val ndcg_10 1.0 Val mrr 1.0 Val ap 1.0 Val precision_1 1.0 Val precision_5 0.2806306481361389
-2024-01-21 12:15:27,870 - allrank.utils.ltr_logging - INFO - Current:1.0 Best:1.0
-2024-01-21 12:15:28,285 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.2905983, 'ndcg_5': 0.30285743, 'ndcg_10': 0.30491447, 'mrr': 0.304416, 'ap': 0.29099444, 'precision_1': 0.2905983, 'precision_5': 0.116239324} -> 117/167
-{'ndcg_1': 0.20359282095808381,
- 'ndcg_5': 0.21218155275449102,
- 'ndcg_10': 0.21362271251497006,
- 'mrr': 0.21327348502994012,
- 'ap': 0.2038703561676647,
- 'precision_1': 0.20359282095808381,
- 'precision_5': 0.08143713118562874}
+[INFO] 2024-01-24 12:36:34 - Epoch : 19 Train loss: 0.06408040969733145 Val loss: 0.0019835104560376156 Train ndcg_1 0.9988850355148315 Train ndcg_5 0.9991609454154968 Train ndcg_10 0.9991609454154968 Train mrr 0.9992035627365112 Train ap 0.9991106986999512 Train precision_1 0.9990442991256714 Train precision_5 0.2986301779747009 Val ndcg_1 0.9988901615142822 Val ndcg_5 0.9988901615142822 Val ndcg_10 0.9988901615142822 Val mrr 0.9988901615142822 Val ap 0.9988901615142822 Val precision_1 0.9988901615142822 Val precision_5 0.27902331948280334
+[INFO] 2024-01-24 12:36:34 - Current:0.9988901615142822 Best:0.9988901615142822
+[INFO] 2024-01-24 12:36:34 - Test metrics: {'ndcg_1': 0.3846154, 'ndcg_5': 0.38323113, 'ndcg_10': 0.39066237, 'mrr': 0.39285716, 'ap': 0.37514102, 'precision_1': 0.3846154, 'precision_5': 0.14285716}
 
 * lambdarank with Google Rank adjustment:
 
@@ -681,11 +665,22 @@ execution average statistics: {'mrr': 0.20329341317365268, 'p1': 0.1856287425149
 python end_to_end_statistics.py --rerank_result experiments/lambdarank/lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth/results/lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth/predicted_result.txt
 ```
 
-How to pause history tracking in YouTube {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306} {'mrr': 0.2, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.38685280723454163}
+* lambdarank with Google Rank adjustment:
+
+```bash
+python end_to_end_statistics.py --rerank_result experiments/lambdarank/lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth/results/lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth/predicted_result.txt
+```
+
+all data length: 3321
+How to apply coupon? in Target {'mrr': 1.0, 'p1': 1.0, 'p5': 0.2, 'ndcg1': 1.0, 'ndcg5': 1.0} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+How to change your profile picture in Trip Advisor {'mrr': 1.0, 'p1': 1.0, 'p5': 0.4, 'ndcg1': 1.0, 'ndcg5': 0.9197207891481876} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.4, 'ndcg1': 0.0, 'ndcg5': 0.6509209298071326}
+How to list an item? in eBay {'mrr': 1.0, 'p1': 1.0, 'p5': 0.2, 'ndcg1': 1.0, 'ndcg5': 1.0} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+How to pause history tracking in YouTube {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306} {'mrr': 0.16666666666666666, 'p1': 0.0, 'p5': 0.0, 'ndcg1': 0.0, 'ndcg5': 0.0}
 How to share an article link in FlipBoard {'mrr': 0.5, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.6309297535714575} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
-google[mrr] > execution_statistics[mrr]: 27, google[mrr] < execution_statistics[mrr]: 2, google[mrr] = execution_statistics[mrr]: 88, zero_cnt_execution_statistics: 83, non_zero_cnt_execution_statistics: 34, total_query: 117
-google average statistics: {'mrr': 0.10238170502348029, 'p1': 0.05389221556886228, 'p5': 0.05389221556886228, 'ndcg1': 0.05389221556886228, 'ndcg5': 0.10419093916874589}
-execution average statistics: {'mrr': 0.21327345309381235, 'p1': 0.20359281437125748, 'p5': 0.08143712574850301, 'ndcg1': 0.20359281437125748, 'ndcg5': 0.2121815454375664}
+how to change emoji for group chat  in Messenger {'mrr': 0.3333333333333333, 'p1': 0.0, 'p5': 0.4, 'ndcg1': 0.0, 'ndcg5': 0.4367467095119258} {'mrr': 0.2, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.18154179253735267}
+google[mrr] > execution_statistics[mrr]: 24, google[mrr] < execution_statistics[mrr]: 6, google[mrr] = execution_statistics[mrr]: 137, zero_cnt_execution_statistics: 128, non_zero_cnt_execution_statistics: 39, total_query: 167
+google average statistics: {'mrr': 0.17821906906879376, 'p1': 0.11377245508982035, 'p5': 0.08502994011976044, 'ndcg1': 0.11377245508982035, 'ndcg5': 0.1692227773353583}
+execution average statistics: {'mrr': 0.25937524411366203, 'p1': 0.23353293413173654, 'p5': 0.10299401197604786, 'ndcg1': 0.23353293413173654, 'ndcg5': 0.23502103547546113}
 
 ### neuralNDCG, listNet, lambdarank, approxndc on dataset "How-to" META-GUI via Sigmoid MLP
 
@@ -886,16 +881,9 @@ PYTHONPATH=.:${PYTHONPATH} CUDA_VISIBLE_DEVICES=0 python allrank/main.py  --conf
 
 BCE without Google Rank:
 
-2024-01-21 12:57:34,792 - allrank.utils.ltr_logging - INFO - Epoch : 19 Train loss: 2.745351061846808 Val loss: 2.6144230193919964 Train ndcg_1 0.8442178964614868 Train ndcg_5 0.9182736277580261 Train ndcg_10 0.9227007031440735 Train mrr 0.9101946949958801 Train ap 0.8890700936317444 Train precision_1 0.8442178964614868 Train precision_5 0.28999683260917664 Val ndcg_1 0.8400900959968567 Val ndcg_5 0.9131476879119873 Val ndcg_10 0.9186704158782959 Val mrr 0.9035566449165344 Val ap 0.8846280574798584 Val precision_1 0.8400900959968567 Val precision_5 0.2713964283466339
-2024-01-21 12:57:34,794 - allrank.utils.ltr_logging - INFO - Current:0.9131476879119873 Best:0.9128440022468567
-2024-01-21 12:57:35,107 - allrank.utils.ltr_logging - INFO - Test metrics: {'ndcg_1': 0.23931625, 'ndcg_5': 0.27728394, 'ndcg_10': 0.28498685, 'mrr': 0.27735046, 'ap': 0.26439884, 'precision_1': 0.23931625, 'precision_5': 0.109401725} ->117/167
-{'ndcg_1': 0.16766467814371258,
- 'ndcg_5': 0.19426479628742516,
- 'ndcg_10': 0.19966144580838324,
- 'mrr': 0.19431140011976047,
- 'ap': 0.18523751065868266,
- 'precision_1': 0.16766467814371258,
- 'precision_5': 0.07664671751497007}
+[INFO] 2024-01-24 12:19:00 - Epoch : 19 Train loss: 2.745351061846808 Val loss: 2.5831473895103634 Train ndcg_1 0.8442178964614868 Train ndcg_5 0.9182736277580261 Train ndcg_10 0.9227007031440735 Train mrr 0.9101946949958801 Train ap 0.8890700936317444 Train precision_1 0.8442178964614868 Train precision_5 0.28999683260917664 Val ndcg_1 0.8457270264625549 Val ndcg_5 0.918822705745697 Val ndcg_10 0.9227742552757263 Val mrr 0.9072062969207764 Val ap 0.8910064697265625 Val precision_1 0.8457270264625549 Val precision_5 0.27125418186187744
+[INFO] 2024-01-24 12:19:00 - Current:0.918822705745697 Best:0.9176566004753113
+[INFO] 2024-01-24 12:19:00 - Test metrics: {'ndcg_1': 0.31868133, 'ndcg_5': 0.35855588, 'ndcg_10': 0.3678932, 'mrr': 0.35842493, 'ap': 0.34665814, 'precision_1': 0.31868133, 'precision_5': 0.13846155}
 
 BCE with Google Rank adjustment:
 
@@ -903,13 +891,18 @@ BCE with Google Rank adjustment:
 python end_to_end_statistics.py --rerank_result experiments/bce/pointwise_bce_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model/results/pointwise_bce_Multimodal_Feature18_label2_on_cohere_ground_truth_lr_model/predicted_result.txt
 ```
 
-How to add multi-stops in Here WeGo {'mrr': 1.0, 'p1': 1.0, 'p5': 0.2, 'ndcg1': 1.0, 'ndcg5': 1.0} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.6309297535714575}
+all data length: 3321
+How to apply coupon? in Target {'mrr': 1.0, 'p1': 1.0, 'p5': 0.2, 'ndcg1': 1.0, 'ndcg5': 1.0} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+How to change your profile picture in Trip Advisor {'mrr': 1.0, 'p1': 1.0, 'p5': 0.4, 'ndcg1': 1.0, 'ndcg5': 0.9197207891481876} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.4, 'ndcg1': 0.0, 'ndcg5': 0.6509209298071326}
+How to list an item? in eBay {'mrr': 1.0, 'p1': 1.0, 'p5': 0.2, 'ndcg1': 1.0, 'ndcg5': 1.0} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
 How to pause history tracking in YouTube {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306} {'mrr': 0.2, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.38685280723454163}
+How to pin my favorite location in Google Maps {'mrr': 1.0, 'p1': 1.0, 'p5': 0.4, 'ndcg1': 1.0, 'ndcg5': 0.6713860725233041} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.4, 'ndcg1': 0.0, 'ndcg5': 0.4776237035032179}
 How to share an article link in FlipBoard {'mrr': 0.5, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.6309297535714575} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+how to change emoji for group chat  in Messenger {'mrr': 0.3333333333333333, 'p1': 0.0, 'p5': 0.4, 'ndcg1': 0.0, 'ndcg5': 0.4367467095119258} {'mrr': 0.2, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.18154179253735267}
 how to connect to wifi step by step on Android {'mrr': 1.0, 'p1': 1.0, 'p5': 0.6, 'ndcg1': 1.0, 'ndcg5': 0.6548086577531307} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.4, 'ndcg1': 0.0, 'ndcg5': 0.36005461457723403}
-google[mrr] > execution_statistics[mrr]: 27, google[mrr] < execution_statistics[mrr]: 4, google[mrr] = execution_statistics[mrr]: 86, zero_cnt_execution_statistics: 89, non_zero_cnt_execution_statistics: 28, total_query: 117
-google average statistics: {'mrr': 0.10238170502348029, 'p1': 0.05389221556886228, 'p5': 0.05389221556886228, 'ndcg1': 0.05389221556886228, 'ndcg5': 0.10419093916874589}
-execution average statistics: {'mrr': 0.194311377245509, 'p1': 0.16766467065868262, 'p5': 0.07664670658682636, 'ndcg1': 0.16766467065868262, 'ndcg5': 0.19426477609123186}
+google[mrr] > execution_statistics[mrr]: 23, google[mrr] < execution_statistics[mrr]: 8, google[mrr] = execution_statistics[mrr]: 136, zero_cnt_execution_statistics: 134, non_zero_cnt_execution_statistics: 33, total_query: 167
+google average statistics: {'mrr': 0.17821906906879376, 'p1': 0.11377245508982035, 'p5': 0.08502994011976044, 'ndcg1': 0.11377245508982035, 'ndcg5': 0.1692227773353583}
+execution average statistics: {'mrr': 0.24061276906376183, 'p1': 0.19760479041916168, 'p5': 0.10059880239520952, 'ndcg1': 0.19760479041916168, 'ndcg5': 0.22274814157298908}
 
 * META-GUI
 

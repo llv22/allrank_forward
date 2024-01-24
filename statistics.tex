@@ -4,29 +4,12 @@
 	\begin{tabular}{c|cccc}
 			\textbf{Model}                             & \textbf{MRR} & \textbf{P@1} & \textbf{P@5} & \textbf{NDCG@5} \\
 			\toprule
-			\textbf{Original (Baseline, Google rank)}  & 0.1782       & 0.1138       & 0.0850       & 0.1692          \\
-			Rule-based ($F_4$  Google rank)          & 0.2107       & 0.1737       & 0.0946       & 0.1971          \\ % filter_out_by_extraction: 7 out of 167 queries
-			Rule-based ($F_4 \geq 0.5$  Google rank) & 0.2063       & 0.1737       & 0.0934       & 0.1927          \\ %ablation study
-			Rule-based ($F_4 \geq 0.7$  Google rank) & 0.1762       & 0.1557       & 0.0850       & 0.1653          \\ %ablation study
-			Rule-based ($F_4 \geq 0.9$  Google rank) & 0.1523       & 0.1317       & 0.0778       & 0.14315         \\ %ablation study
-			Rule-based ($F_4 = 1$  Google rank)      & 0.1523       & 0.1317       & 0.0778       & 0.14315         \\ %ablation study
-			BCE + LR                                   & 0.1943       & 0.1677       & 0.0766       & 0.1943          \\ %all experiments with different settings are running in epoch=20
-			BCE + LR (Google rank)                     & 0.1943       & 0.1677       & 0.0766       & 0.1943          \\
-			NeuralNDCG + TMLP                          & 0.2039       & 0.1856       & 0.0754       & 0.2013          \\
-			NeuralNDCG + TMLP (Google rank)            & 0.2031       & 0.1856       & 0.0790       & 0.2033          \\
-			ApproxNDCG + TMLP                          & 0.2033       & 0.1856       & 0.0766       & 0.2024          \\
-			ApproxNDCG + TMLP (Google rank)            & 0.2033       & 0.1856       & 0.0766       & 0.2024          \\
-			LambdaRank + TMLP                          & 0.2133       & 0.2036       & 0.0814       & 0.2122          \\
-			LambdaRank + TMLP (Google rank)            & 0.2133       & 0.2036       & 0.0814       & 0.2122          \\
-			ListNet + TMLP                             & 0.1525       & 0.1138       & 0.0647       & 0.1529          \\
-			ListNet + TMLP (Google rank)               & 0.1525       & 0.1138       & 0.0647       & 0.1529          \\
-			NeuralNDCG + MLP                           & 0.1991       & 0.1796       & 0.0790       & 0.2004          \\
-			NeuralNDCG + MLP (Google rank)             & 0.1991       & 0.1796       & 0.0790       & 0.2004          \\
-			ApproxNDCG + MLP                           & 0.1991       & 0.1796       & 0.0790       & 0.2004          \\
-			ApproxNDCG + MLP (Google rank)             & 0.1991       & 0.1796       & 0.0790       & 0.2004          \\
-			LambdaRank + MLP                           & 0.2001       & 0.1796       & 0.0790       & 0.2012          \\
-			LambdaRank + MLP (Google rank)             & 0.2001       & 0.1796       & 0.0790       & 0.2012          \\
-			ListNet + MLP                              & 0.1734       & 0.1497       & 0.0719       & 0.1741          \\
-			ListNet + MLP   (Google rank)              & 0.1734       & 0.1497       & 0.0719       & 0.1741          \\
+			Baseline: Google            & 0.1782       & 0.1138       & 0.0850       & 0.1692          \\
+			$F_4$-based rank($F_4$)     & 0.2107       & 0.1737       & 0.0946       & 0.1971          \\ %filter_out_by_extraction: 7 out of 167 queries
+			$F_4$-based rule($F_4 = 1$) & 0.1523       & 0.1317       & 0.0778       & 0.1432          \\ %ablation study
+			LR                          & 0.1943       & 0.1677       & 0.0766       & 0.1943          \\
+			NeuralNDCG + TMLP           & 0.2031       & 0.1856       & 0.0790       & 0.2033          \\
+			LambdaLoss + TMLP           & 0.2133       & 0.2036       & 0.0814       & 0.2122          \\
+			Optimal: Ground truth       & 0.3353       & 0.3353       & 0.1365       & 0.3353          \\
 	\end{tabular}
 \end{table}

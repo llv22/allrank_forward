@@ -1,5 +1,6 @@
 import argparse
 import json
+import pandas as pd
 from pathlib import Path
 
 def statistic_cal(statistics):
@@ -11,7 +12,7 @@ def statistic_cal(statistics):
                 average[measure] += value
             else:
                 average[measure] = value
-    average = {k:v/l * 117/167 for k, v in average.items()}
+    average = {k:v/l for k, v in average.items()}
     return average
     
 def p(rank_to_ground_true, rank):
@@ -56,15 +57,42 @@ def sort_key_for_dictionary(dic):
 
 def convert_to_end_to_end(statistic):
     for k, v, in statistic.items():
-        statistic[k] = v * 117/167
+        statistic[k] = v
     return statistic
+
+def generate_google_rank_to_ground_true(google_rank, ground_true, max_rank):
+    google_rank_to_ground_true = [-1] * (max_rank + 1)
+    for i in range(len(google_rank)):
+        google_rank_to_ground_true[google_rank[i]] = ground_true[i]
+    return google_rank_to_ground_true
+
+def generate_execution_scoring(google_rank, ratings, max_rank):
+    google_rank_to_ground_true = [float('-inf')] * (max_rank + 1)
+    for i in range(len(google_rank)):
+        google_rank_to_ground_true[google_rank[i]] = ratings[i]
+    return google_rank_to_ground_true
+
+def generate_execution_scoring_rating_pair(google_rank, ratings, max_rank):
+    # google_rank_to_ground_true = [float('-inf')] * (max_rank + 1)
+    google_rank_to_ground_true = [(-1, i) for i in range(max_rank + 1)]
+    for i in range(len(google_rank)):
+        google_rank_to_ground_true[google_rank[i]] = (ratings[i], google_rank[i])
+    return google_rank_to_ground_true
+
+def filter_value(statistics):
+    filtered_statistics = {}
+    for k, v in statistics.items():
+        if v['mrr'] != 0 or v['p1'] != 0 or v['p5'] != 0 or v['ndcg1'] != 0 or v[f'ndcg{ndcg_k}'] != 0:
+            filtered_statistics[k] = v
+    return filtered_statistics
 
 if __name__ == "__main__":
     args = argparse.ArgumentParser()
-    args.add_argument("--exclude_google_rank_for_execution", type=bool, default=True)
+    args.add_argument("--exclude_google_rank_for_execution", type=bool, default=False)
     args.add_argument("--rerank_result", type=str, default='experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth_failure_analysis/results/neuralndcg_atmax_Multimodal_Feature18_label2_on_ground_truth_extra/predicted_result.txt')
     args.add_argument("--input_label", type=str, default='mmdataset/Feature_18_zeroshot_label2/test.txt')
     args.add_argument("--input_query", type=str, default='mmdataset/Feature_18_zeroshot_label2/test_qid_label2.json')
+    args.add_argument("--input_rank", type=str, default='/data/orlando/workspace/metaGUI_forward/repo_upload/ground_truth/execution_result_by_rerank.xlsx')
     conf = args.parse_args()
     group_cnt = 0
     zero_cnt = 0
@@ -121,98 +149,59 @@ if __name__ == "__main__":
             query_tuple = set([e.split(":")[1] for e in data[1: -1]])
             query_str_to_rank[query_str] = rank
             query_str_to_label[query_str] = label
-    
+    with open(conf.input_query, 'r') as f:
+        query_to_qid = json.load(f)
+        qid_to_query = {v: k for k, v in query_to_qid.items()}
     for qid, ranks in qid_to_ranks.items():
         for r in ranks:
             query_str = r['query_str']
             assert query_str in query_str_to_rank
             assert r['ground_truth'] == query_str_to_label[query_str]
             r['google_rank'] = query_str_to_rank[query_str]
-            
-    def generate_google_rank_to_ground_true(google_rank, ground_true, max_rank):
-        google_rank_to_ground_true = [-1] * (max_rank + 1)
-        for i in range(len(google_rank)):
-            google_rank_to_ground_true[google_rank[i]] = ground_true[i]
-        return google_rank_to_ground_true
-    
-    def generate_execution_scoring(google_rank, ratings, max_rank):
-        google_rank_to_ground_true = [float('-inf')] * (max_rank + 1)
-        for i in range(len(google_rank)):
-            google_rank_to_ground_true[google_rank[i]] = ratings[i]
-        return google_rank_to_ground_true
-    
-    def generate_execution_scoring_rating_pair(google_rank, ratings, max_rank):
-        google_rank_to_ground_true = [float('-inf')] * (max_rank + 1)
-        for i in range(len(google_rank)):
-            google_rank_to_ground_true[google_rank[i]] = (ratings[i], google_rank[i])
-        return google_rank_to_ground_true
-    
-    def filter_value(statistics):
-        filtered_statistics = {}
-        for k, v in statistics.items():
-            if v['mrr'] != 0 or v['p1'] != 0 or v['p5'] != 0 or v['ndcg1'] != 0 or v[f'ndcg{ndcg_k}'] != 0:
-                filtered_statistics[k] = v
-        return filtered_statistics
-    
+    statistics_df = pd.read_excel(conf.input_rank)
+    print(f"all data length: {len(statistics_df)}")
     # see: calculate MRR, P@1, P@5 statistics
-    with open(conf.input_query, 'r') as f:
-        query_to_qid = json.load(f)
-        qid_to_query = {v: k for k, v in query_to_qid.items()}
-    for qid, ranks in qid_to_ranks.items():
-        assert qid in qid_to_query
-        google_rank = [r['google_rank'] for r in ranks]
-        max_rank = max(google_rank)
-        ground_true = [r['ground_truth'] for r in ranks]
-        google_rank_to_ground_true = generate_google_rank_to_ground_true(google_rank, ground_true, max_rank)
-        ground_true_google_ranking = list(map(lambda x: 0 if x < 0 else x, google_rank_to_ground_true))
-        ratings = [r['scoring'] for r in ranks]
-        execution_scoring = generate_execution_scoring(google_rank, ratings, max_rank)
+    for search_query, group in statistics_df.groupby('search_query'):
+        google_rank_to_index = {i: index for index, i in enumerate(group.google_rank.tolist())}
+        google_rank = group.google_rank.tolist()
+        ground_true = group.execution_status.tolist()
         indexes = [index for index, e in enumerate(ground_true) if e == 1]
-        search_query = qid_to_query[qid]
-        if len(indexes) != 0:
-            google_statistics[search_query] = {
-                "mrr": mrr(google_rank_to_ground_true),
-                "p1": p(google_rank_to_ground_true, 1),
-                "p5": p(google_rank_to_ground_true, 5),
-                "ndcg1": ndcg(ground_true_google_ranking, k=1),
-                f"ndcg{ndcg_k}": ndcg(ground_true_google_ranking, k=ndcg_k),
-            }
-            if conf.exclude_google_rank_for_execution:
-                el = sorted(enumerate(execution_scoring), key = lambda x: x[1], reverse=True)
-                execution_rank_to_ground_true = [ground_true_google_ranking[r] for r, _ in el]
-            else:
-                s = list(zip(ratings, google_rank))
-                sp = generate_execution_scoring_rating_pair(google_rank, ratings, max_rank)
-                el = sorted(enumerate(sp), key = lambda x: (x[1][0], -x[1][1]), reverse=True)
-                execution_rank_to_ground_true = [ground_true_google_ranking[r] for r, _ in el]
-            ground_true_execution_ranking = list(map(lambda x: 0 if x < 0 else x, execution_rank_to_ground_true))
-            execution_statistics[search_query] = {
-                "mrr": mrr(execution_rank_to_ground_true),
-                "p1": p(execution_rank_to_ground_true, 1),
-                "p5": p(execution_rank_to_ground_true, 5),
-                "ndcg1": ndcg(ground_true_execution_ranking, k=1),
-                f"ndcg{ndcg_k}": ndcg(ground_true_execution_ranking, k=ndcg_k),
-            }
-            if execution_statistics[search_query]['ndcg1'] == 0:
-                zero_cnt += 1
-            else:
-                non_zero_cnt += 1
-        else:
-            google_statistics[search_query] = {
-                "mrr": 0,
-                "p1": 0,
-                "p5": 0,
-                "ndcg1": 0,
-                "ndcg5": 0,
-            }
-            execution_statistics[search_query] = {
-                "mrr": 0,
-                "p1": 0,
-                "p5": 0,
-                "ndcg1": 0,
-                "ndcg5": 0,
-            }
+        ground_true_google_ranking = list(map(lambda x: 0 if x < 0 else x, ground_true))
+        # see: calculate google statistics
+        google_rank_to_ground_true = ground_true
+        google_statistics[search_query] = {
+            "mrr": mrr(google_rank_to_ground_true),
+            "p1": p(google_rank_to_ground_true, 1),
+            "p5": p(google_rank_to_ground_true, 5),
+            "ndcg1": ndcg(ground_true_google_ranking, k=1),
+            f"ndcg{ndcg_k}": ndcg(ground_true_google_ranking, k=ndcg_k),
+        }
+        rerank_relevance_scoring = [-1] * len(google_rank_to_index)
+        # see: adjust the reranking result
+        if search_query in query_to_qid:
+            qid = query_to_qid[search_query]
+            if qid in qid_to_ranks:
+                ranks = qid_to_ranks[qid]
+                for r in ranks:
+                    assert r['scoring'] >= 0.0
+                    rerank_relevance_scoring[google_rank_to_index[r['google_rank']]] = r['scoring']
+        sp = list(zip(rerank_relevance_scoring, google_rank))
+        el = sorted(enumerate(sp), key = lambda x: (x[1][0], -x[1][1]), reverse=True)
+        execution_rank_to_ground_true = [ground_true_google_ranking[r] for r, _ in el]
+        indexes = [index for index, e in enumerate(ground_true) if e == 1]
+        execution_scoring = group.instruction_completion.tolist()
+        ground_true_execution_ranking = list(map(lambda x: 0 if x < 0 else x, execution_rank_to_ground_true))
+        execution_statistics[search_query] = {
+            "mrr": mrr(execution_rank_to_ground_true),
+            "p1": p(execution_rank_to_ground_true, 1),
+            "p5": p(execution_rank_to_ground_true, 5),
+            "ndcg1": ndcg(ground_true_execution_ranking, k=1),
+            f"ndcg{ndcg_k}": ndcg(ground_true_execution_ranking, k=ndcg_k),
+        }
+        if execution_statistics[search_query]['ndcg1'] == 0:
             zero_cnt += 1
+        else:
+            non_zero_cnt += 1
         group_cnt += 1
         
     google_statistics = sort_key_for_dictionary(google_statistics)
@@ -235,8 +224,8 @@ if __name__ == "__main__":
     print(f"execution average statistics: {execution_average}")
 
     google_statistics = filter_value(google_statistics)
-    with open(f"{folder}/google_statistics.json", "w") as f:
+    with open(f"{folder}/google_statistics_only_executable.json", "w") as f:
         json.dump(google_statistics, f, indent=2)
     execution_statistics = filter_value(execution_statistics)
-    with open(f"{folder}/execution_statistics.json", "w") as f:
+    with open(f"{folder}/execution_statistics_only_executable.json", "w") as f:
         json.dump(execution_statistics, f, indent=2)

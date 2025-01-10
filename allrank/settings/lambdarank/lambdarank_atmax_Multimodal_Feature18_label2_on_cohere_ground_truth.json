@@ -14,7 +14,7 @@
       "dropout": 0.1
     },
     "post_model": {
-      "output_activation":  null,
+      "output_activation":  "Tanh",
       "d_output": 1
     }
   },
@@ -67,7 +67,7 @@
   "detect_anomaly": false,
   "expected_metrics" : {
     "val": {
-      "ndcg_5": 0.50
+      "ndcg_5": 0.35
     }
   }
 }

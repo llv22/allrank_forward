@@ -592,6 +592,60 @@ google[mrr] > execution_statistics[mrr]: 24, google[mrr] < execution_statistics[
 google average statistics: {'mrr': 0.17821906906879376, 'p1': 0.11377245508982035, 'p5': 0.08502994011976044, 'ndcg1': 0.11377245508982035, 'ndcg5': 0.1692227773353583}
 execution average statistics: {'mrr': 0.2565808329360173, 'p1': 0.2275449101796407, 'p5': 0.10059880239520955, 'ndcg1': 0.2275449101796407, 'ndcg5': 0.23420341451381946}
 
+activation with sigmoid
+
+```bash
+python end_to_end_statistics.py --rerank_result experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth/results/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth/predicted_result_with_sigmoid.txt
+```
+
+python end_to_end_statistics.py --rerank_result experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth/results/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth/predicted_result_with_sigmoid.txt
+all data length: 3321
+How to add Home or Work in Google Maps {'mrr': 1.0, 'p1': 1.0, 'p5': 0.6, 'ndcg1': 1.0, 'ndcg5': 0.6843515475204855} {'mrr': 0.3333333333333333, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.16958010263680806}
+How to apply coupon? in Target {'mrr': 1.0, 'p1': 1.0, 'p5': 0.2, 'ndcg1': 1.0, 'ndcg5': 1.0} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+How to change your profile picture in Trip Advisor {'mrr': 1.0, 'p1': 1.0, 'p5': 0.4, 'ndcg1': 1.0, 'ndcg5': 0.9197207891481876} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.4, 'ndcg1': 0.0, 'ndcg5': 0.6509209298071326}
+How to list an item? in eBay {'mrr': 1.0, 'p1': 1.0, 'p5': 0.2, 'ndcg1': 1.0, 'ndcg5': 1.0} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+How to pause history tracking in YouTube {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306} {'mrr': 0.14285714285714285, 'p1': 0.0, 'p5': 0.0, 'ndcg1': 0.0, 'ndcg5': 0.0}
+How to share an article link in FlipBoard {'mrr': 0.5, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.6309297535714575} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+how to change emoji for group chat  in Messenger {'mrr': 0.3333333333333333, 'p1': 0.0, 'p5': 0.4, 'ndcg1': 0.0, 'ndcg5': 0.4367467095119258} {'mrr': 0.2, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.18154179253735267}
+google[mrr] > execution_statistics[mrr]: 24, google[mrr] < execution_statistics[mrr]: 7, google[mrr] = execution_statistics[mrr]: 136, zero_cnt_execution_statistics: 133, non_zero_cnt_execution_statistics: 34, total_query: 167
+google average statistics: {'mrr': 0.17821906906879376, 'p1': 0.11377245508982035, 'p5': 0.08502994011976044, 'ndcg1': 0.11377245508982035, 'ndcg5': 0.1692227773353583}
+execution average statistics: {'mrr': 0.24226660425053118, 'p1': 0.20359281437125748, 'p5': 0.09940119760479038, 'ndcg1': 0.20359281437125748, 'ndcg5': 0.22406764750409824}
+
+activation with Tanh
+
+```bash
+python end_to_end_statistics.py --rerank_result experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth/results/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth/predicted_result_with_tanh.txt
+```
+
+all data length: 3321
+How to add Home or Work in Google Maps {'mrr': 1.0, 'p1': 1.0, 'p5': 0.6, 'ndcg1': 1.0, 'ndcg5': 0.6843515475204855} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.6, 'ndcg1': 0.0, 'ndcg5': 0.4912596920895758}
+How to apply coupon? in Target {'mrr': 1.0, 'p1': 1.0, 'p5': 0.2, 'ndcg1': 1.0, 'ndcg5': 1.0} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+How to change your profile picture in Trip Advisor {'mrr': 1.0, 'p1': 1.0, 'p5': 0.4, 'ndcg1': 1.0, 'ndcg5': 0.9197207891481876} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.4, 'ndcg1': 0.0, 'ndcg5': 0.6509209298071326}
+How to list an item? in eBay {'mrr': 1.0, 'p1': 1.0, 'p5': 0.2, 'ndcg1': 1.0, 'ndcg5': 1.0} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+How to pause history tracking in YouTube {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306} {'mrr': 0.16666666666666666, 'p1': 0.0, 'p5': 0.0, 'ndcg1': 0.0, 'ndcg5': 0.0}
+How to share an article link in FlipBoard {'mrr': 0.5, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.6309297535714575} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+how to change emoji for group chat  in Messenger {'mrr': 0.3333333333333333, 'p1': 0.0, 'p5': 0.4, 'ndcg1': 0.0, 'ndcg5': 0.4367467095119258} {'mrr': 0.2, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.18154179253735267}
+how to connect to wifi step by step on Android {'mrr': 1.0, 'p1': 1.0, 'p5': 0.6, 'ndcg1': 1.0, 'ndcg5': 0.6548086577531307} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.6, 'ndcg1': 0.0, 'ndcg5': 0.5296347172140421}
+google[mrr] > execution_statistics[mrr]: 23, google[mrr] < execution_statistics[mrr]: 8, google[mrr] = execution_statistics[mrr]: 136, zero_cnt_execution_statistics: 135, non_zero_cnt_execution_statistics: 32, total_query: 167
+google average statistics: {'mrr': 0.17821906906879376, 'p1': 0.11377245508982035, 'p5': 0.08502994011976044, 'ndcg1': 0.11377245508982035, 'ndcg5': 0.1692227773353583}
+execution average statistics: {'mrr': 0.23741915628931076, 'p1': 0.19161676646706588, 'p5': 0.10059880239520955, 'ndcg1': 0.19161676646706588, 'ndcg5': 0.2216640992451054}
+
+```bash
+python end_to_end_statistics.py --rerank_result experiments/neuralNDCG/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth/results/neuralndcg_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth/predicted_result.txt
+```
+
+all data length: 3321
+How do I unsend a message? in Messenger {'mrr': 1.0, 'p1': 1.0, 'p5': 0.6, 'ndcg1': 1.0, 'ndcg5': 0.8318724637288826} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.6, 'ndcg1': 0.0, 'ndcg5': 0.5654495432396527}
+How to add Home or Work in Google Maps {'mrr': 1.0, 'p1': 1.0, 'p5': 0.6, 'ndcg1': 1.0, 'ndcg5': 0.6843515475204855} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.6, 'ndcg1': 0.0, 'ndcg5': 0.4912596920895758}
+How to apply coupon? in Target {'mrr': 1.0, 'p1': 1.0, 'p5': 0.2, 'ndcg1': 1.0, 'ndcg5': 1.0} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+How to change your profile picture in Trip Advisor {'mrr': 1.0, 'p1': 1.0, 'p5': 0.4, 'ndcg1': 1.0, 'ndcg5': 0.9197207891481876} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.4, 'ndcg1': 0.0, 'ndcg5': 0.6509209298071326}
+How to list an item? in eBay {'mrr': 1.0, 'p1': 1.0, 'p5': 0.2, 'ndcg1': 1.0, 'ndcg5': 1.0} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+How to pause history tracking in YouTube {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306} {'mrr': 0.16666666666666666, 'p1': 0.0, 'p5': 0.0, 'ndcg1': 0.0, 'ndcg5': 0.0}
+how to change emoji for group chat  in Messenger {'mrr': 0.3333333333333333, 'p1': 0.0, 'p5': 0.4, 'ndcg1': 0.0, 'ndcg5': 0.4367467095119258} {'mrr': 0.2, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.18154179253735267}
+google[mrr] > execution_statistics[mrr]: 25, google[mrr] < execution_statistics[mrr]: 7, google[mrr] = execution_statistics[mrr]: 135, zero_cnt_execution_statistics: 131, non_zero_cnt_execution_statistics: 36, total_query: 167
+google average statistics: {'mrr': 0.17821906906879376, 'p1': 0.11377245508982035, 'p5': 0.08502994011976044, 'ndcg1': 0.11377245508982035, 'ndcg5': 0.1692227773353583}
+execution average statistics: {'mrr': 0.24895323099703812, 'p1': 0.2155688622754491, 'p5': 0.09940119760479038, 'ndcg1': 0.2155688622754491, 'ndcg5': 0.22769906022830572}
+
 * listNet without Google Rank:
 
 [INFO] 2024-01-22 11:23:24 - Epoch : 19 Train loss: 0.8899635142602522 Val loss: 0.8315677615973327 Train ndcg_1 0.9899649620056152 Train ndcg_5 0.9947431087493896 Train ndcg_10 0.9950008988380432 Train mrr 0.9945312142372131 Train ap 0.9926384687423706 Train precision_1 0.9906021356582642 Train precision_5 0.29802486300468445 Val ndcg_1 0.9853603839874268 Val ndcg_5 0.9939936995506287 Val ndcg_10 0.9942396283149719 Val mrr 0.9926801919937134 Val ap 0.9916432499885559 Val precision_1 0.9853603839874268 Val precision_5 0.2804054319858551
@@ -668,7 +722,7 @@ python end_to_end_statistics.py --rerank_result experiments/lambdarank/lambdaran
 * lambdarank with Google Rank adjustment:
 
 ```bash
-python end_to_end_statistics.py --rerank_result experiments/lambdarank/lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth/results/lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth/predicted_result.txt
+python end_to_end_statistics.py --rerank_result experiments/lambdarank/lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth/results/lambdarank_atmax_Multimodal_Feature18_label2_on_cohere_ground_truth/predicted_result_with_tanh.txt
 ```
 
 all data length: 3321
@@ -681,6 +735,35 @@ how to change emoji for group chat  in Messenger {'mrr': 0.3333333333333333, 'p1
 google[mrr] > execution_statistics[mrr]: 24, google[mrr] < execution_statistics[mrr]: 6, google[mrr] = execution_statistics[mrr]: 137, zero_cnt_execution_statistics: 128, non_zero_cnt_execution_statistics: 39, total_query: 167
 google average statistics: {'mrr': 0.17821906906879376, 'p1': 0.11377245508982035, 'p5': 0.08502994011976044, 'ndcg1': 0.11377245508982035, 'ndcg5': 0.1692227773353583}
 execution average statistics: {'mrr': 0.25937524411366203, 'p1': 0.23353293413173654, 'p5': 0.10299401197604786, 'ndcg1': 0.23353293413173654, 'ndcg5': 0.23502103547546113}
+
+* lambdarank with Sigmoid:
+
+all data length: 3321
+How to apply coupon? in Target {'mrr': 1.0, 'p1': 1.0, 'p5': 0.2, 'ndcg1': 1.0, 'ndcg5': 1.0} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+How to change your profile picture in Trip Advisor {'mrr': 1.0, 'p1': 1.0, 'p5': 0.4, 'ndcg1': 1.0, 'ndcg5': 0.9197207891481876} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.4, 'ndcg1': 0.0, 'ndcg5': 0.6509209298071326}
+How to list an item? in eBay {'mrr': 1.0, 'p1': 1.0, 'p5': 0.2, 'ndcg1': 1.0, 'ndcg5': 1.0} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+How to pause history tracking in YouTube {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306} {'mrr': 0.14285714285714285, 'p1': 0.0, 'p5': 0.0, 'ndcg1': 0.0, 'ndcg5': 0.0}
+How to share an article link in FlipBoard {'mrr': 0.5, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.6309297535714575} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+how to change emoji for group chat  in Messenger {'mrr': 0.3333333333333333, 'p1': 0.0, 'p5': 0.4, 'ndcg1': 0.0, 'ndcg5': 0.4367467095119258} {'mrr': 0.2, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.18154179253735267}
+how to connect to wifi step by step on Android {'mrr': 1.0, 'p1': 1.0, 'p5': 0.6, 'ndcg1': 1.0, 'ndcg5': 0.6548086577531307} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.6, 'ndcg1': 0.0, 'ndcg5': 0.5296347172140421}
+google[mrr] > execution_statistics[mrr]: 24, google[mrr] < execution_statistics[mrr]: 7, google[mrr] = execution_statistics[mrr]: 136, zero_cnt_execution_statistics: 133, non_zero_cnt_execution_statistics: 34, total_query: 167
+google average statistics: {'mrr': 0.17821906906879376, 'p1': 0.11377245508982035, 'p5': 0.08502994011976044, 'ndcg1': 0.11377245508982035, 'ndcg5': 0.1692227773353583}
+execution average statistics: {'mrr': 0.24376361023855514, 'p1': 0.20359281437125748, 'p5': 0.09940119760479038, 'ndcg1': 0.20359281437125748, 'ndcg5': 0.22577606552741578}
+
+* lambdarank with Tanh:
+
+all data length: 3321
+How to add Home or Work in Google Maps {'mrr': 1.0, 'p1': 1.0, 'p5': 0.6, 'ndcg1': 1.0, 'ndcg5': 0.6843515475204855} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.6, 'ndcg1': 0.0, 'ndcg5': 0.5147714448836774}
+How to apply coupon? in Target {'mrr': 1.0, 'p1': 1.0, 'p5': 0.2, 'ndcg1': 1.0, 'ndcg5': 1.0} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+How to change your profile picture in Trip Advisor {'mrr': 1.0, 'p1': 1.0, 'p5': 0.4, 'ndcg1': 1.0, 'ndcg5': 0.9197207891481876} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.4, 'ndcg1': 0.0, 'ndcg5': 0.6509209298071326}
+How to list an item? in eBay {'mrr': 1.0, 'p1': 1.0, 'p5': 0.2, 'ndcg1': 1.0, 'ndcg5': 1.0} {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306}
+How to pause history tracking in YouTube {'mrr': 0.25, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.43067655807339306} {'mrr': 0.14285714285714285, 'p1': 0.0, 'p5': 0.0, 'ndcg1': 0.0, 'ndcg5': 0.0}
+How to share an article link in FlipBoard {'mrr': 0.5, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.6309297535714575} {'mrr': 0.3333333333333333, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.5}
+how to change emoji for group chat  in Messenger {'mrr': 0.3333333333333333, 'p1': 0.0, 'p5': 0.4, 'ndcg1': 0.0, 'ndcg5': 0.4367467095119258} {'mrr': 0.2, 'p1': 0.0, 'p5': 0.2, 'ndcg1': 0.0, 'ndcg5': 0.18154179253735267}
+how to connect to wifi step by step on Android {'mrr': 1.0, 'p1': 1.0, 'p5': 0.6, 'ndcg1': 1.0, 'ndcg5': 0.6548086577531307} {'mrr': 0.5, 'p1': 0.0, 'p5': 0.8, 'ndcg1': 0.0, 'ndcg5': 0.6608397947263839}
+google[mrr] > execution_statistics[mrr]: 24, google[mrr] < execution_statistics[mrr]: 8, google[mrr] = execution_statistics[mrr]: 135, zero_cnt_execution_statistics: 134, non_zero_cnt_execution_statistics: 33, total_query: 167
+google average statistics: {'mrr': 0.17821906906879376, 'p1': 0.11377245508982035, 'p5': 0.08502994011976044, 'ndcg1': 0.11377245508982035, 'ndcg5': 0.1692227773353583}
+execution average statistics: {'mrr': 0.24176760225452318, 'p1': 0.19760479041916168, 'p5': 0.1017964071856287, 'ndcg1': 0.19760479041916168, 'ndcg5': 0.22631833274426663}
 
 ### neuralNDCG, listNet, lambdarank, approxndc on dataset "How-to" META-GUI via Sigmoid MLP
 
